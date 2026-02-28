@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+src/__init__.py
+src/study_organizer/__init__.py
+src/study_organizer/__main__.py
+src/study_organizer.egg-info/PKG-INFO
+src/study_organizer.egg-info/SOURCES.txt
+src/study_organizer.egg-info/dependency_links.txt
+src/study_organizer.egg-info/entry_points.txt
+src/study_organizer.egg-info/top_level.txt
+src/study_organizer/adapters/api/__init__.py
+src/study_organizer/adapters/cli/__init__.py
+src/study_organizer/domain/__init__.py
+src/study_organizer/infra/__init__.py
+src/study_organizer/service/__init__.py

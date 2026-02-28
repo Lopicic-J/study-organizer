@@ -1,0 +1,16 @@
+[project]
+name = "study-organizer"
+version = "0.1.0"
+description = "Study Organizer (CLI first, API-ready) for modules, deadlines and sessions."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+study = "study_organizer.__main__:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88

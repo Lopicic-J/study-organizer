@@ -1,0 +1,2 @@
+[console_scripts]
+study = study_organizer.__main__:main
