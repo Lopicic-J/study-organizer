@@ -14,3 +14,10 @@ testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.format]
+quote-style = "double"

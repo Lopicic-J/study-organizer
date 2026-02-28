@@ -11,5 +11,14 @@ src/study_organizer.egg-info/top_level.txt
 src/study_organizer/adapters/api/__init__.py
 src/study_organizer/adapters/cli/__init__.py
 src/study_organizer/domain/__init__.py
+src/study_organizer/domain/models.py
 src/study_organizer/infra/__init__.py
+src/study_organizer/infra/db.py
+src/study_organizer/infra/schema.py
+src/study_organizer/infra/sqlite_repo.py
 src/study_organizer/service/__init__.py
+src/study_organizer/service/errors.py
+src/study_organizer/service/repository.py
+src/study_organizer/service/validation.py
+tests/test_repo_sqlite.py
+tests/test_validation.py
