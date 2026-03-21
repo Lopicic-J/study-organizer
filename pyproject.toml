@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Study Organizer (CLI first, API-ready) for modules, deadlines and sessions."
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+  "PySide6>=6.6",
+]
 
 [project.scripts]
 study = "study_organizer.__main__:main"

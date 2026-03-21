@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class StudyOrganizerError(Exception):
-    """Base error for the application."""
+    pass
 
 
 class ValidationError(StudyOrganizerError):
@@ -10,7 +10,7 @@ class ValidationError(StudyOrganizerError):
 
 
 class ConflictError(StudyOrganizerError):
-    """Raised when something already exists (e.g., duplicate module code)."""
+    pass
 
 
 class NotFoundError(StudyOrganizerError):
@@ -18,4 +18,4 @@ class NotFoundError(StudyOrganizerError):
 
 
 class StorageError(StudyOrganizerError):
-    """Raised when persistence layer fails unexpectedly."""
+    pass

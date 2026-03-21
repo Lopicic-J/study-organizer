@@ -3,6 +3,8 @@ pyproject.toml
 src/__init__.py
 src/study_organizer/__init__.py
 src/study_organizer/__main__.py
+src/study_organizer/app.py
+src/study_organizer/gui.py
 src/study_organizer.egg-info/PKG-INFO
 src/study_organizer.egg-info/SOURCES.txt
 src/study_organizer.egg-info/dependency_links.txt
@@ -16,6 +18,8 @@ src/study_organizer/infra/__init__.py
 src/study_organizer/infra/db.py
 src/study_organizer/infra/schema.py
 src/study_organizer/infra/sqlite_repo.py
+src/study_organizer/repo/__init__.py
+src/study_organizer/repo/sqlite_repo.py
 src/study_organizer/service/__init__.py
 src/study_organizer/service/errors.py
 src/study_organizer/service/repository.py
