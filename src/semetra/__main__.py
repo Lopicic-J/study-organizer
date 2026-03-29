@@ -1,8 +1,10 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
-from dotenv import load_dotenv
-
-load_dotenv()  # Lädt .env aus dem Arbeitsverzeichnis (oder einem übergeordneten Ordner)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 from semetra.app import build_repo
 from semetra.gui import gui_main
