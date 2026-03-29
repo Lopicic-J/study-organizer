@@ -14173,6 +14173,30 @@ class SidebarWidget(QWidget):
         self._highlight(idx)
 
 
+# ── Sidebar Dock ──────────────────────────────────────────────────────────
+
+class SidebarDock(QDockWidget):
+    """
+    QDockWidget subclass that:
+    - Forwards hover events to the inner SidebarWidget (fixes expand-on-hover when docked)
+    - Prevents free floating (only snaps to left/right edges like Windows taskbar)
+    """
+
+    def enterEvent(self, event):
+        sidebar = self.widget()
+        if isinstance(sidebar, SidebarWidget) and not sidebar._pinned:
+            sidebar._collapse_timer.stop()
+            if not sidebar._expanded:
+                sidebar._do_expand()
+        super().enterEvent(event)
+
+    def leaveEvent(self, event):
+        sidebar = self.widget()
+        if isinstance(sidebar, SidebarWidget) and not sidebar._pinned and sidebar._expanded:
+            sidebar._collapse_timer.start()
+        super().leaveEvent(event)
+
+
 # ── Main Window ───────────────────────────────────────────────────────────
 
 class SemetraWindow(QMainWindow):
@@ -14264,9 +14288,8 @@ class SemetraWindow(QMainWindow):
             if not self.sidebar._expanded:
                 self.sidebar._do_expand()
         else:
-            self._sidebar_dock.setFeatures(
-                QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable
-            )
+            # Movable between left/right edges only — no free floating
+            self._sidebar_dock.setFeatures(QDockWidget.DockWidgetMovable)
             # Immediately collapse when first unpinned
             self.sidebar._do_collapse()
 
@@ -14397,12 +14420,12 @@ class SemetraWindow(QMainWindow):
         # Title bar (drag handle + pin button)
         self._sidebar_title_bar = SidebarDockTitleBar(self.sidebar)
 
-        self._sidebar_dock = QDockWidget(self)
+        self._sidebar_dock = SidebarDock(self)
         self._sidebar_dock.setObjectName("SidebarDock")
         self._sidebar_dock.setTitleBarWidget(self._sidebar_title_bar)
         self._sidebar_dock.setWidget(self.sidebar)
-        # Allow docking to any side and floating
-        self._sidebar_dock.setAllowedAreas(Qt.AllDockWidgetAreas)
+        # Only left and right docking — no free floating (Windows taskbar style)
+        self._sidebar_dock.setAllowedAreas(Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea)
         # Initial features: not movable when pinned (pin=True by default)
         self._sidebar_dock.setFeatures(QDockWidget.NoDockWidgetFeatures)
         # When pin is toggled, update dock features
