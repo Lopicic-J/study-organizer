@@ -1,15 +1,19 @@
 [project]
-name = "study-organizer"
+name = "semetra"
 version = "0.1.0"
-description = "Study Organizer (CLI first, API-ready) for modules, deadlines and sessions."
+description = "Dein Studium. Automatisch organisiert. – Studienplan automatisch generiert aus deiner Fachhochschule."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
   "PySide6>=6.6",
+  "pdfplumber>=0.11",
+  "openpyxl>=3.1",
+  "requests>=2.31",
+  "beautifulsoup4>=4.12",
 ]
 
 [project.scripts]
-study = "study_organizer.__main__:main"
+semetra = "semetra.__main__:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

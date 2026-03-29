@@ -17,3 +17,18 @@ study.db
 study.db.bak*
 study.db.old
 *.db.bak
+
+# Lizenzverwaltung — enthält Supabase Service Key & HMAC-Secret
+generate_license.py
+
+# Build-Artefakte & Binaries
+installer-output/
+*.exe
+*.spec
+*.zip
+
+# Lokale Konfig & Secrets
+.env
+.env.*
+*.pem
+*.key

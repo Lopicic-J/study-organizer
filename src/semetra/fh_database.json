@@ -1,0 +1,357 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Offline-Datenbank Schweizer Fachhochschulen – kuratierte Musterdaten, keine 1:1-Kopie offizieller Quellen",
+    "disclaimer": "Diese Daten sind vereinfachte Musterdaten zur Orientierung. Massgeblich sind immer die offiziellen Modulbeschreibungen der jeweiligen Hochschule."
+  },
+  "hochschulen": [
+    {
+      "id": "zhaw",
+      "name": "ZHAW – Zürcher Hochschule für Angewandte Wissenschaften",
+      "kuerzel": "ZHAW",
+      "studiengaenge": [
+        {
+          "id": "zhaw_wi",
+          "name": "Wirtschaftsinformatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Mathematik 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Mathematik 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Programmieren 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Programmieren 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Datenbanken", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Betriebswirtschaftslehre 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Betriebswirtschaftslehre 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Statistik", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Netzwerke & IT-Sicherheit", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Softwareengineering", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Projektmanagement", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Business Intelligence", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Wirtschaftsrecht", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "ERP-Systeme", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        },
+        {
+          "id": "zhaw_ict",
+          "name": "Informatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Mathematik 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Mathematik 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Algorithmen & Datenstrukturen", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Betriebssysteme", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Programmieren 1 (Java)", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Programmieren 2 (OOP)", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Webentwicklung", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenbanken", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Netzwerke", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Softwareengineering", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "IT-Sicherheit", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        },
+        {
+          "id": "zhaw_bw",
+          "name": "Betriebsökonomie",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Rechnungswesen 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Rechnungswesen 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Volkswirtschaftslehre", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Betriebswirtschaftslehre", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Marketing", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Finanzierung", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Statistik & Methoden", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Recht", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Unternehmensführung", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fhnw",
+      "name": "FHNW – Fachhochschule Nordwestschweiz",
+      "kuerzel": "FHNW",
+      "studiengaenge": [
+        {
+          "id": "fhnw_ict",
+          "name": "Informatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Analysis 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Analysis 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Lineare Algebra", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Grundlagen Informatik", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Programmieren (Python)", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "OOP & Design Patterns", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Algorithmen & Komplexität", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Datenbanken & Information Systems", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Rechnerarchitektur", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Verteilte Systeme", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Machine Learning", "ects": 4, "semester": 5, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        },
+        {
+          "id": "fhnw_wi",
+          "name": "Wirtschaftsinformatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Mathematik für Wirtschaft", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "BWL Grundlagen", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Programmieren (Java)", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenbanken", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Prozessmanagement", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "ERP & SAP", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Controlling", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "IT-Architektur", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bfh",
+      "name": "BFH – Berner Fachhochschule",
+      "kuerzel": "BFH",
+      "studiengaenge": [
+        {
+          "id": "bfh_ict",
+          "name": "Informatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Analysis & Lineare Algebra", "ects": 6, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Diskrete Mathematik", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Grundlagen Programmierung", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Objektorientierung", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Systemprogrammierung", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenbanksysteme", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Netzwerke", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Software Engineering", "ects": 6, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "IT Security", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        },
+        {
+          "id": "bfh_bw",
+          "name": "Betriebsökonomie",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Finanzielles Rechnungswesen", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Mikroökonomie", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Makroökonomie", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Quantitative Methoden", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Marketing Management", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Unternehmensrecht", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Strategisches Management", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ost",
+      "name": "OST – Ostschweizer Fachhochschule",
+      "kuerzel": "OST",
+      "studiengaenge": [
+        {
+          "id": "ost_ict",
+          "name": "Informatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Mathematik 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Mathematik 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Programmieren 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Programmieren 2", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Algorithmen & Datenstrukturen", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenbanken", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Software Engineering", "ects": 4, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelorarbeit", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ffhs",
+      "name": "FFHS – Fernfachhochschule Schweiz",
+      "kuerzel": "FFHS",
+      "studiengaenge": [
+        {
+          "id": "ffhs_ict",
+          "name": "Informatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 9,
+          "module": [
+            {"name": "Java Fundamentals", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Grundlagen technische Informatik", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Web-Grundlagen", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wissenschaftliches Arbeiten", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Online-Einführung Mathematik", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Analysis mit Python", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Java Project Level (JPL)", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Installation und Konfiguration Serverdienste", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Projektmanagement Grundlagen", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Diskrete Mathematik und lineare Systeme", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Software Engineering Modellierung", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Rechnernetze", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Datenstrukturen und Algorithmen", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wahrscheinlichkeitsrechnung und Statistik", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Software Engineering Architektur", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenbanksysteme", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Java Enterprise Application", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Lineare Algebra", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Informationssicherheit", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Big Data und NoSQL", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Projektarbeit", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "Arbeit"},
+            {"name": "Machine Learning", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Projektmanagement", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wirtschaftlichkeit und Führung", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Vertiefungsmodul", "ects": 5, "semester": 6, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Web Engineering", "ects": 5, "semester": 7, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Vertiefungsmodul I", "ects": 5, "semester": 7, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Vertiefungsmodul II", "ects": 5, "semester": 7, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Vertiefungsmodul III", "ects": 5, "semester": 7, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Mensch-Computer-Interaktion", "ects": 5, "semester": 8, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Seminararbeit", "ects": 5, "semester": 8, "typ": "Pflicht", "gewichtung": 1.5, "pruefung": "Arbeit"},
+            {"name": "Vertiefungsmodul IV", "ects": 5, "semester": 8, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Vertiefungsmodul V", "ects": 5, "semester": 8, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelor-Thesis", "ects": 12, "semester": 9, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"},
+            {"name": "Bachelor-Thesis Kolloquium", "ects": 4, "semester": 9, "typ": "Pflicht", "gewichtung": 1.5, "pruefung": "Präsentation"},
+            {"name": "Vertiefungsmodul VI", "ects": 4, "semester": 9, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"}
+          ]
+        },
+        {
+          "id": "ffhs_cs",
+          "name": "Cyber Security",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 9,
+          "module": [
+            {"name": "Grundlagen technische Informatik", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Informationssicherheit Grundlagen", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Wissenschaftliches Arbeiten", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Webtechnologien", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Online-Einführung Mathematik", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Analysis mit Python", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Python Fundamentals", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Installation und Konfiguration Serverdienste", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Projektmanagement Grundlagen", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Software Engineering und Modellierung", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Rechnernetze", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Diskrete Mathematik", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Datenstrukturen und Algorithmen", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wahrscheinlichkeitsrechnung und Statistik", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Management von IT-Security", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Operating System & Hardware Security", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenbanksysteme", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Internetsicherheit", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "IT-Forensik", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "IT-Trust", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenschutzrecht", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Kryptologie", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Security Information and Event Management", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Secure Software Coding", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wirtschaftlichkeitsbetrachtung und Führen von Projekten", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Reaktive Informationssicherheit", "ects": 5, "semester": 7, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Cloud Security", "ects": 5, "semester": 7, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Projekt / Hackathon", "ects": 5, "semester": 7, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "Arbeit"},
+            {"name": "Reverse Engineering", "ects": 5, "semester": 7, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Kryptologie II", "ects": 5, "semester": 8, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Reaktive Informationssicherheit II", "ects": 5, "semester": 8, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Seminararbeit", "ects": 5, "semester": 8, "typ": "Pflicht", "gewichtung": 1.5, "pruefung": "Arbeit"},
+            {"name": "Wahlmodul", "ects": 5, "semester": 8, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelor-Thesis", "ects": 12, "semester": 9, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"},
+            {"name": "IT-Governance & Risk", "ects": 4, "semester": 9, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wahlmodul", "ects": 4, "semester": 9, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"}
+          ]
+        },
+        {
+          "id": "ffhs_wi",
+          "name": "Wirtschaftsinformatik",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 9,
+          "module": [
+            {"name": "Grundlagen technische Informatik", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Grundlagen Wirtschaft", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Wissenschaftliches Arbeiten", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Grundlagen WI und Informationssysteme", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Online-Einführung Mathematik", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Analysis im ökonomischen Kontext", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Python Grundlagen", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Grundlagen Informationsmanagement", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Projektmanagement Grundlagen", "ects": 5, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Objektorientierte Programmierung", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Geschäftsprozessmanagement", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Mathematische Grundlagen", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Auszeichnungssprachen und Web-Technologien", "ects": 5, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Informationsmanagement", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Mensch-Computer-Interaktion", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Software Engineering", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Datenbanksysteme", "ects": 5, "semester": 4, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Informationssicherheit", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Diskrete Mathematik und lineare Systeme", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Wahrscheinlichkeitsrechnung und Statistik", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Forschungsmethoden", "ects": 5, "semester": 5, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Vertiefungsmodul Informationssysteme", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Betriebswirtschaft und Führung", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Installation und Konfiguration Serverdienste", "ects": 5, "semester": 6, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wahlmodul I", "ects": 5, "semester": 6, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Vertiefungsmodul Smart Information Systems", "ects": 5, "semester": 7, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Projektarbeit", "ects": 5, "semester": 7, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "Arbeit"},
+            {"name": "Wahlmodul II", "ects": 5, "semester": 7, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wahlmodul III", "ects": 5, "semester": 7, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Seminararbeit", "ects": 5, "semester": 8, "typ": "Pflicht", "gewichtung": 1.5, "pruefung": "Arbeit"},
+            {"name": "Vertiefungsmodul Informationssysteme II", "ects": 5, "semester": 8, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wahlmodul IV", "ects": 5, "semester": 8, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Wahlmodul V", "ects": 5, "semester": 8, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bachelor-Thesis", "ects": 12, "semester": 9, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"},
+            {"name": "Bachelor-Thesis Kolloquium", "ects": 4, "semester": 9, "typ": "Pflicht", "gewichtung": 1.5, "pruefung": "Präsentation"},
+            {"name": "Wahlmodul VI", "ects": 4, "semester": 9, "typ": "Wahlpflicht", "gewichtung": 1.0, "pruefung": "kombiniert"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hes-so",
+      "name": "HES-SO – Haute École Spécialisée de Suisse Occidentale",
+      "kuerzel": "HES-SO",
+      "studiengaenge": [
+        {
+          "id": "hesso_ict",
+          "name": "Ingénierie des médias / Medieningenieurwesen",
+          "abschluss": "BSc",
+          "ects_total": 180,
+          "semester_anzahl": 6,
+          "module": [
+            {"name": "Mathématiques 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Programmation 1", "ects": 4, "semester": 1, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Bases de données", "ects": 4, "semester": 2, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Développement web", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "kombiniert"},
+            {"name": "Réseaux", "ects": 4, "semester": 3, "typ": "Pflicht", "gewichtung": 1.0, "pruefung": "schriftlich"},
+            {"name": "Travail de Bachelor", "ects": 12, "semester": 6, "typ": "Pflicht", "gewichtung": 2.0, "pruefung": "Arbeit+Präsentation"}
+          ]
+        }
+      ]
+    }
+  ]
+}

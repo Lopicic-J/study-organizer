@@ -1,6 +1,6 @@
-# Study Organizer
+# Semetra
 
-CLI-first study organizer (API-ready). Manage modules, deadlines and study sessions.
+Der smarte Studienplaner für FH-Studierende in der Schweiz.
 
 ## Quickstart
 ```bash

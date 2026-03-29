@@ -1,0 +1,65 @@
+name: Build & Release
+
+# Auslöser: wenn ein Git-Tag wie "v2.1.0" gepusht wird
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-windows:
+    name: Windows EXE Build
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.12 einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Abhängigkeiten installieren
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pyinstaller
+
+      - name: PyInstaller Build
+        run: pyinstaller Semetra.spec --noconfirm --noupx --clean
+
+      - name: Build prüfen
+        run: |
+          if (!(Test-Path "dist\Semetra\Semetra.exe")) {
+            Write-Error "Semetra.exe nicht gefunden!"
+            exit 1
+          }
+          Write-Output "Build erfolgreich: dist\Semetra\Semetra.exe"
+
+      - name: ZIP erstellen
+        run: |
+          $tag = "${{ github.ref_name }}"
+          Compress-Archive -Path "dist\Semetra\*" -DestinationPath "Semetra-$tag-windows.zip"
+          Write-Output "ZIP: Semetra-$tag-windows.zip"
+
+      - name: GitHub Release erstellen
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Semetra ${{ github.ref_name }}"
+          body: |
+            ## Semetra ${{ github.ref_name }}
+
+            ### Installation
+            1. ZIP herunterladen und entpacken
+            2. `Semetra.exe` starten
+            3. Kein Setup nötig — läuft direkt
+
+            ### Was ist neu?
+            _Changelog hier ergänzen_
+          files: |
+            Semetra-${{ github.ref_name }}-windows.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

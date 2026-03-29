@@ -1,0 +1,251 @@
+{
+  "_meta": {
+    "source": "FFHS Fernfachhochschule Schweiz",
+    "program": "BSc Informatik",
+    "url": "https://www.ffhs.ch/de/bachelor/informatik",
+    "scraped": "2026-03-22",
+    "note": "Vertiefung Software Engineering. Wahlfächer ab Semester 6 sind exemplarisch."
+  },
+  "modules": [
+    {
+      "name": "Online-Einführung Mathematik",
+      "semester": 1,
+      "ects": 4.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Auffrischung der Mathematikkenntnisse als Einstieg ins Studium."
+    },
+    {
+      "name": "Wissenschaftliches Arbeiten",
+      "semester": 1,
+      "ects": 3.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Grundlagen des wissenschaftlichen Arbeitens: Recherche, Zitation, Schreiben."
+    },
+    {
+      "name": "Grundlagen technische Informatik",
+      "semester": 1,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Hardware, Betriebssysteme, binäre Systeme und technische Grundlagen der Informatik."
+    },
+    {
+      "name": "Java Fundamentals",
+      "semester": 1,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Objektorientierte Programmierung mit Java: Klassen, Vererbung, Interfaces, Collections."
+    },
+    {
+      "name": "Web-Grundlagen",
+      "semester": 1,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "HTML, CSS, JavaScript, HTTP-Protokoll und Client-Server-Architektur."
+    },
+    {
+      "name": "Analysis mit Python",
+      "semester": 2,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Differenzial- und Integralrechnung, Folgen und Reihen – implementiert mit Python."
+    },
+    {
+      "name": "Java Project Level (JPL)",
+      "semester": 2,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Praxisorientiertes Java-Projekt: Design Patterns, Clean Code, Unit Testing."
+    },
+    {
+      "name": "Installation und Konfiguration Serverdienste",
+      "semester": 2,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Linux-Administration, Netzwerkkonfiguration, Webserver, Datenbankserver, Virtualisierung."
+    },
+    {
+      "name": "Projektmanagement Grundlagen",
+      "semester": 2,
+      "ects": 2.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Grundlagen des Projektmanagements: Planung, Meilensteine, agile Methoden."
+    },
+    {
+      "name": "Diskrete Mathematik und lineare Systeme",
+      "semester": 3,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Graphentheorie, Logik, Mengenlehre, lineare Gleichungssysteme, Matrizen."
+    },
+    {
+      "name": "Software Engineering",
+      "semester": 3,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Requirements Engineering, Software-Lebenszyklus, Qualitätssicherung, Agile Methoden (Scrum, Kanban)."
+    },
+    {
+      "name": "Modellierung",
+      "semester": 3,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "UML, Systemmodellierung, Datenmodellierung, Analyse- und Designmuster."
+    },
+    {
+      "name": "Rechnernetze",
+      "semester": 3,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "OSI-Modell, TCP/IP, Routing, Switching, WLAN, Netzwerkprotokolle."
+    },
+    {
+      "name": "Wahrscheinlichkeitsrechnung und Statistik",
+      "semester": 4,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Deskriptive Statistik, Wahrscheinlichkeitstheorie, Verteilungen, Hypothesentests."
+    },
+    {
+      "name": "Software Engineering Architektur",
+      "semester": 4,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Softwarearchitektur-Stile (Microservices, Event-Driven), Architekturmuster, Dokumentation."
+    },
+    {
+      "name": "Datenbanksysteme",
+      "semester": 4,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Relationale Datenbanken, SQL, Normalisierung, Transaktionen, Datenbankdesign."
+    },
+    {
+      "name": "Java Enterprise Application",
+      "semester": 4,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Jakarta EE, Spring Framework, REST APIs, Dependency Injection, JPA."
+    },
+    {
+      "name": "Lineare Algebra",
+      "semester": 5,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Vektoren, Matrizen, lineare Abbildungen, Eigenwerte."
+    },
+    {
+      "name": "Informationssicherheit",
+      "semester": 5,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "CIA-Triad, Verschlüsselung, Authentifizierung, Security-by-Design, OWASP Top 10."
+    },
+    {
+      "name": "Big Data und NoSQL",
+      "semester": 5,
+      "ects": 6.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Hadoop, Spark, NoSQL-Datenbanken (MongoDB, Cassandra, Redis), CAP-Theorem."
+    },
+    {
+      "name": "Projektarbeit",
+      "semester": 5,
+      "ects": 7.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Eigenständiges Softwareprojekt in Gruppe: Anforderungserhebung, Implementierung, Präsentation."
+    },
+    {
+      "name": "Machine Learning",
+      "semester": 6,
+      "ects": 6.0,
+      "module_type": "Wahlfach",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Supervised/Unsupervised Learning, Neural Networks, Feature Engineering mit scikit-learn."
+    },
+    {
+      "name": "Projektmanagement Wirtschaftlichkeit und Führung",
+      "semester": 6,
+      "ects": 6.0,
+      "module_type": "Wahlfach",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Wirtschaftlichkeitsrechnung, Business Case, Führungsmodelle, Stakeholdermanagement."
+    },
+    {
+      "name": "Web Engineering",
+      "semester": 7,
+      "ects": 6.0,
+      "module_type": "Wahlfach",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Moderne Web-Frameworks (React/Angular/Vue), REST vs. GraphQL, Progressive Web Apps."
+    },
+    {
+      "name": "Cloud Computing",
+      "semester": 7,
+      "ects": 6.0,
+      "module_type": "Wahlfach",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "IaaS/PaaS/SaaS, AWS/Azure/GCP, Container (Docker/Kubernetes), Serverless."
+    },
+    {
+      "name": "DevOps",
+      "semester": 7,
+      "ects": 6.0,
+      "module_type": "Wahlfach",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "CI/CD-Pipelines, Infrastructure as Code (Terraform), Monitoring, Site Reliability Engineering."
+    },
+    {
+      "name": "Mensch-Computer-Interaktion",
+      "semester": 8,
+      "ects": 6.0,
+      "module_type": "Wahlfach",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Usability, UX-Design, Prototyping, User Research, Accessibility."
+    },
+    {
+      "name": "Seminararbeit",
+      "semester": 8,
+      "ects": 9.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Wissenschaftliche Auseinandersetzung mit einem Informatik-Thema nach eigener Wahl."
+    },
+    {
+      "name": "Bachelor-Thesis",
+      "semester": 9,
+      "ects": 12.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Eigenständige wissenschaftliche Abschlussarbeit zu einem praxisrelevanten Informatik-Thema."
+    },
+    {
+      "name": "Bachelor-Thesis Kolloquium",
+      "semester": 9,
+      "ects": 3.0,
+      "module_type": "Pflicht",
+      "link": "https://www.ffhs.ch/de/bachelor/informatik",
+      "description": "Mündliche Verteidigung und Präsentation der Bachelor-Thesis vor einer Prüfungskommission."
+    }
+  ]
+}
