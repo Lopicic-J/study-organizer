@@ -27,8 +27,9 @@ installer-output/
 *.spec
 *.zip
 
-# Lokale Konfig & Secrets
+# Lokale Konfig & Secrets (nie ins Repo!)
 .env
-.env.*
+.env.local
+.env.production
 *.pem
 *.key

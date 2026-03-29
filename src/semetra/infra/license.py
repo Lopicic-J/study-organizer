@@ -39,12 +39,15 @@ STRIPE_YEARLY_URL    = "https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02"
 GUMROAD_PRODUCT_PERMALINK = "semetra-pro"
 
 # ─── SOAPP / Stripe Secret ───────────────────────────────────────────────────
-# Identisch in generate_codes_standalone.py — NIEMALS ändern nach Release!
-_SECRET = b"Semetra_Pro_2025_xK9mP3vQrZ"
+# Wird zur Laufzeit aus Umgebungsvariable oder lokaler .env geladen.
+# Lokal: .env Datei mit SOAPP_HMAC_SECRET=... (nie ins Repo!)
+_SECRET_STR = os.getenv("SOAPP_HMAC_SECRET", "")
+_SECRET = _SECRET_STR.encode() if _SECRET_STR else b""
 
-# ─── Supabase (nur für SOAPP Legacy-Codes) ───────────────────────────────────
-SUPABASE_URL = os.getenv("SOAPP_SB_URL", "https://glnbdloeffeylfmzviis.supabase.co")
-SUPABASE_KEY = os.getenv("SOAPP_SB_KEY", "sb_publishable_1Fzi1P7ZIqiBmS2qa-cZUw_hZgFHxt5")
+# ─── Supabase (nur für Online-Aktivierung) ───────────────────────────────────
+# Lokal: .env Datei mit SOAPP_SB_URL und SOAPP_SB_KEY (nie ins Repo!)
+SUPABASE_URL = os.getenv("SOAPP_SB_URL", "")
+SUPABASE_KEY = os.getenv("SOAPP_SB_KEY", "")
 ONLINE_CHECK_ENABLED = bool(SUPABASE_URL and SUPABASE_KEY)
 
 # ─────────────────────────────────────────────────────────────────────────────
