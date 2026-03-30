@@ -10029,14 +10029,117 @@ class SettingsPage(QWidget):
 
         lay.addWidget(backup_grp)
 
+        # ── Account & Login ──────────────────────────────────────────────────
+        acct_grp = QGroupBox("Account & Cloud-Sync")
+        acct_lay = QFormLayout(acct_grp)
+        acct_lay.setSpacing(10)
+
+        from semetra.infra.license import LicenseManager
+        lm = LicenseManager(self.repo)
+        self._lm = lm
+        self._is_pro = lm.is_pro()
+
+        # Account status
+        self._acct_status = QLabel()
+        self._acct_status.setWordWrap(True)
+        self._update_acct_status()
+        acct_lay.addRow("Account:", self._acct_status)
+
+        # Login form (hidden when already logged in)
+        self._login_widget = QWidget()
+        login_lay = QVBoxLayout(self._login_widget)
+        login_lay.setContentsMargins(0, 0, 0, 0)
+        login_lay.setSpacing(6)
+        self._email_edit = QLineEdit()
+        self._email_edit.setPlaceholderText("E-Mail")
+        self._email_edit.setFixedHeight(32)
+        login_lay.addWidget(self._email_edit)
+        self._pw_edit = QLineEdit()
+        self._pw_edit.setPlaceholderText("Passwort")
+        self._pw_edit.setEchoMode(QLineEdit.Password)
+        self._pw_edit.setFixedHeight(32)
+        self._pw_edit.returnPressed.connect(self._do_login)
+        login_lay.addWidget(self._pw_edit)
+        login_btn_row = QHBoxLayout()
+        login_btn = QPushButton("Einloggen")
+        login_btn.setObjectName("PrimaryBtn")
+        login_btn.setFixedHeight(32)
+        login_btn.clicked.connect(self._do_login)
+        login_btn_row.addWidget(login_btn)
+        register_lbl = QLabel('<a href="https://semetra.ch/register" style="color:#7C3AED;">Noch kein Account?</a>')
+        register_lbl.setStyleSheet("font-size:11px;")
+        register_lbl.setOpenExternalLinks(False)
+        register_lbl.linkActivated.connect(lambda url: _open_url(url))
+        login_btn_row.addWidget(register_lbl)
+        login_btn_row.addStretch()
+        login_lay.addLayout(login_btn_row)
+        acct_lay.addRow("", self._login_widget)
+
+        # Logout button (hidden when not logged in)
+        self._logout_btn = QPushButton("Abmelden")
+        self._logout_btn.setFixedHeight(28)
+        self._logout_btn.setStyleSheet(
+            "QPushButton{background:#E53E3E;color:white;border:none;"
+            "border-radius:6px;padding:0 10px;font-size:11px;}"
+            "QPushButton:hover{background:#C53030;}"
+        )
+        self._logout_btn.clicked.connect(self._do_logout)
+        acct_lay.addRow("", self._logout_btn)
+
+        acct_note = QLabel(
+            "Optional: Ohne Account funktioniert Semetra komplett offline. "
+            "Mit Account kannst du deine Daten auf allen Geräten synchronisieren."
+        )
+        acct_note.setStyleSheet("color:#706C86;font-size:11px;")
+        acct_note.setWordWrap(True)
+        acct_lay.addRow("", acct_note)
+
+        # ── Sync controls ────────────────────────────────────────────────────
+        sync_sep = QFrame()
+        sync_sep.setFrameShape(QFrame.HLine)
+        sync_sep.setStyleSheet(_tc("color:#EAE8F2;", "color:#1E1B2C;"))
+        acct_lay.addRow(sync_sep)
+
+        sync_row = QHBoxLayout()
+        self._sync_btn = QPushButton("🔄 Jetzt synchronisieren")
+        self._sync_btn.setObjectName("PrimaryBtn")
+        self._sync_btn.setFixedHeight(32)
+        self._sync_btn.clicked.connect(self._do_sync)
+        sync_row.addWidget(self._sync_btn)
+        self._sync_status_lbl = QLabel("")
+        self._sync_status_lbl.setStyleSheet("color:#706C86;font-size:11px;")
+        sync_row.addWidget(self._sync_status_lbl, 1)
+        acct_lay.addRow("Cloud-Sync:", sync_row)
+
+        # Auto-sync toggle
+        self._auto_sync_cb = QCheckBox("Automatisch synchronisieren beim Start")
+        auto_sync = self.repo.get_setting("auto_sync") or "1"
+        self._auto_sync_cb.setChecked(auto_sync == "1")
+        self._auto_sync_cb.toggled.connect(
+            lambda checked: self.repo.set_setting("auto_sync", "1" if checked else "0")
+        )
+        acct_lay.addRow("", self._auto_sync_cb)
+
+        # Last sync info
+        from semetra.infra.sync import SyncManager
+        sm = SyncManager(self.repo, lm.account)
+        last = sm.last_sync_at()
+        if last:
+            try:
+                from datetime import datetime as _dt
+                dt = _dt.fromisoformat(last.replace("Z", "+00:00"))
+                self._sync_status_lbl.setText(f"Letzter Sync: {dt.strftime('%d.%m.%Y %H:%M')}")
+            except Exception:
+                self._sync_status_lbl.setText(f"Letzter Sync: {last[:16]}")
+
+        self._update_login_visibility()
+        lay.addWidget(acct_grp)
+
         # ── Lizenz ───────────────────────────────────────────────────────────
         lic_grp = QGroupBox("Lizenz")
         lic_lay = QFormLayout(lic_grp)
         lic_lay.setSpacing(10)
 
-        from semetra.infra.license import LicenseManager
-        lm = LicenseManager(self.repo)
-        self._is_pro = lm.is_pro()
         if self._is_pro:
             self._lic_status = QLabel("✅ Semetra Pro — aktiviert")
             self._lic_status.setStyleSheet("color:#1A7A5A;font-weight:bold;")
@@ -10280,6 +10383,115 @@ class SettingsPage(QWidget):
             )
         except Exception as e:
             QMessageBox.critical(self, "Wiederherstellung fehlgeschlagen", str(e))
+
+    # ── Account / Login / Sync helpers ────────────────────────────────────
+
+    def _update_acct_status(self):
+        """Update the account status label."""
+        if self._lm.account.is_logged_in():
+            email = self._lm.account.get_email()
+            self._acct_status.setText(f"Eingeloggt als {email}")
+            self._acct_status.setStyleSheet("color:#1A7A5A;font-weight:bold;")
+        else:
+            self._acct_status.setText("Nicht eingeloggt (Offline-Modus)")
+            self._acct_status.setStyleSheet(f"color:{_tc('#888','#AAA')};")
+
+    def _update_login_visibility(self):
+        """Toggle visibility of login form vs logout button."""
+        logged_in = self._lm.account.is_logged_in()
+        self._login_widget.setVisible(not logged_in)
+        self._logout_btn.setVisible(logged_in)
+        self._sync_btn.setEnabled(logged_in)
+
+    def _do_login(self):
+        """Handle login button click."""
+        email = self._email_edit.text().strip()
+        pw = self._pw_edit.text().strip()
+        if not email or not pw:
+            QMessageBox.warning(self, "Fehlende Daten", "Bitte E-Mail und Passwort eingeben.")
+            return
+        ok, msg = self._lm.login(email, pw)
+        if ok:
+            self._pw_edit.clear()
+            self._update_acct_status()
+            self._update_login_visibility()
+            self._is_pro = self._lm.is_pro()
+            if self._is_pro:
+                self._lic_status.setText("✅ Semetra Pro — aktiviert")
+                self._lic_status.setStyleSheet("color:#1A7A5A;font-weight:bold;")
+                self._deact_btn.setVisible(True)
+            QMessageBox.information(self, "Login", msg)
+            # Refresh sidebar badge
+            self._notify_badge_update()
+        else:
+            QMessageBox.warning(self, "Login fehlgeschlagen", msg)
+
+    def _do_logout(self):
+        """Handle logout button click."""
+        reply = QMessageBox.question(
+            self, "Abmelden",
+            "Möchtest du dich wirklich abmelden?\n"
+            "Deine lokalen Daten bleiben erhalten.",
+            QMessageBox.Yes | QMessageBox.Cancel,
+        )
+        if reply != QMessageBox.Yes:
+            return
+        self._lm.logout()
+        self._update_acct_status()
+        self._update_login_visibility()
+        self._is_pro = self._lm.is_pro()
+        if not self._is_pro:
+            self._lic_status.setText("🔒 Keine Pro-Lizenz")
+            self._lic_status.setStyleSheet(f"color:{_tc('#888','#AAA')};")
+            self._deact_btn.setVisible(False)
+        self._notify_badge_update()
+
+    def _do_sync(self):
+        """Handle sync button click."""
+        from semetra.infra.sync import SyncManager
+        sm = SyncManager(self.repo, self._lm.account)
+        if not sm.can_sync():
+            QMessageBox.warning(
+                self, "Sync nicht möglich",
+                "Bitte zuerst einloggen und sicherstellen, dass eine Internetverbindung besteht."
+            )
+            return
+        self._sync_btn.setEnabled(False)
+        self._sync_btn.setText("Synchronisiere…")
+        self._sync_status_lbl.setText("")
+        # Run sync (blocking for now — could use QThread for large datasets)
+        QApplication.processEvents()
+        stats = sm.sync_full()
+        self._sync_btn.setEnabled(True)
+        self._sync_btn.setText("🔄 Jetzt synchronisieren")
+        if stats.get("errors"):
+            self._sync_status_lbl.setText(f"Fehler: {stats['errors'][0]}")
+            self._sync_status_lbl.setStyleSheet("color:#E53E3E;font-size:11px;")
+        else:
+            up = stats.get("uploaded", 0)
+            down = stats.get("downloaded", 0)
+            from datetime import datetime as _dt
+            now_str = _dt.now().strftime("%d.%m.%Y %H:%M")
+            self._sync_status_lbl.setText(
+                f"Letzter Sync: {now_str} ({up} hoch, {down} runter)"
+            )
+            self._sync_status_lbl.setStyleSheet("color:#1A7A5A;font-size:11px;")
+        # Refresh all pages after sync
+        parent = self.parent()
+        while parent is not None:
+            if hasattr(parent, "_refresh_all"):
+                parent._refresh_all()
+                break
+            parent = parent.parent() if hasattr(parent, "parent") else None
+
+    def _notify_badge_update(self):
+        """Walk up to the main window and trigger badge refresh."""
+        parent = self.parent()
+        while parent is not None:
+            if hasattr(parent, "_update_plan_badge"):
+                parent._update_plan_badge()
+                break
+            parent = parent.parent() if hasattr(parent, "parent") else None
 
     def _deactivate_license(self):
         from semetra.infra.license import LicenseManager
@@ -13938,10 +14150,11 @@ class SidebarWidget(QWidget):
         # Delayed collapse timer (avoids flicker when mouse briefly leaves)
         self._collapse_timer = QTimer(self)
         self._collapse_timer.setSingleShot(True)
-        self._collapse_timer.setInterval(420)
+        self._collapse_timer.setInterval(350)
         self._collapse_timer.timeout.connect(self._do_collapse)
         self._anim: Optional[QPropertyAnimation] = None
 
+        self.setMinimumWidth(self.COLLAPSED_W)
         self.setFixedWidth(self.EXPANDED_W)
         self._build()
 
@@ -13951,6 +14164,10 @@ class SidebarWidget(QWidget):
 
     def _set_anim_width(self, v: int) -> None:
         self.setFixedWidth(v)
+        # Also resize the parent dock widget so it tracks the animation
+        dock = self.parent()
+        if dock is not None and isinstance(dock, QDockWidget):
+            dock.setFixedWidth(v)
 
     anim_width = Property(int, _get_anim_width, _set_anim_width)
 
@@ -14005,15 +14222,32 @@ class SidebarWidget(QWidget):
 
         lay.addSpacing(14)
 
-        # ── Grouped Navigation ──────────────────────────────────────────
+        # ── Grouped Navigation (scrollable for small windows) ───────────
+        self._nav_scroll = QScrollArea()
+        self._nav_scroll.setWidgetResizable(True)
+        self._nav_scroll.setFrameShape(QFrame.NoFrame)
+        self._nav_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self._nav_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self._nav_scroll.setStyleSheet(
+            "QScrollArea { background: transparent; border: none; }"
+            "QScrollBar:vertical { width: 4px; background: transparent; }"
+            "QScrollBar::handle:vertical { background: rgba(124,58,237,0.3); border-radius: 2px; }"
+            "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }"
+        )
+        nav_container = QWidget()
+        nav_container.setAttribute(Qt.WA_StyledBackground, False)
+        nav_lay = QVBoxLayout(nav_container)
+        nav_lay.setContentsMargins(0, 0, 0, 0)
+        nav_lay.setSpacing(0)
+
         for section_label, page_indices in self._NAV_GROUPS:
             if section_label:
-                lay.addSpacing(6)
+                nav_lay.addSpacing(6)
                 sec_lbl = QLabel(section_label)
                 sec_lbl.setObjectName("NavSectionLabel")
                 self._section_labels.append(sec_lbl)
-                lay.addWidget(sec_lbl)
-                lay.addSpacing(2)
+                nav_lay.addWidget(sec_lbl)
+                nav_lay.addSpacing(2)
             for page_idx in page_indices:
                 icon, key = self.NAV_ITEMS[page_idx]
                 self._btn_icons[page_idx] = icon
@@ -14023,9 +14257,11 @@ class SidebarWidget(QWidget):
                 btn.setCursor(Qt.PointingHandCursor)
                 btn.clicked.connect(lambda checked, i=page_idx: self._select(i))
                 self._buttons[page_idx] = btn
-                lay.addWidget(btn)
+                nav_lay.addWidget(btn)
 
-        lay.addStretch()
+        nav_lay.addStretch()
+        self._nav_scroll.setWidget(nav_container)
+        lay.addWidget(self._nav_scroll, 1)  # stretch factor 1 = takes remaining space
 
         # ── Bottom: Settings + Credits ──────────────────────────────────
         bot_sep = QFrame()
@@ -14091,13 +14327,16 @@ class SidebarWidget(QWidget):
         if self._expanded:
             return
         self._expanded = True
-        self._set_labels_visible(True)
+        # First animate width, then show labels after a short delay
+        # so text doesn't flash before the width is large enough
         self._animate_width(self.EXPANDED_W)
+        QTimer.singleShot(100, lambda: self._set_labels_visible(True))
 
     def _do_collapse(self):
         if not self._expanded:
             return
         self._expanded = False
+        # First hide labels immediately, then animate
         self._set_labels_visible(False)
         self._animate_width(self.COLLAPSED_W)
 
@@ -14105,20 +14344,28 @@ class SidebarWidget(QWidget):
         if self._anim is not None:
             self._anim.stop()
         self._anim = QPropertyAnimation(self, b"anim_width", self)
-        self._anim.setDuration(210)
+        self._anim.setDuration(180)
         self._anim.setStartValue(self.width())
         self._anim.setEndValue(target)
-        self._anim.setEasingCurve(QEasingCurve.InOutCubic)
+        self._anim.setEasingCurve(QEasingCurve.OutCubic)
         self._anim.start()
 
     def _set_labels_visible(self, visible: bool):
         """Switch between full (expanded) and icon-only (collapsed) display."""
         # App identity text block
         self._id_col_widget.setVisible(visible)
+        self._plan_badge.setVisible(visible)
         # Section header labels
         for lbl in self._section_labels:
             lbl.setVisible(visible)
-        # Nav + bottom buttons
+        # Adjust margins for collapsed state (tighter for icon centering)
+        lay = self.layout()
+        if lay:
+            if visible:
+                lay.setContentsMargins(12, 18, 12, 14)
+            else:
+                lay.setContentsMargins(4, 18, 4, 14)
+        # Nav + bottom buttons — center icon when collapsed
         for page_idx, btn in enumerate(self._buttons):
             if btn is None:
                 continue
@@ -14127,27 +14374,33 @@ class SidebarWidget(QWidget):
                 _, key = self.NAV_ITEMS[page_idx]
                 btn.setText(f"  {icon}  {tr(key)}")
                 btn.setToolTip("")
+                btn.setStyleSheet("")  # reset to default NavBtn style
             else:
-                btn.setText(f"  {icon}")
+                btn.setText(icon)
                 _, key = self.NAV_ITEMS[page_idx]
                 btn.setToolTip(tr(key))
+                btn.setStyleSheet("text-align: center; padding-left: 0; padding-right: 0;")
         # Quick-Add button
         if visible:
             self._qa_btn.setText("  ＋  Schnell hinzufügen")
             self._qa_btn.setToolTip("Ctrl+N — Aufgabe oder Thema schnell erfassen")
+            self._qa_btn.setStyleSheet("")
         else:
-            self._qa_btn.setText("  ＋")
+            self._qa_btn.setText("＋")
             self._qa_btn.setToolTip("Schnell hinzufügen (Ctrl+N)")
+            self._qa_btn.setStyleSheet("text-align: center; padding-left: 0; padding-right: 0;")
         # Coach button — save/restore full text
         if not visible:
             self._coach_btn.setProperty("_full_text", self._coach_btn.text())
-            self._coach_btn.setText("  💬\uFE0F")
+            self._coach_btn.setText("💬\uFE0F")
             self._coach_btn.setToolTip("KI-Studien-Coach öffnen (Ctrl+H)")
+            self._coach_btn.setStyleSheet("text-align: center; padding-left: 0; padding-right: 0;")
         else:
             saved = self._coach_btn.property("_full_text")
             if saved:
                 self._coach_btn.setText(saved)
             self._coach_btn.setToolTip("")
+            self._coach_btn.setStyleSheet("")
 
     # ── Internal helpers ─────────────────────────────────────────────────
     def _on_quick_add(self):
@@ -14180,7 +14433,12 @@ class SidebarDock(QDockWidget):
     QDockWidget subclass that:
     - Forwards hover events to the inner SidebarWidget (fixes expand-on-hover when docked)
     - Prevents free floating (only snaps to left/right edges like Windows taskbar)
+    - Keeps minimum width = COLLAPSED_W so collapsed dock still receives hover
     """
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setMinimumWidth(SidebarWidget.COLLAPSED_W)
 
     def enterEvent(self, event):
         sidebar = self.widget()
@@ -14195,6 +14453,15 @@ class SidebarDock(QDockWidget):
         if isinstance(sidebar, SidebarWidget) and not sidebar._pinned and sidebar._expanded:
             sidebar._collapse_timer.start()
         super().leaveEvent(event)
+
+    def resizeEvent(self, event):
+        """Keep dock width in sync with inner sidebar animation."""
+        sidebar = self.widget()
+        if isinstance(sidebar, SidebarWidget):
+            w = sidebar.width()
+            if w > 0:
+                self.setFixedWidth(w)
+        super().resizeEvent(event)
 
 
 # ── Main Window ───────────────────────────────────────────────────────────
@@ -14227,6 +14494,8 @@ class SemetraWindow(QMainWindow):
             QTimer.singleShot(200, self._show_onboarding)
         # Check for updates silently in background (5 s delay so UI loads first)
         QTimer.singleShot(5000, self._check_for_update)
+        # Auto-sync on startup (8 s delay — after update check)
+        QTimer.singleShot(8000, self._auto_sync_on_start)
 
     def _setup_snap_shortcuts(self):
         """
@@ -14287,6 +14556,8 @@ class SemetraWindow(QMainWindow):
             # Ensure expanded when re-pinned
             if not self.sidebar._expanded:
                 self.sidebar._do_expand()
+            # Reset dock to expanded width
+            self._sidebar_dock.setFixedWidth(SidebarWidget.EXPANDED_W)
         else:
             # Movable between left/right edges only — no free floating
             self._sidebar_dock.setFeatures(QDockWidget.DockWidgetMovable)
@@ -14376,6 +14647,24 @@ class SemetraWindow(QMainWindow):
             if event.type() == _QE.Resize:
                 self._update_banner.setFixedWidth(obj.width())
         return super().eventFilter(obj, event)
+
+    def _auto_sync_on_start(self):
+        """Silently sync on startup if enabled, logged in, and online."""
+        auto_sync = self.repo.get_setting("auto_sync") or "1"
+        if auto_sync != "1":
+            return
+        try:
+            from semetra.infra.license import LicenseManager
+            from semetra.infra.sync import SyncManager
+            lm = LicenseManager(self.repo)
+            sm = SyncManager(self.repo, lm.account)
+            if not sm.can_sync():
+                return
+            stats = sm.sync_full()
+            if stats.get("downloaded", 0) > 0:
+                self._refresh_all()
+        except Exception:
+            pass  # Silent — no error should block app startup
 
     def _snap(self, side: str):
         """Resize and position the window to fill the left or right screen half."""

@@ -133,6 +133,7 @@ async function sendLicenseEmail(
     monthly: "Pro Monatlich",
     halfyear: "Pro Halbjährlich",
     yearly: "Pro Jährlich",
+    lifetime: "Desktop Pro — Einmalkauf",
   };
 
   const html = `
@@ -175,9 +176,22 @@ async function sendLicenseEmail(
               <li>Gehe zu <strong>Einstellungen &rarr; Lizenz</strong></li>
               <li>Fuege den Code oben ein und klicke <strong>Aktivieren</strong></li>
             </ol>
+            ${plan === "lifetime" ? `
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px;margin-top:20px;">
+              <p style="margin:0;color:#166534;font-size:14px;line-height:1.6;">
+                <strong>Desktop Pro — Einmalkauf:</strong> Dein Lizenzcode ist dauerhaft gueltig und benoetigt keine Registrierung.
+                Er kann auf <strong>einem Geraet</strong> aktiviert werden. Web-Sync und Multi-Plattform sind in den Abo-Plaenen enthalten.
+              </p>
+            </div>` : `
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:16px;margin-top:20px;">
+              <p style="margin:0;color:#1e40af;font-size:14px;line-height:1.6;">
+                <strong>Tipp:</strong> Melde dich zusaetzlich unter <a href="https://app.semetra.ch" style="color:#7C3AED;">app.semetra.ch</a> an,
+                um die Web App und Desktop-Sync zu nutzen. Dein Pro-Status wird automatisch uebernommen.
+              </p>
+            </div>`}
             <div style="border-top:1px solid #e5e7eb;margin-top:32px;padding-top:20px;">
               <p style="margin:0;color:#9CA3AF;font-size:13px;line-height:1.6;">
-                Bewahre diesen Code sicher auf - er ist personalisiert.<br>
+                Bewahre diesen Code sicher auf - er ist personalisiert und nur einmal aktivierbar.<br>
                 Bei Fragen: <a href="mailto:support@semetra.ch" style="color:#7C3AED;">support@semetra.ch</a>
               </p>
             </div>
@@ -218,11 +232,45 @@ async function sendLicenseEmail(
 
 // ─── Plan-Erkennung ───────────────────────────────────────────────────────────
 
+// Stripe Price IDs → Plan mapping
+const PRICE_TO_PLAN: Record<string, string> = {
+  "price_1TG9kaRNHcFqFbgIthnElTOy": "monthly",
+  "price_1TG9kdRNHcFqFbgIlTDxPRla": "halfyear",
+  "price_1TG9kZRNHcFqFbgI6F0O2tqs": "yearly",
+  "price_1TGcFgRNHcFqFbgI11LeeeUn": "lifetime",  // Desktop Pro Einmalkauf
+};
+
+// Product ID for Desktop Pro one-time purchase
+const DESKTOP_PRO_PRODUCT = "prod_UF6SWo0e0EW7Na";
+
 function detectPlan(session: Record<string, unknown>): string {
   const meta = (session["metadata"] ?? {}) as Record<string, string>;
   if (meta["plan"]) return meta["plan"];
+
+  // Check line items / price ID
+  const lineItems = session["line_items"] as Record<string, unknown> | undefined;
+  if (lineItems) {
+    const data = (lineItems["data"] ?? []) as Array<Record<string, unknown>>;
+    for (const item of data) {
+      const price = item["price"] as Record<string, unknown> | undefined;
+      if (price) {
+        const priceId = price["id"] as string;
+        if (priceId && PRICE_TO_PLAN[priceId]) return PRICE_TO_PLAN[priceId];
+        const product = price["product"] as string | undefined;
+        if (product === DESKTOP_PRO_PRODUCT) return "lifetime";
+      }
+    }
+  }
+
+  // Check mode: payment = one-time, subscription = recurring
+  if (session["mode"] === "payment") return "lifetime";
+
   // Fallback: monatlich
   return "monthly";
+}
+
+function isLifetimePurchase(plan: string): boolean {
+  return plan === "lifetime";
 }
 
 // ─── Main Handler ─────────────────────────────────────────────────────────────
