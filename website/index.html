@@ -236,7 +236,7 @@
     #preise { background: linear-gradient(160deg, #F7F4FF 0%, #ffffff 100%); }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px; max-width: 1100px; margin: 0 auto;
     }
     .pricing-card {
@@ -446,7 +446,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
-      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
     }
     @media (max-width: 720px) {
       .nav-links { display: none; }
@@ -560,8 +560,8 @@
 
     <div class="feature-card">
       <div class="feature-icon">📄</div>
-      <h3>Portal Import (Scrap) <span class="pro-badge">Pro</span></h3>
-      <p>Logge dich einmalig ins FFHS Moodle-Portal ein — Stundenplan, Module und Prüfungstermine werden automatisch importiert.</p>
+      <h3>Studiengänge-Import <span class="pro-badge">Pro</span></h3>
+      <p>Importiere Module, ECTS und Prüfungstermine direkt von deiner FH — aktuell FFHS, BFH, ZHAW und weitere.</p>
     </div>
 
     <div class="feature-card">
@@ -574,6 +574,12 @@
       <div class="feature-icon">🧠</div>
       <h3>Lernziele &amp; Spaced Repetition</h3>
       <p>Speichere Lernthemen mit Wissensstand und automatischer Wiederholungsplanung. Das System erinnert dich zum optimalen Zeitpunkt.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🗂️</div>
+      <h3>Karteikarten &amp; KI-Import</h3>
+      <p>Erstelle Karteikarten manuell oder lade ein Dokument hoch — unsere KI generiert automatisch Lernkarten. Mit Spaced-Repetition-Algorithmus für optimales Lernen.</p>
     </div>
 
     <div class="feature-card">
@@ -653,8 +659,7 @@
         <li><span class="check">✓</span> Bis zu 4 Stundenplan-Einträge</li>
         <li><span class="check">✓</span> Aufgaben &amp; Deadlines</li>
         <li><span class="check">✓</span> Kalender &amp; ECTS-Tracking</li>
-        <li class="locked"><span class="dash">—</span> Studiengänge-Import</li>
-        <li class="locked"><span class="dash">—</span> Portal Import (Scrap)</li>
+        <li class="locked"><span class="dash">—</span> Studiengänge-Import (FH)</li>
         <li class="locked"><span class="dash">—</span> KI-Studien-Coach</li>
         <li class="locked"><span class="dash">—</span> Unbegrenzte Module &amp; Noten</li>
         <li class="locked"><span class="dash">—</span> Desktop ↔ Web Sync</li>
@@ -673,12 +678,12 @@
         <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
         <li><span class="check">✓</span> Studiengänge-Import (FH)</li>
         <li><span class="check">✓</span> Desktop ↔ Web Echtzeit-Sync</li>
-        <li><span class="check">✓</span> Portal Import (FFHS Moodle)</li>
+        <li><span class="check">✓</span> Karteikarten &amp; Spaced Repetition</li>
         <li><span class="check">✓</span> KI-Studien-Coach (Desktop)</li>
         <li><span class="check">✓</span> Alle zukünftigen Features</li>
         <li><span class="check">✓</span> E-Mail Support</li>
       </ul>
-      <a href="https://app.semetra.ch/upgrade" class="plan-btn outline">Monatlich abonnieren</a>
+      <a href="https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01" class="plan-btn outline">Monatlich abonnieren</a>
     </div>
 
     <!-- Half-year (popular) -->
@@ -694,12 +699,12 @@
         <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
         <li><span class="check">✓</span> Studiengänge-Import (FH)</li>
         <li><span class="check">✓</span> Desktop ↔ Web Echtzeit-Sync</li>
-        <li><span class="check">✓</span> Portal Import (FFHS Moodle)</li>
+        <li><span class="check">✓</span> Karteikarten &amp; Spaced Repetition</li>
         <li><span class="check">✓</span> KI-Studien-Coach (Desktop)</li>
         <li><span class="check">✓</span> Alle zukünftigen Features</li>
         <li><span class="check">✓</span> E-Mail Support</li>
       </ul>
-      <a href="https://app.semetra.ch/upgrade" class="plan-btn primary">Jetzt abonnieren</a>
+      <a href="https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00" class="plan-btn primary">Jetzt abonnieren</a>
     </div>
 
     <!-- Yearly -->
@@ -714,12 +719,32 @@
         <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
         <li><span class="check">✓</span> Studiengänge-Import (FH)</li>
         <li><span class="check">✓</span> Desktop ↔ Web Echtzeit-Sync</li>
-        <li><span class="check">✓</span> Portal Import (FFHS Moodle)</li>
+        <li><span class="check">✓</span> Karteikarten &amp; Spaced Repetition</li>
         <li><span class="check">✓</span> KI-Studien-Coach (Desktop)</li>
         <li><span class="check">✓</span> Alle zukünftigen Features</li>
         <li><span class="check">✓</span> Prioritäts-Support</li>
       </ul>
-      <a href="https://app.semetra.ch/upgrade" class="plan-btn outline">Jahres-Abo</a>
+      <a href="https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02" class="plan-btn outline">Jahres-Abo</a>
+    </div>
+
+    <!-- Desktop Pro Einmalkauf -->
+    <div class="pricing-card" style="border-color:#059669;background:linear-gradient(180deg,#F0FDF4 0%,#FFFFFF 100%);">
+      <div><span class="savings-badge" style="background:#DCFCE7;color:#15803D;">Einmalkauf</span></div>
+      <p class="plan-name">Desktop Pro</p>
+      <p class="plan-price"><sup>CHF</sup> 49.90</p>
+      <p class="plan-period">einmalig · kein Abo · dauerhaft gültig</p>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="check">✓</span> Desktop-App dauerhaft Pro</li>
+        <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
+        <li><span class="check">✓</span> KI-Studien-Coach</li>
+        <li><span class="check">✓</span> Studiengänge-Import (FH)</li>
+        <li><span class="check">✓</span> Keine Registrierung nötig</li>
+        <li><span class="check">✓</span> Lizenzschlüssel per E-Mail</li>
+        <li><span class="check">✓</span> Alle Desktop-Features</li>
+        <li class="locked"><span class="dash">—</span> Web App / Sync</li>
+      </ul>
+      <a href="https://buy.stripe.com/test_placeholder" class="plan-btn outline" style="border-color:#059669;color:#059669;">Desktop Pro kaufen</a>
     </div>
 
   </div>
@@ -974,37 +999,9 @@
     </div>
     <div class="footer-col">
       <h4>Kaufen</h4>
-      <a href="https://app.semetra.ch/upgrade">Pro Monatlich</a>
-      <a href="https://app.semetra.ch/upgrade">Pro Halbjährlich</a>
-      <a href="https://app.semetra.ch/upgrade">Pro Jährlich</a>
+      <a href="https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01">Pro Monatlich</a>
+      <a href="https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00">Pro Halbjährlich</a>
+      <a href="https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02">Pro Jährlich</a>
       <a href="https://app.semetra.ch">Web App</a>
     </div>
-    <div class="footer-col">
-      <h4>Rechtliches</h4>
-      <a href="#impressum">Impressum</a>
-      <a href="#impressum">Datenschutz</a>
-      <a href="mailto:info@semetra.ch">Kontakt</a>
-      <a href="#testimonials">Stimmen</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Lopicic Technologies (JL DevTech) · Alle Rechte vorbehalten</span>
-    <span>
-      <a href="https://semetra.ch" style="color:#9B97B0;text-decoration:none;">semetra.ch</a> ·
-      <a href="https://semetra.app" style="color:#9B97B0;text-decoration:none;">semetra.app</a> ·
-      <a href="https://semetra.io" style="color:#9B97B0;text-decoration:none;">semetra.io</a>
-    </span>
-  </div>
-</footer>
-
-<script>
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
-</script>
-
-</body>
-</html>
+    <div class="foote
