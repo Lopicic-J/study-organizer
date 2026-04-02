@@ -114,6 +114,19 @@ DDL = [
     );
     """,
     """
+    CREATE TABLE IF NOT EXISTS task_attachments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        task_id INTEGER NOT NULL,
+        kind TEXT NOT NULL DEFAULT 'link',   -- 'link' | 'file'
+        label TEXT NOT NULL DEFAULT '',
+        url TEXT NOT NULL DEFAULT '',         -- URL or local file path
+        file_type TEXT DEFAULT '',            -- pdf, docx, xlsx, png, etc.
+        file_size INTEGER DEFAULT 0,         -- bytes (for files)
+        created_at TEXT NOT NULL,
+        FOREIGN KEY(task_id) REFERENCES tasks(id) ON DELETE CASCADE
+    );
+    """,
+    """
     CREATE TABLE IF NOT EXISTS stundenplan (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         day_of_week INTEGER NOT NULL,   -- 0=Montag … 6=Sonntag
@@ -188,6 +201,23 @@ def ensure_schema(conn) -> None:
           AND CAST(semester AS INTEGER) = 0
           AND semester NOT IN ('0')
     """)
+
+    # Migration: ensure task_attachments table exists
+    if "task_attachments" not in tables:
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS task_attachments (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                task_id INTEGER NOT NULL,
+                kind TEXT NOT NULL DEFAULT 'link',
+                label TEXT NOT NULL DEFAULT '',
+                url TEXT NOT NULL DEFAULT '',
+                file_type TEXT DEFAULT '',
+                file_size INTEGER DEFAULT 0,
+                created_at TEXT NOT NULL,
+                FOREIGN KEY(task_id) REFERENCES tasks(id) ON DELETE CASCADE
+            )
+        """)
+        tables.add("task_attachments")
 
     # Migration: ensure stundenplan table exists (added in v2.1)
     if "stundenplan" not in tables:

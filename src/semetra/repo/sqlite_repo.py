@@ -149,6 +149,38 @@ class SqliteRepo:
         """
         return list(self.conn.execute(q, tuple(params)))
 
+    # ---- task attachments
+    def add_task_attachment(self, task_id: int, kind: str = "link",
+                           label: str = "", url: str = "",
+                           file_type: str = "", file_size: int = 0) -> int:
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cur = self.conn.cursor()
+        cur.execute(
+            """
+            INSERT INTO task_attachments(task_id, kind, label, url, file_type, file_size, created_at)
+            VALUES(?,?,?,?,?,?,?)
+            """,
+            (task_id, kind, label, url, file_type, file_size, now),
+        )
+        self.conn.commit()
+        return int(cur.lastrowid)
+
+    def list_task_attachments(self, task_id: int) -> list:
+        return list(self.conn.execute(
+            "SELECT * FROM task_attachments WHERE task_id=? ORDER BY created_at DESC",
+            (task_id,)
+        ))
+
+    def delete_task_attachment(self, attachment_id: int) -> None:
+        self.conn.execute("DELETE FROM task_attachments WHERE id=?", (attachment_id,))
+        self.conn.commit()
+
+    def count_task_attachments(self, task_id: int) -> int:
+        row = self.conn.execute(
+            "SELECT COUNT(*) FROM task_attachments WHERE task_id=?", (task_id,)
+        ).fetchone()
+        return row[0] if row else 0
+
     # ---- events
     def add_event(self, data: Dict[str, Any]) -> int:
         cur = self.conn.cursor()
