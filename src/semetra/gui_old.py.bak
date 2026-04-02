@@ -3685,6 +3685,38 @@ class ProFeatureDialog(QDialog):
             self._plan_btns.append((key, card))
         lay.addLayout(plans_row)
 
+        # ── Desktop Pro Einmalkauf ────────────────────────────────────────────
+        einmal_card = QFrame()
+        einmal_card.setCursor(Qt.PointingHandCursor)
+        einmal_card.setStyleSheet(
+            "QFrame{border:2px solid #059669;border-radius:10px;"
+            "background:#ECFDF5;}"
+        )
+        ec_lay = QHBoxLayout(einmal_card)
+        ec_lay.setContentsMargins(14, 10, 14, 10)
+        ec_lay.setSpacing(12)
+        ec_info = QVBoxLayout()
+        ec_info.setSpacing(2)
+        ec_title = QLabel("🖥️  Desktop Pro — Einmalkauf")
+        ec_title.setStyleSheet("font-size:13px;font-weight:bold;color:#065F46;")
+        ec_sub = QLabel("CHF 49.90 einmalig · Kein Abo · Dauerhaft Pro")
+        ec_sub.setStyleSheet("font-size:11px;color:#047857;")
+        ec_info.addWidget(ec_title)
+        ec_info.addWidget(ec_sub)
+        ec_lay.addLayout(ec_info, 1)
+        ec_btn = QPushButton("Jetzt kaufen →")
+        ec_btn.setFixedHeight(30)
+        ec_btn.setFixedWidth(120)
+        ec_btn.setStyleSheet(
+            "QPushButton{background:#059669;color:white;border-radius:6px;"
+            "font-size:11px;font-weight:bold;border:none;}"
+            "QPushButton:hover{background:#047857;}"
+        )
+        ec_btn.setCursor(Qt.PointingHandCursor)
+        ec_btn.clicked.connect(lambda: self._open_buy("desktop_pro"))
+        ec_lay.addWidget(ec_btn)
+        lay.addWidget(einmal_card)
+
         sep2 = QFrame(); sep2.setFrameShape(QFrame.HLine)
         sep2.setStyleSheet(f"color:{_tc('#DDE3F0','#383850')};")
         lay.addWidget(sep2)
@@ -3719,12 +3751,14 @@ class ProFeatureDialog(QDialog):
 
     def _open_buy(self, plan_key: str):
         from semetra.infra.license import (
-            STRIPE_MONTHLY_URL, STRIPE_HALFYEAR_URL, STRIPE_YEARLY_URL
+            STRIPE_MONTHLY_URL, STRIPE_HALFYEAR_URL, STRIPE_YEARLY_URL,
+            STRIPE_DESKTOP_PRO_URL
         )
         urls = {
-            "monthly":  STRIPE_MONTHLY_URL,
-            "halfyear": STRIPE_HALFYEAR_URL,
-            "yearly":   STRIPE_YEARLY_URL,
+            "monthly":      STRIPE_MONTHLY_URL,
+            "halfyear":     STRIPE_HALFYEAR_URL,
+            "yearly":       STRIPE_YEARLY_URL,
+            "desktop_pro":  STRIPE_DESKTOP_PRO_URL,
         }
         _open_url(urls.get(plan_key, STRIPE_MONTHLY_URL))
 
@@ -10121,16 +10155,19 @@ class SettingsPage(QWidget):
         acct_lay.addRow("", self._auto_sync_cb)
 
         # Last sync info
-        from semetra.infra.sync import SyncManager
-        sm = SyncManager(self.repo, lm.account)
-        last = sm.last_sync_at()
-        if last:
-            try:
-                from datetime import datetime as _dt
-                dt = _dt.fromisoformat(last.replace("Z", "+00:00"))
-                self._sync_status_lbl.setText(f"Letzter Sync: {dt.strftime('%d.%m.%Y %H:%M')}")
-            except Exception:
-                self._sync_status_lbl.setText(f"Letzter Sync: {last[:16]}")
+        try:
+            from semetra.infra.sync import SyncManager
+            sm = SyncManager(self.repo, lm.account)
+            last = sm.last_sync_at()
+            if last:
+                try:
+                    from datetime import datetime as _dt
+                    dt = _dt.fromisoformat(last.replace("Z", "+00:00"))
+                    self._sync_status_lbl.setText(f"Letzter Sync: {dt.strftime('%d.%m.%Y %H:%M')}")
+                except Exception:
+                    self._sync_status_lbl.setText(f"Letzter Sync: {last[:16]}")
+        except ImportError:
+            pass  # sync.py noch nicht implementiert
 
         self._update_login_visibility()
         lay.addWidget(acct_grp)
@@ -10181,11 +10218,25 @@ class SettingsPage(QWidget):
         lic_input_row.addWidget(lic_act_btn)
         lic_lay.addRow("Lizenzcode:", lic_input_row)
 
-        lic_note = QLabel('<a href="https://semetra.ch/#preise" style="color:#7C3AED;">Lizenz auf semetra.ch kaufen →</a>')
+        lic_note = QLabel('<a href="https://semetra.ch/#preise" style="color:#7C3AED;">Alle Pläne auf semetra.ch ansehen →</a>')
         lic_note.setStyleSheet("font-size:11px;")
         lic_note.setOpenExternalLinks(False)
         lic_note.linkActivated.connect(lambda url: _open_url(url))
         lic_lay.addRow("", lic_note)
+
+        # ── Desktop Pro Einmalkauf Hinweis ───────────────────────────────────
+        if not self._is_pro:
+            from semetra.infra.license import STRIPE_DESKTOP_PRO_URL
+            einmal_lbl = QLabel(
+                '<b>💡 Tipp:</b> <a href="' + STRIPE_DESKTOP_PRO_URL + '" style="color:#059669;">'
+                'Desktop Pro Einmalkauf (CHF 49.90)</a> — Einmal zahlen, dauerhaft Pro. Kein Abo!'
+            )
+            einmal_lbl.setStyleSheet("font-size:11px;background:#ECFDF5;padding:8px;border-radius:8px;")
+            einmal_lbl.setWordWrap(True)
+            einmal_lbl.setOpenExternalLinks(False)
+            einmal_lbl.linkActivated.connect(lambda url: _open_url(url))
+            lic_lay.addRow("", einmal_lbl)
+
         lay.addWidget(lic_grp)
 
         lay.addStretch()
@@ -10410,7 +10461,7 @@ class SettingsPage(QWidget):
         if not email or not pw:
             QMessageBox.warning(self, "Fehlende Daten", "Bitte E-Mail und Passwort eingeben.")
             return
-        ok, msg = self._lm.login(email, pw)
+        ok, msg = self._lm.account.login(email, pw)
         if ok:
             self._pw_edit.clear()
             self._update_acct_status()
@@ -10436,7 +10487,7 @@ class SettingsPage(QWidget):
         )
         if reply != QMessageBox.Yes:
             return
-        self._lm.logout()
+        self._lm.account.logout()
         self._update_acct_status()
         self._update_login_visibility()
         self._is_pro = self._lm.is_pro()
@@ -10448,7 +10499,11 @@ class SettingsPage(QWidget):
 
     def _do_sync(self):
         """Handle sync button click."""
-        from semetra.infra.sync import SyncManager
+        try:
+            from semetra.infra.sync import SyncManager
+        except ImportError:
+            QMessageBox.information(self, "Sync", "Cloud-Sync ist noch in Entwicklung.")
+            return
         sm = SyncManager(self.repo, self._lm.account)
         if not sm.can_sync():
             QMessageBox.warning(

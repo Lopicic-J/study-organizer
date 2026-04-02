@@ -56,7 +56,4 @@ def main():
         except ImportError:
             print("\n⚠️  supabase-py not installed. Insert manually:")
             for code in codes:
-                print(f"   INSERT INTO license_codes (code, used, customer_email) VALUES ('{code}', false, '{args.email}');")
-
-if __name__ == "__main__":
-    main()
+                print(f"   INSERT INTO license_codes (code, used, customer_email) VALUES ('{code}', false, 

@@ -31,9 +31,10 @@ from typing import Optional
 # ─── Stripe Payment Links ────────────────────────────────────────────────────
 # Nach dem Anlegen der Produkte in dashboard.stripe.com die Links hier eintragen.
 # Format: https://buy.stripe.com/XXXXXXXXXXXXXXXX
-STRIPE_MONTHLY_URL   = "https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01"
-STRIPE_HALFYEAR_URL  = "https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00"
-STRIPE_YEARLY_URL    = "https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02"
+STRIPE_MONTHLY_URL      = "https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01"
+STRIPE_HALFYEAR_URL     = "https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00"
+STRIPE_YEARLY_URL       = "https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02"
+STRIPE_DESKTOP_PRO_URL  = "https://buy.stripe.com/3cIeVf54860AcOC2M3fYY03"
 
 # ─── Gumroad (Legacy — nur für bestehende Kunden mit alten UUID-Codes) ────────
 GUMROAD_PRODUCT_PERMALINK = "semetra-pro"
@@ -236,6 +237,18 @@ def generate_code() -> str:
 #  LicenseManager
 # ─────────────────────────────────────────────────────────────────────────────
 
+class _AccountStub:
+    """Platzhalter für Account-System (Login/Sync) — wird später implementiert."""
+    def is_logged_in(self) -> bool:
+        return False
+    def get_email(self) -> str:
+        return ""
+    def login(self, email: str, password: str) -> tuple[bool, str]:
+        return False, "Account-System noch nicht verfügbar."
+    def logout(self) -> None:
+        pass
+
+
 class LicenseManager:
     """
     Hochlevel-API für Lizenzprüfung und -aktivierung.
@@ -247,6 +260,7 @@ class LicenseManager:
     def __init__(self, repo):
         self.repo = repo
         self._cached: Optional[bool] = None
+        self.account = _AccountStub()
 
     def is_pro(self) -> bool:
         """True wenn eine gültige Pro-Lizenz aktiviert ist."""

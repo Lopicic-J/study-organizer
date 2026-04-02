@@ -62,5 +62,4 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER flashcards_updated_at
-  BEFORE UPDATE ON flashcards
-  FOR EACH ROW EXECUTE FUNCTION update_flashcards_updated_at();
+  BEFORE UPDATE ON flashcards

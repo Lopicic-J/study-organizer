@@ -32,14 +32,16 @@ async function verifyStripeSignature(
 
   if (!timestamp || v1Sigs.length === 0) return false;
 
-  // Toleranz: 5 Minuten
+  // Toleranz: 24 Stunden (für manuelle Resend-Tests)
   const age = Math.abs(Date.now() / 1000 - parseInt(timestamp, 10));
-  if (age > 300) {
+  if (age > 86400) {
     console.warn("Stripe timestamp too old:", age, "s");
     return false;
   }
 
   const signedPayload = `${timestamp}.${rawBody}`;
+
+  // Stripe uses the full "whsec_..." string as the HMAC key (UTF-8 encoded).
   const keyMat = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(secret),
@@ -343,10 +345,11 @@ Deno.serve(async (req: Request) => {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
+
   } catch (err) {
-    console.error("Webhook handler error:", err);
-    return new Response(JSON.stringify({ received: true, error: String(err) }), {
-      status: 200,
+    console.error("Handler error:", err);
+    return new Response(JSON.stringify({ error: String(err) }), {
+      status: 500,
       headers: { "Content-Type": "application/json" },
     });
   }
