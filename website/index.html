@@ -1,991 +1,1438 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Semetra – Der smarte Studienplaner für FH-Studenten</title>
-  <meta name="description" content="Semetra hilft FH-Studierenden, Module zu verwalten, Lernziele zu verfolgen und Prüfungen im Blick zu behalten. Kostenlos starten." />
-  <meta name="theme-color" content="#7C3AED" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semetra – Studienplaner f&uuml;r Studierende</title>
+  <meta name="description" content="Semetra organisiert dein Studium: Module, Noten, Aufgaben, Mathe-Tools und mehr. 30+ Hochschulen in 8 europ&auml;ischen L&auml;ndern. Desktop-App und Web App mit Echtzeit-Sync.">
+  <meta name="theme-color" content="#1a1033">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Semetra – Studienplaner für FH-Studenten" />
-  <meta property="og:description" content="Organisiere dein Studium. Module, Aufgaben, Prüfungen – alles an einem Ort." />
-  <meta property="og:url" content="https://semetra.ch" />
-  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Semetra – Dein Studium, organisiert.">
+  <meta property="og:description" content="Der Studienplaner f&uuml;r Studierende in Europa. Module, Noten, Aufgaben &amp; Mathe-Tools. 30+ Hochschulen in 8 L&auml;ndern. Desktop &amp; Web.">
+  <meta property="og:url" content="https://semetra.ch">
+  <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --accent:      #7C3AED;
-      --accent-lt:   #EDE9FE;
-      --accent-dk:   #5B21B6;
-      --accent-glow: rgba(124,58,237,0.22);
-      --text:        #0F0A1E;
-      --muted:       #6B6880;
-      --border:      #E8E4F4;
-      --bg:          #FAFAFA;
-      --white:       #FFFFFF;
-      --radius:      16px;
-      --radius-sm:   10px;
-      --shadow:      0 4px 24px rgba(15,10,30,0.08);
-      --shadow-lg:   0 12px 48px rgba(15,10,30,0.12);
+      --ink:       #0d0820;
+      --ink-60:    #4a4560;
+      --ink-40:    #7a7590;
+      --ink-20:    #b5b0c5;
+      --ink-10:    #ddd9e8;
+      --ink-05:    #eeeaf5;
+      --surface:   #f8f6fc;
+      --white:     #ffffff;
+      --accent:    #4f46e5;
+      --accent-h:  #4338ca;
+      --accent-s:  #eef2ff;
+      --accent-g:  rgba(79,70,229,0.08);
+      --green:     #10b981;
+      --green-s:   #d1fae5;
+      --amber:     #f59e0b;
+      --radius:    12px;
+      --radius-lg: 20px;
+      --shadow-s:  0 1px 3px rgba(13,8,32,0.06);
+      --shadow-m:  0 4px 16px rgba(13,8,32,0.08);
+      --shadow-l:  0 12px 40px rgba(13,8,32,0.1);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ── NAV ── */
-    nav {
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ─ NAV ─ */
+    .nav {
       position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5vw;
-      height: 64px;
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--ink-10);
     }
-    .nav-logo {
-      font-size: 1.3rem; font-weight: 800; color: var(--accent);
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; color: var(--ink);
       text-decoration: none; letter-spacing: -0.5px;
     }
-    .nav-logo span { color: var(--text); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--ink-60); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
     .nav-cta {
-      background: var(--accent); color: white;
-      padding: 9px 22px; border-radius: 8px;
-      text-decoration: none; font-weight: 600; font-size: .875rem;
-      transition: background .2s, box-shadow .2s;
-      box-shadow: 0 2px 12px var(--accent-glow);
+      background: var(--ink); color: var(--white);
+      padding: 8px 20px; border-radius: 8px;
+      text-decoration: none; font-weight: 600; font-size: 0.85rem;
+      transition: background 0.2s;
     }
-    .nav-cta:hover { background: var(--accent-dk); box-shadow: 0 4px 20px rgba(124,58,237,.38); }
+    .nav-cta:hover { background: #2a1f50; }
 
-    /* ── HERO ── */
+    /* ─ HERO ─ */
     .hero {
-      display: flex; flex-direction: column; align-items: center;
+      padding: 100px 24px 80px;
       text-align: center;
-      padding: 108px 5vw 96px;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.13) 0%, transparent 70%),
-        linear-gradient(180deg, #F7F4FF 0%, #ffffff 100%);
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
-      top: -200px; right: -100px; pointer-events: none;
+      background: var(--white);
+      position: relative;
     }
     .hero::after {
       content: '';
-      position: absolute; width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
-      bottom: -100px; left: -100px; pointer-events: none;
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ink-10), transparent);
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--accent-lt); color: var(--accent);
-      font-size: .78rem; font-weight: 700; letter-spacing: .5px;
-      padding: 5px 16px; border-radius: 100px; margin-bottom: 28px;
-      text-transform: uppercase; border: 1px solid rgba(124,58,237,.2);
+    .hero-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
     }
     .hero h1 {
-      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
-      font-weight: 900; line-height: 1.1;
-      letter-spacing: -1.5px; max-width: 820px; margin-bottom: 22px;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      max-width: 700px;
+      margin: 0 auto 24px;
     }
-    .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero > p {
-      font-size: 1.125rem; color: var(--muted);
-      max-width: 520px; margin-bottom: 44px; line-height: 1.7;
+    .hero h1 span {
+      color: var(--accent);
+      font-style: italic;
     }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
-    .btn-primary {
-      background: var(--accent); color: white;
-      padding: 15px 36px; border-radius: 10px;
-      text-decoration: none; font-weight: 700; font-size: 1rem;
-      transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 6px 24px rgba(124,58,237,.40);
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--ink-60);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
     }
-    .btn-primary:hover { background: var(--accent-dk); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(124,58,237,.46); }
-    .btn-secondary {
-      background: var(--white); color: var(--accent);
-      border: 2px solid var(--border);
-      padding: 15px 32px; border-radius: 10px;
-      text-decoration: none; font-weight: 600; font-size: 1rem;
-      transition: border-color .2s, background .2s;
+    .hero-actions {
+      display: flex; gap: 12px;
+      justify-content: center; flex-wrap: wrap;
+      margin-bottom: 48px;
     }
-    .btn-secondary:hover { border-color: var(--accent); background: var(--accent-lt); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.2s;
+      border: none; cursor: pointer; font-family: inherit;
+    }
+    .btn-dark {
+      background: var(--ink); color: var(--white);
+    }
+    .btn-dark:hover { background: #2a1f50; transform: translateY(-1px); box-shadow: var(--shadow-m); }
+    .btn-ghost {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--ink-20);
+    }
+    .btn-ghost:hover { border-color: var(--ink); }
 
-    /* Hero social proof */
-    .hero-proof {
-      display: flex; align-items: center; gap: 12px;
-      margin-top: 6px; color: var(--muted); font-size: .83rem; flex-wrap: wrap; justify-content: center;
+    /* Product preview placeholder */
+    .hero-visual {
+      max-width: 900px; margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--ink-10);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
     }
-    .hero-avatars { display: flex; }
-    .hero-avatars .av {
-      width: 28px; height: 28px; border-radius: 50%;
-      border: 2px solid white; background: var(--accent-lt);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .58rem; font-weight: 800; color: var(--accent);
-      margin-left: -8px;
+    .hero-visual-mockup {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      min-height: 340px;
     }
-    .hero-avatars .av:first-child { margin-left: 0; }
-    .hero-stars { color: #F59E0B; letter-spacing: -1px; font-size: .95rem; }
-
-    /* ── TRUST BAND ── */
-    .trust-band {
-      display: flex; justify-content: center; flex-wrap: wrap;
+    .mockup-sidebar {
       background: var(--white);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      border: 1px solid var(--ink-10);
+    }
+    .mockup-sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px; border-radius: 8px;
+      font-size: 0.8rem; color: var(--ink-60);
+      margin-bottom: 4px;
+    }
+    .mockup-sidebar-item.active {
+      background: var(--accent-s);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .mockup-sidebar-item .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--ink-20); flex-shrink: 0;
+    }
+    .mockup-sidebar-item.active .dot { background: var(--accent); }
+    .mockup-main {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--ink-10);
+    }
+    .mockup-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 20px;
+    }
+    .mockup-header h3 {
+      font-size: 1rem; font-weight: 700; color: var(--ink);
+    }
+    .mockup-badge {
+      font-size: 0.65rem; font-weight: 700;
+      background: var(--green-s); color: #059669;
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .mockup-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .mockup-card {
+      background: var(--surface); border-radius: 10px;
+      padding: 14px; border: 1px solid var(--ink-10);
+    }
+    .mockup-card-color {
+      width: 28px; height: 4px; border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .mockup-card h4 {
+      font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;
+    }
+    .mockup-card p {
+      font-size: 0.68rem; color: var(--ink-40);
+    }
+    .mockup-card-bar {
+      height: 4px; border-radius: 2px;
+      background: var(--ink-05); margin-top: 10px;
+      overflow: hidden;
+    }
+    .mockup-card-bar-fill {
+      height: 100%; border-radius: 2px;
+    }
+
+    /* ─ MARQUEE TRUST ─ */
+    .trust {
+      border-bottom: 1px solid var(--ink-10);
+      padding: 18px 0;
+      background: var(--surface);
+    }
+    .trust-inner {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 40px;
     }
     .trust-item {
       display: flex; align-items: center; gap: 8px;
-      padding: 18px 28px; font-size: .84rem; font-weight: 600; color: var(--muted);
-      border-right: 1px solid var(--border);
+      font-size: 0.82rem; font-weight: 500; color: var(--ink-40);
     }
-    .trust-item:last-child { border-right: none; }
+    .trust-icon {
+      width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+    }
+    .trust-icon svg { width: 16px; height: 16px; stroke: var(--ink-40); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-    /* ── SECTION ── */
-    section { padding: 88px 5vw; }
+    /* ─ SECTION SHARED ─ */
+    .section { padding: 96px 24px; }
+    .section-alt { background: var(--surface); }
+    .section-header {
+      max-width: 560px;
+      margin: 0 auto 64px;
+      text-align: center;
+    }
     .section-label {
-      text-align: center; font-size: .72rem; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
       color: var(--accent); margin-bottom: 12px;
+      display: block;
     }
     .section-title {
-      text-align: center; font-size: clamp(1.6rem, 3vw, 2.3rem);
-      font-weight: 800; letter-spacing: -.5px;
-      margin-bottom: 16px; line-height: 1.25;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 16px;
     }
-    .section-sub {
-      text-align: center; color: var(--muted); font-size: .975rem;
-      max-width: 500px; margin: 0 auto 64px; line-height: 1.65;
+    .section-desc {
+      font-size: 1rem; color: var(--ink-60); line-height: 1.7;
     }
 
-    /* ── FEATURES GRID ── */
-    .features-grid {
+    /* ─ FEATURES ─ */
+    .features-layout {
+      max-width: 1000px; margin: 0 auto;
+    }
+    .feature-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px; max-width: 1100px; margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
     }
     .feature-card {
       background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      transition: box-shadow .25s, transform .25s, border-color .25s;
+      border: 1px solid var(--ink-10);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      transition: box-shadow 0.3s, border-color 0.3s;
     }
+    .section-alt .feature-card { background: var(--white); }
     .feature-card:hover {
-      box-shadow: 0 8px 40px rgba(124,58,237,.12);
-      transform: translateY(-3px);
-      border-color: rgba(124,58,237,.25);
+      box-shadow: var(--shadow-m);
+      border-color: var(--ink-20);
     }
     .feature-icon {
-      width: 46px; height: 46px;
-      background: var(--accent-lt); border-radius: 12px;
+      width: 40px; height: 40px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.35rem; margin-bottom: 16px;
+      margin-bottom: 18px;
+    }
+    .feature-icon svg {
+      width: 20px; height: 20px;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      fill: none;
     }
     .feature-card h3 {
-      font-size: 1rem; font-weight: 700; margin-bottom: 8px;
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
     }
-    .feature-card p { color: var(--muted); font-size: .875rem; line-height: 1.6; }
-    .pro-badge {
-      background: linear-gradient(135deg, #7C3AED, #9B59B6);
-      color: white; font-size: .63rem; font-weight: 800;
-      letter-spacing: .4px; padding: 2px 9px; border-radius: 100px;
-      text-transform: uppercase; white-space: nowrap;
+    .feature-card p {
+      font-size: 0.88rem; color: var(--ink-60); line-height: 1.65;
+    }
+    .tag-beta {
+      font-size: 0.6rem; font-weight: 700;
+      background: var(--accent-s); color: var(--accent);
+      padding: 2px 8px; border-radius: 100px;
+      letter-spacing: 0.3px; text-transform: uppercase;
+    }
+    .tag-pro {
+      font-size: 0.6rem; font-weight: 700;
+      background: var(--ink); color: var(--white);
+      padding: 2px 8px; border-radius: 100px;
+      letter-spacing: 0.3px; text-transform: uppercase;
+    }
+    .tag-soon {
+      font-size: 0.6rem; font-weight: 700;
+      background: var(--ink-05); color: var(--ink-40);
+      padding: 2px 8px; border-radius: 100px;
+      letter-spacing: 0.3px; text-transform: uppercase;
+    }
+    .feature-wide {
+      grid-column: 1 / -1;
     }
 
-    /* ── HOW IT WORKS ── */
-    .steps-section { background: var(--white); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px; max-width: 900px; margin: 0 auto; text-align: center;
+    /* ─ PRODUCT STRIP ─ */
+    .strip {
+      padding: 80px 24px;
+      background: var(--ink);
+      color: var(--white);
     }
-    .step-num {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--accent); color: white;
-      font-size: 1.1rem; font-weight: 900;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px;
-      box-shadow: 0 4px 16px rgba(124,58,237,.35);
+    .strip-inner {
+      max-width: 800px; margin: 0 auto; text-align: center;
     }
-    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .step p { color: var(--muted); font-size: .875rem; line-height: 1.6; }
+    .strip h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 400; margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    .strip p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem; max-width: 500px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .strip-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; text-align: left;
+    }
+    .strip-stat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+    }
+    .strip-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--white);
+      margin-bottom: 4px;
+    }
+    .strip-stat-label {
+      font-size: 0.82rem; color: rgba(255,255,255,0.5);
+    }
 
-    /* ── PRICING ── */
-    #preise { background: linear-gradient(160deg, #F7F4FF 0%, #ffffff 100%); }
+    /* ─ PRICING ─ */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px; max-width: 1100px; margin: 0 auto;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 1060px;
+      margin: 0 auto;
     }
+    .pricing-lifetime-row {
+      max-width: 480px;
+      margin: 20px auto 0;
+    }
+    .pricing-lifetime {
+      background: linear-gradient(135deg, #0d0820, #1e1545);
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px;
+      display: flex; align-items: center; gap: 24px;
+      transition: box-shadow 0.3s;
+    }
+    .pricing-lifetime:hover { box-shadow: 0 12px 40px rgba(13,8,32,0.25); }
+    .pricing-lifetime .plan-name { color: rgba(255,255,255,0.5); }
+    .pricing-lifetime .plan-price { color: var(--white); }
+    .pricing-lifetime .plan-sub { color: rgba(255,255,255,0.45); margin-bottom: 0; }
+    .pricing-lifetime .plan-btn-lifetime {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px; border-radius: 8px;
+      background: var(--white); color: var(--ink);
+      font-weight: 600; font-size: 0.85rem;
+      text-decoration: none; transition: all 0.2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .pricing-lifetime .plan-btn-lifetime:hover { transform: translateY(-1px); box-shadow: var(--shadow-m); }
     .pricing-card {
       background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px 22px; position: relative;
-      transition: box-shadow .25s, transform .25s;
+      border: 1.5px solid var(--ink-10);
+      border-radius: var(--radius-lg);
+      padding: 28px 22px;
       display: flex; flex-direction: column;
+      transition: box-shadow 0.3s, border-color 0.3s;
     }
-    .pricing-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .pricing-card:hover {
+      box-shadow: var(--shadow-m);
+    }
     .pricing-card.popular {
       border-color: var(--accent);
-      box-shadow: 0 0 0 2px var(--accent), 0 8px 36px rgba(124,58,237,.15);
-      background: linear-gradient(180deg, #FDFBFF 0%, #FFFFFF 100%);
+      box-shadow: 0 0 0 1px var(--accent), var(--shadow-l);
+      position: relative;
     }
-    .popular-badge {
-      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(135deg, var(--accent), #9B59B6);
-      color: white; font-size: .68rem; font-weight: 800; letter-spacing: .5px;
-      padding: 4px 16px; border-radius: 100px; text-transform: uppercase; white-space: nowrap;
-    }
-    .savings-badge {
-      display: inline-block;
-      background: #DCFCE7; color: #15803D;
-      font-size: .68rem; font-weight: 700;
-      padding: 2px 9px; border-radius: 100px; margin-bottom: 6px;
+    .popular-tag {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: var(--white);
+      font-size: 0.65rem; font-weight: 700;
+      padding: 3px 14px; border-radius: 100px;
+      letter-spacing: 0.3px; white-space: nowrap;
     }
     .plan-name {
-      font-size: .78rem; font-weight: 700; color: var(--muted);
-      margin-bottom: 4px; letter-spacing: .4px; text-transform: uppercase;
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--ink-40); letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 8px;
     }
     .plan-price {
-      font-size: 2.4rem; font-weight: 900; letter-spacing: -1.5px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem; letter-spacing: -1px;
       line-height: 1; margin-bottom: 4px;
     }
-    .plan-price sup { font-size: .95rem; font-weight: 700; vertical-align: super; margin-right: 1px; }
-    .plan-price span { font-size: .95rem; font-weight: 500; color: var(--muted); }
-    .plan-period { font-size: .78rem; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
-    .plan-divider { height: 1px; background: var(--border); margin-bottom: 18px; }
-    .plan-features { list-style: none; margin-bottom: 24px; flex: 1; }
-    .plan-features li {
-      font-size: .855rem; padding: 5px 0;
-      display: flex; align-items: flex-start; gap: 8px;
+    .plan-price .currency {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      vertical-align: super;
     }
-    .plan-features li .check { color: var(--accent); font-weight: 700; flex-shrink: 0; }
-    .plan-features li .dash { color: #D1D5DB; flex-shrink: 0; }
-    .plan-features li.locked { color: #C0BDD4; }
+    .plan-price .period {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 400;
+      color: var(--ink-40);
+    }
+    .plan-sub {
+      font-size: 0.78rem; color: var(--ink-40);
+      margin-bottom: 20px; line-height: 1.5;
+    }
+    .plan-savings {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700;
+      background: var(--green-s); color: #059669;
+      padding: 2px 8px; border-radius: 100px;
+      margin-bottom: 8px;
+    }
+    .plan-divider { height: 1px; background: var(--ink-10); margin-bottom: 18px; }
+    .plan-list { list-style: none; margin-bottom: 24px; flex: 1; }
+    .plan-list li {
+      font-size: 0.82rem; padding: 4px 0;
+      display: flex; align-items: flex-start; gap: 8px;
+      line-height: 1.5;
+    }
+    .plan-list li .icon-check { color: var(--accent); font-weight: 700; flex-shrink: 0; font-size: 0.9rem; }
+    .plan-list li .icon-dash { color: var(--ink-20); flex-shrink: 0; }
+    .plan-list li.locked { color: var(--ink-20); }
     .plan-btn {
       display: block; text-align: center;
-      padding: 13px; border-radius: 9px;
-      font-weight: 700; text-decoration: none; font-size: .9rem;
-      transition: all .2s; margin-top: auto;
+      padding: 12px; border-radius: 8px;
+      font-weight: 600; text-decoration: none; font-size: 0.875rem;
+      transition: all 0.2s; margin-top: auto; border: none;
+      cursor: pointer; font-family: inherit;
     }
-    .plan-btn.primary {
-      background: var(--accent); color: white;
-      box-shadow: 0 4px 14px rgba(124,58,237,.35);
+    .plan-btn-primary {
+      background: var(--accent); color: var(--white);
     }
-    .plan-btn.primary:hover { background: var(--accent-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(124,58,237,.45); }
-    .plan-btn.outline { border: 2px solid var(--border); color: var(--accent); }
-    .plan-btn.outline:hover { border-color: var(--accent); background: var(--accent-lt); }
+    .plan-btn-primary:hover { background: var(--accent-h); }
+    .plan-btn-outline {
+      border: 1.5px solid var(--ink-20); color: var(--ink);
+      background: transparent;
+    }
+    .plan-btn-outline:hover { border-color: var(--ink); }
     .pricing-note {
-      text-align: center; margin-top: 32px; color: var(--muted); font-size: .81rem;
-      display: flex; align-items: center; justify-content: center;
-      gap: 20px; flex-wrap: wrap;
+      text-align: center; margin-top: 28px;
+      display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+    }
+    .pricing-note span {
+      font-size: 0.78rem; color: var(--ink-40);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pricing-note svg {
+      width: 14px; height: 14px; stroke: var(--ink-40); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
     }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--white); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px; max-width: 1000px; margin: 0 auto;
-    }
-    .testimonial-card {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 30px 28px;
-      position: relative;
-      transition: box-shadow .25s, transform .25s;
-    }
-    .testimonial-card:hover {
-      box-shadow: 0 8px 32px rgba(124,58,237,.1);
-      transform: translateY(-2px);
-    }
-    .testimonial-card::before {
-      content: '"';
-      position: absolute; top: 16px; right: 22px;
-      font-size: 4.5rem; line-height: 1; color: var(--accent-lt);
-      font-family: Georgia, serif; font-weight: 900;
-    }
-    .testimonial-stars { color: #F59E0B; font-size: .9rem; margin-bottom: 14px; letter-spacing: 2px; }
-    .testimonial-card p { font-size: .875rem; line-height: 1.7; color: var(--muted); margin-bottom: 22px; font-style: italic; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .author-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: var(--accent-lt); color: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .73rem; font-weight: 800; flex-shrink: 0;
-    }
-    .author-name { font-size: .875rem; font-weight: 700; }
-    .author-role { font-size: .78rem; color: var(--muted); }
-
-    /* ── FAQ ── */
-    #faq { background: #F7F4FF; }
-    .faq-list { max-width: 720px; margin: 0 auto; }
+    /* ─ FAQ ─ */
+    .faq-list { max-width: 640px; margin: 0 auto; }
     .faq-item {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); margin-bottom: 10px; overflow: hidden;
+      border-bottom: 1px solid var(--ink-10);
     }
-    .faq-question {
-      width: 100%; text-align: left; padding: 20px 24px;
+    .faq-q {
+      width: 100%; text-align: left; padding: 20px 0;
       background: none; border: none; cursor: pointer;
-      font-size: .93rem; font-weight: 600; color: var(--text);
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
-      font-family: inherit; transition: background .15s;
+      font-size: 0.95rem; font-weight: 600; color: var(--ink);
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      font-family: inherit; line-height: 1.4;
     }
-    .faq-question:hover { background: var(--accent-lt); }
-    .faq-icon {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--accent-lt); color: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; font-weight: 700; flex-shrink: 0;
-      transition: transform .3s, background .2s;
+    .faq-q:hover { color: var(--accent); }
+    .faq-arrow {
+      width: 20px; height: 20px; flex-shrink: 0;
+      transition: transform 0.25s;
     }
-    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--accent); color: white; }
-    .faq-answer {
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
       max-height: 0; overflow: hidden;
-      transition: max-height .35s ease;
-      padding: 0 24px;
+      transition: max-height 0.35s ease, padding 0.35s;
     }
-    .faq-answer p { color: var(--muted); font-size: .875rem; line-height: 1.75; padding-bottom: 20px; }
-    .faq-item.open .faq-answer { max-height: 220px; }
+    .faq-a-inner {
+      padding-bottom: 20px;
+      color: var(--ink-60); font-size: 0.88rem; line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 300px; }
 
-    /* ── CTA BAND ── */
-    .cta-band {
-      background: linear-gradient(135deg, #5B21B6 0%, #7C3AED 50%, #8B5CF6 100%);
-      color: white; text-align: center; padding: 96px 5vw;
-      position: relative; overflow: hidden;
+    /* ─ DOWNLOAD ─ */
+    .download-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; max-width: 800px; margin: 0 auto;
     }
-    .cta-band::before {
-      content: ''; position: absolute; width: 500px; height: 500px;
-      border-radius: 50%; background: rgba(255,255,255,0.05);
-      top: -200px; right: -100px;
+    .download-box {
+      border: 1.5px solid var(--ink-10);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .cta-band::after {
-      content: ''; position: absolute; width: 300px; height: 300px;
-      border-radius: 50%; background: rgba(255,255,255,0.05);
-      bottom: -100px; left: -50px;
+    .download-box:hover { border-color: var(--ink-20); box-shadow: var(--shadow-m); }
+    .download-box.primary { border-color: var(--accent); background: var(--accent-g); }
+    .download-icon {
+      width: 48px; height: 48px;
+      background: var(--surface); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
     }
-    .cta-band h2 {
-      font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 900;
-      margin-bottom: 12px; letter-spacing: -.5px; position: relative;
+    .download-icon svg {
+      width: 24px; height: 24px; stroke: var(--ink);
+      fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
     }
-    .cta-band p { font-size: 1rem; opacity: .85; margin-bottom: 36px; position: relative; }
+    .download-box h3 {
+      font-size: 1rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .download-box p {
+      font-size: 0.85rem; color: var(--ink-60);
+      margin-bottom: 20px; line-height: 1.6;
+    }
+    .download-box .btn { width: 100%; justify-content: center; }
+    .download-meta {
+      font-size: 0.72rem; color: var(--ink-40); margin-top: 10px;
+    }
+    .download-form {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .download-form input {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--ink-10); border-radius: 8px;
+      font-size: 0.85rem; font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+      color: var(--ink);
+    }
+    .download-form input:focus { border-color: var(--accent); }
+    .smartscreen-note {
+      max-width: 500px; margin: 20px auto 0;
+      background: #FFF8E6; border: 1px solid #F0D88C;
+      border-radius: 10px; padding: 10px 18px;
+      font-size: 0.75rem; color: #6D5D20; text-align: center;
+    }
+
+    /* ─ CTA ─ */
+    .cta {
+      padding: 96px 24px;
+      text-align: center;
+      background: var(--ink);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(79,70,229,0.15), transparent 60%),
+                  radial-gradient(circle at 70% 50%, rgba(79,70,229,0.1), transparent 50%);
+    }
+    .cta h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 400; margin-bottom: 12px;
+      position: relative; letter-spacing: -0.3px;
+    }
+    .cta p {
+      font-size: 0.95rem; color: rgba(255,255,255,0.55);
+      margin-bottom: 32px; position: relative;
+    }
     .btn-white {
-      background: white; color: var(--accent);
-      padding: 16px 42px; border-radius: 10px;
-      text-decoration: none; font-weight: 800; font-size: 1rem;
-      display: inline-block; position: relative;
-      transition: transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(0,0,0,.18);
+      background: var(--white); color: var(--ink);
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 10px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; position: relative;
+      transition: transform 0.15s, box-shadow 0.2s;
     }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.25); }
-    .cta-sub { margin-top: 16px; font-size: .78rem; opacity: .65; position: relative; }
+    .btn-white:hover { transform: translateY(-1px); box-shadow: var(--shadow-l); }
+    .cta-sub {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+      margin-top: 14px; position: relative;
+    }
 
-    /* ── LEGAL ── */
-    #impressum { background: var(--white); }
+    /* ─ LEGAL ─ */
+    .legal { padding: 64px 24px; background: var(--surface); }
     .legal-box {
-      max-width: 720px; margin: 0 auto;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 36px 40px;
+      max-width: 640px; margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--ink-10);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
     }
-    .legal-box h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; }
+    .legal-box h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem; margin-bottom: 24px;
+    }
     .legal-box h3 {
-      font-size: .7rem; font-weight: 700; margin: 24px 0 8px;
-      color: var(--accent); text-transform: uppercase; letter-spacing: .6px;
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--accent); text-transform: uppercase;
+      letter-spacing: 0.5px; margin: 24px 0 8px;
     }
+    .legal-box h3:first-of-type { margin-top: 0; }
     .legal-box p, .legal-box address {
-      font-size: .875rem; color: var(--muted); line-height: 1.75; font-style: normal;
+      font-size: 0.85rem; color: var(--ink-60);
+      line-height: 1.75; font-style: normal;
     }
     .legal-box a { color: var(--accent); text-decoration: none; }
 
-    /* ── FOOTER ── */
-    footer { background: #0F0A1E; color: #9B97B0; padding: 64px 5vw 32px; }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px; max-width: 1100px; margin: 0 auto 52px;
+    /* ─ FOOTER ─ */
+    .footer {
+      background: var(--ink); color: rgba(255,255,255,0.45);
+      padding: 56px 24px 28px;
     }
-    .footer-brand { font-size: 1.3rem; font-weight: 900; color: white; margin-bottom: 10px; letter-spacing: -.5px; }
-    .footer-brand span { color: var(--accent); }
-    .footer-tagline { font-size: .82rem; line-height: 1.65; margin-bottom: 14px; }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .footer-tagline {
+      font-size: 0.82rem; line-height: 1.65; margin-bottom: 12px;
+    }
     .footer-col h4 {
-      color: white; font-size: .75rem; font-weight: 700;
-      margin-bottom: 14px; letter-spacing: .6px; text-transform: uppercase;
+      font-size: 0.68rem; font-weight: 700;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 14px;
     }
     .footer-col a {
-      display: block; color: #9B97B0; text-decoration: none;
-      font-size: .82rem; margin-bottom: 9px; transition: color .2s;
+      display: block; color: rgba(255,255,255,0.45);
+      text-decoration: none; font-size: 0.82rem;
+      margin-bottom: 8px; transition: color 0.2s;
     }
-    .footer-col a:hover { color: white; }
+    .footer-col a:hover { color: var(--white); }
     .footer-bottom {
-      border-top: 1px solid #1E1933; padding-top: 28px;
-      max-width: 1100px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px; font-size: .78rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 40px; padding-top: 20px;
+      display: flex; justify-content: space-between;
+      align-items: center; font-size: 0.75rem;
+      max-width: 1120px; margin-left: auto; margin-right: auto;
+      flex-wrap: wrap; gap: 8px;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    /* ─ MOBILE NAV ─ */
+    .nav-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px;
+      align-items: center; justify-content: center;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .nav-toggle:hover { background: var(--ink-05); }
+    .nav-toggle svg {
+      width: 22px; height: 22px; stroke: var(--ink);
+      fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .nav-mobile-menu {
+      display: none;
+      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      padding: 24px;
+      flex-direction: column;
+      gap: 4px;
+      animation: fadeIn 0.2s ease;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      display: block; padding: 16px 12px;
+      font-size: 1.1rem; font-weight: 600; color: var(--ink);
+      text-decoration: none; border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .nav-mobile-menu a:hover { background: var(--surface); }
+    .nav-mobile-menu .nav-mobile-cta {
+      display: block; text-align: center;
+      margin-top: 16px; padding: 14px;
+      background: var(--ink); color: var(--white);
+      border-radius: 10px; font-weight: 700; font-size: 1rem;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ─ RESPONSIVE ─ */
+    @media (max-width: 860px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-visual-mockup { grid-template-columns: 1fr; }
+      .mockup-sidebar { display: none; }
+      .strip-grid { grid-template-columns: 1fr; gap: 12px; }
     }
     @media (max-width: 720px) {
       .nav-links { display: none; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+      .feature-row { grid-template-columns: 1fr; }
+      .download-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-visual { padding: 28px 20px; }
+      .mockup-grid { grid-template-columns: repeat(2, 1fr); }
+      .mockup-main { padding: 18px; }
+      .legal-box { padding: 28px 22px; }
     }
     @media (max-width: 560px) {
       .pricing-grid { grid-template-columns: 1fr; }
-      .trust-item { padding: 14px 16px; font-size: .78rem; }
+      .hero { padding: 64px 16px 48px; }
+      .section { padding: 56px 16px; }
+      .trust-inner { gap: 16px; flex-direction: column; align-items: center; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-sub { font-size: 1rem; }
+      .hero-visual { padding: 20px 14px; margin: 0 -8px; border-radius: 14px; }
+      .mockup-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .mockup-card { padding: 10px; }
+      .mockup-card h4 { font-size: 0.72rem; }
+      .mockup-card p { font-size: 0.62rem; }
+      .mockup-header h3 { font-size: 0.88rem; }
+      .strip { padding: 56px 16px; }
+      .strip-stat-num { font-size: 1.6rem; }
+      .pricing-lifetime { flex-direction: column; text-align: center; gap: 16px; padding: 24px 20px; }
+      .pricing-lifetime .plan-btn-lifetime { width: 100%; justify-content: center; }
+      .pricing-lifetime-row { margin-left: 0; margin-right: 0; }
+      .pricing-card { padding: 24px 18px; }
+      .download-box { padding: 28px 20px; }
+      .cta { padding: 64px 16px; }
+      .cta h2 { font-size: 1.5rem; }
+      .btn-white { padding: 12px 24px; font-size: 0.9rem; }
+      .legal { padding: 48px 16px; }
+      .legal-box { padding: 24px 18px; }
+      .footer { padding: 40px 16px 20px; }
+      .section-header { margin-bottom: 40px; }
+      .feature-card { padding: 24px 20px; }
+      .container { padding: 0 16px; }
     }
-    @media (max-width: 480px) {
-      .footer-grid { grid-template-columns: 1fr; }
+
+    /* ─ ANIMATION ─ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .fade-up-d1 { animation-delay: 0.1s; }
+    .fade-up-d2 { animation-delay: 0.2s; }
+    .fade-up-d3 { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ───────────────────────────────────────────────────── -->
-<nav>
-  <a href="#" class="nav-logo">Seme<span>tra</span></a>
-  <ul class="nav-links">
-    <li><a href="#funktionen">Funktionen</a></li>
-    <li><a href="#preise">Preise</a></li>
-    <li><a href="#testimonials">Stimmen</a></li>
-    <li><a href="#download">Download</a></li>
-    <li><a href="#impressum">Impressum</a></li>
-  </ul>
-  <a href="https://app.semetra.ch" class="nav-cta">Kostenlos starten →</a>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="#funktionen">Funktionen</a></li>
+      <li><a href="#preise">Preise</a></li>
+      <li><a href="#download">Download</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://app.semetra.ch" class="nav-cta">Workspace &ouml;ffnen</a>
+    <button class="nav-toggle" onclick="document.getElementById('navMobile').classList.toggle('open');this.setAttribute('aria-expanded',document.getElementById('navMobile').classList.contains('open'))" aria-label="Men&uuml;" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="navMobile" class="nav-mobile-menu">
+    <a href="#funktionen" onclick="document.getElementById('navMobile').classList.remove('open')">Funktionen</a>
+    <a href="#preise" onclick="document.getElementById('navMobile').classList.remove('open')">Preise</a>
+    <a href="#download" onclick="document.getElementById('navMobile').classList.remove('open')">Download</a>
+    <a href="#faq" onclick="document.getElementById('navMobile').classList.remove('open')">FAQ</a>
+    <a href="https://app.semetra.ch" class="nav-mobile-cta">Workspace &ouml;ffnen</a>
+  </div>
 </nav>
 
-<!-- ── HERO ─────────────────────────────────────────────────── -->
+<!-- HERO -->
 <section class="hero">
-  <span class="hero-badge">🎓 Für FH-Studierende in der Schweiz</span>
-  <h1>Dein Studium.<br><em>Endlich im Griff.</em></h1>
-  <p>Module, Aufgaben, Prüfungen und Lernziele – als Desktop-App <em>und</em> Web App. Mit Echtzeit-Sync zwischen allen Geräten.</p>
-  <div class="hero-btns">
-    <a href="https://app.semetra.ch" class="btn-primary">🚀 Web App starten — kostenlos</a>
-    <a href="#download" class="btn-secondary">⬇ Desktop herunterladen</a>
+  <span class="hero-label fade-up">F&uuml;r Studierende in Europa</span>
+  <h1 class="fade-up fade-up-d1">Dein Studium,<br><span>endlich organisiert.</span></h1>
+  <p class="hero-sub fade-up fade-up-d2">Module, Noten, Aufgaben, Mathe-Tools und Lernhilfen &mdash; als Desktop-App und Web App. Ein Konto, alle Ger&auml;te. F&uuml;r Hochschulen in 8 europ&auml;ischen L&auml;ndern.</p>
+  <div class="hero-actions fade-up fade-up-d3">
+    <a href="https://app.semetra.ch" class="btn btn-dark">Kostenlos starten</a>
+    <a href="#download" class="btn btn-ghost">Desktop herunterladen</a>
   </div>
-  <div class="hero-proof">
-    <div class="hero-avatars">
-      <div class="av">LK</div>
-      <div class="av">MS</div>
-      <div class="av">AB</div>
-      <div class="av">TW</div>
-      <div class="av" style="font-size:.65rem;">50+</div>
+
+  <!-- App mockup -->
+  <div class="hero-visual fade-up fade-up-d3">
+    <!-- Window chrome -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+      <div style="display:flex;gap:6px;">
+        <div style="width:10px;height:10px;border-radius:50%;background:#f87171;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#fbbf24;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#34d399;"></div>
+      </div>
+      <div style="flex:1;background:var(--white);border-radius:6px;padding:5px 14px;border:1px solid var(--ink-10);font-size:0.7rem;color:var(--ink-40);font-family:monospace;">app.semetra.ch/modules</div>
     </div>
-    <span class="hero-stars">★★★★★</span>
-    <span>Über 50 Studierende auf der Warteliste</span>
+    <div class="hero-visual-mockup">
+      <div class="mockup-sidebar">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:0 10px;">
+          <div style="width:24px;height:24px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg>
+          </div>
+          <span style="font-weight:700;font-size:0.78rem;color:var(--ink);">Workspace</span>
+        </div>
+        <div style="font-size:0.62rem;font-weight:600;color:var(--ink-40);letter-spacing:0.8px;text-transform:uppercase;padding:0 10px;margin-bottom:6px;">Studium</div>
+        <div class="mockup-sidebar-item active"><div class="dot"></div>Module</div>
+        <div class="mockup-sidebar-item"><div class="dot"></div>Noten &amp; ECTS</div>
+        <div class="mockup-sidebar-item"><div class="dot"></div>Aufgaben</div>
+        <div class="mockup-sidebar-item"><div class="dot"></div>Stundenplan</div>
+        <div style="font-size:0.62rem;font-weight:600;color:var(--ink-40);letter-spacing:0.8px;text-transform:uppercase;padding:0 10px;margin:12px 0 6px;">Wissen</div>
+        <div class="mockup-sidebar-item"><div class="dot"></div>Karteikarten</div>
+        <div class="mockup-sidebar-item"><div class="dot"></div>Notizen</div>
+        <div class="mockup-sidebar-item"><div class="dot"></div>Mathe-Raum</div>
+        <div class="mockup-sidebar-item"><div class="dot"></div>Mind Maps</div>
+      </div>
+      <div class="mockup-main">
+        <div class="mockup-header">
+          <div>
+            <h3>Meine Module</h3>
+            <div style="font-size:0.7rem;color:var(--ink-40);margin-top:2px;">6 Module &middot; 24 ECTS &middot; Semester 3</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span class="mockup-badge">HS 2026</span>
+            <div style="background:var(--accent);color:white;font-size:0.68rem;font-weight:600;padding:4px 12px;border-radius:6px;">+ Modul</div>
+          </div>
+        </div>
+        <div class="mockup-grid">
+          <div class="mockup-card">
+            <div class="mockup-card-color" style="background:#4f46e5;"></div>
+            <h4>Mathematik 1</h4>
+            <p>6 ECTS &middot; Pflicht</p>
+            <div class="mockup-card-bar"><div class="mockup-card-bar-fill" style="width:85%;background:#4f46e5;"></div></div>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-card-color" style="background:#2563eb;"></div>
+            <h4>Programmieren</h4>
+            <p>6 ECTS &middot; Pflicht</p>
+            <div class="mockup-card-bar"><div class="mockup-card-bar-fill" style="width:65%;background:#2563eb;"></div></div>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-card-color" style="background:#059669;"></div>
+            <h4>BWL Grundlagen</h4>
+            <p>3 ECTS &middot; Pflicht</p>
+            <div class="mockup-card-bar"><div class="mockup-card-bar-fill" style="width:40%;background:#059669;"></div></div>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-card-color" style="background:#dc2626;"></div>
+            <h4>Statistik</h4>
+            <p>3 ECTS &middot; Pflicht</p>
+            <div class="mockup-card-bar"><div class="mockup-card-bar-fill" style="width:95%;background:#dc2626;"></div></div>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-card-color" style="background:#d97706;"></div>
+            <h4>Kommunikation</h4>
+            <p>3 ECTS &middot; Wahl</p>
+            <div class="mockup-card-bar"><div class="mockup-card-bar-fill" style="width:55%;background:#d97706;"></div></div>
+          </div>
+          <div class="mockup-card">
+            <div class="mockup-card-color" style="background:#0891b2;"></div>
+            <h4>IT-Recht</h4>
+            <p>3 ECTS &middot; Wahl</p>
+            <div class="mockup-card-bar"><div class="mockup-card-bar-fill" style="width:20%;background:#0891b2;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── TRUST BAND ───────────────────────────────────────────── -->
-<div class="trust-band">
-  <div class="trust-item"><span>💾</span><span>Desktop 100% Offline</span></div>
-  <div class="trust-item"><span>🌐</span><span>Web App inklusive</span></div>
-  <div class="trust-item"><span>🔄</span><span>Echtzeit-Sync</span></div>
-  <div class="trust-item"><span>🇨🇭</span><span>Swiss Made</span></div>
-  <div class="trust-item"><span>⚡</span><span>Konto sofort aktiv</span></div>
-  <div class="trust-item"><span>↩️</span><span>14 Tage Rückgaberecht</span></div>
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      Made in Europe
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      Desktop &amp; Web App
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+      Echtzeit-Sync
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      100% Offline nutzbar
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      info@semetra.ch
+    </div>
+  </div>
 </div>
 
-<!-- ── FUNKTIONEN ────────────────────────────────────────────── -->
-<section id="funktionen">
-  <p class="section-label">Was Semetra kann</p>
-  <h2 class="section-title">Alles was du als FH-Student brauchst</h2>
-  <p class="section-sub">15+ Features — von der Modulverwaltung bis zur KI-gestützten Prüfungsvorbereitung. Als Desktop-App und im Browser.</p>
-  <div class="features-grid">
+<!-- FEATURES -->
+<section class="section" id="funktionen">
+  <div class="section-header">
+    <span class="section-label">Funktionen</span>
+    <h2 class="section-title">Alles was dein Studium braucht</h2>
+    <p class="section-desc">Semetra Workspace vereint Modulverwaltung, Notenrechner, Lerntools und Mathe-Werkzeuge in einer Anwendung &mdash; f&uuml;r Hochschulen in ganz Europa.</p>
+  </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">📚</div>
-      <h3>Modulverwaltung</h3>
-      <p>Erfasse all deine Module pro Semester inklusive ECTS, Code, Modultyp und Gewichtung. Mit Links zu Moodle, GitHub, SharePoint und Notizen.</p>
+  <div class="features-layout">
+    <div class="feature-row">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:var(--accent-s);">
+          <svg viewBox="0 0 24 24" stroke="var(--accent)"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>Modulverwaltung</h3>
+        <p>Erfasse deine Module pro Semester mit ECTS, Code, Typ und Gewichtung. Verlinke direkt zu Moodle, GitHub oder SharePoint.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#dbeafe;">
+          <svg viewBox="0 0 24 24" stroke="#2563eb"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Noten &amp; ECTS-Tracking</h3>
+        <p>Gewichteter Notendurchschnitt, ECTS-Fortschritt und Semesterstatistiken. Bestandene Module schreiben automatisch Credits gut.</p>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🌐</div>
-      <h3>Web App</h3>
-      <p>Semetra läuft jetzt auch im Browser — auf jedem Gerät, ohne Installation. Melde dich an und habe dein Studium überall dabei.</p>
+    <div class="feature-row">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#dcfce7;">
+          <svg viewBox="0 0 24 24" stroke="#059669"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>Aufgaben &amp; Deadlines</h3>
+        <p>Aufgaben mit F&auml;lligkeitsdaten, Priorit&auml;ten und Fortschritt. Verpass nie mehr eine Abgabe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fef3c7;">
+          <svg viewBox="0 0 24 24" stroke="#d97706"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Stundenplan &amp; Kalender</h3>
+        <p>W&ouml;chentlicher Stundenplan als Raster, KW-basiert. Pr&uuml;fungstermine und Deadlines immer im Blick.</p>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🔄</div>
-      <h3>Desktop ↔ Web Sync <span class="pro-badge">Pro</span></h3>
-      <p>Arbeite auf dem Desktop und greife unterwegs per Browser zu. Deine Daten sind immer synchron — in Echtzeit via Cloud.</p>
+    <div class="feature-row">
+      <div class="feature-card feature-wide" style="background:linear-gradient(135deg,#f0ecff,#f8f6fc);border-color:#d4c8f5;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
+          <div>
+            <div class="feature-icon" style="background:var(--white);">
+              <svg viewBox="0 0 24 24" stroke="var(--accent)"><line x1="18" y1="2" x2="22" y2="6"/><path d="M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z"/></svg>
+            </div>
+            <h3>Mathe-Raum <span class="tag-beta">Free</span></h3>
+            <p>F&uuml;nf professionelle Werkzeuge: Taschenrechner, Gleichungsl&ouml;ser, Matrizenrechner, Funktions-Plotter und Statistik-Tool. Alles im Browser, keine externe Software n&ouml;tig.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid var(--ink-10);">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--accent);margin-bottom:2px;">Rechner</div>
+              <div style="font-size:0.68rem;color:var(--ink-40);">sin, cos, log, Ableitungen</div>
+            </div>
+            <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid var(--ink-10);">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--accent);margin-bottom:2px;">Gleichungen</div>
+              <div style="font-size:0.68rem;color:var(--ink-40);">Lineare &amp; quadratische</div>
+            </div>
+            <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid var(--ink-10);">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--accent);margin-bottom:2px;">Matrizen</div>
+              <div style="font-size:0.68rem;color:var(--ink-40);">Operationen &amp; Determinanten</div>
+            </div>
+            <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid var(--ink-10);">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--accent);margin-bottom:2px;">Plotter</div>
+              <div style="font-size:0.68rem;color:var(--ink-40);">Multi-Funktionen-Graph</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🎓</div>
-      <h3>FH-Voreinstellungen <span class="pro-badge">Pro</span></h3>
-      <p>Wähle deine Fachhochschule und deinen Studiengang — alle Pflichtmodule werden automatisch geladen. FFHS, ZHAW, FHNW, BFH, OST und mehr.</p>
+    <div class="feature-row">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fce7f3;">
+          <svg viewBox="0 0 24 24" stroke="#db2777"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+        </div>
+        <h3>Karteikarten <span class="tag-beta">Beta: KI-Import</span></h3>
+        <p>Erstelle Lernkarten manuell oder importiere sie per KI aus Dokumenten. Mit Spaced-Repetition-Algorithmus f&uuml;r optimales Lernen.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#e0f2fe;">
+          <svg viewBox="0 0 24 24" stroke="#0284c7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Notizen &amp; Dokumente</h3>
+        <p>Strukturierte Notizen pro Modul und Dokumenten-Upload. Alles zentral an einem Ort f&uuml;r die Pr&uuml;fungsvorbereitung.</p>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🏆</div>
-      <h3>Credits &amp; ECTS-Tracking</h3>
-      <p>Sieh deinen Fortschritt auf dem Weg zum Abschluss. Fortschrittsbalken, ECTS pro Semester und Gesamtübersicht auf einen Blick.</p>
+    <div class="feature-row">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fef9c3;">
+          <svg viewBox="0 0 24 24" stroke="#ca8a04"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>Brainstorming</h3>
+        <p>Sammle Ideen und strukturiere Gedanken zu Projektarbeiten und Pr&auml;sentationen. Visuell und intuitiv.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#f3e8ff;">
+          <svg viewBox="0 0 24 24" stroke="#4f46e5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+        </div>
+        <h3>Mind Maps</h3>
+        <p>Erstelle visuelle Wissenskarten mit Verbindungslinien. Ideal f&uuml;r komplexe Zusammenh&auml;nge und Pr&uuml;fungsvorbereitung.</p>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">✅</div>
-      <h3>Aufgaben &amp; Deadlines</h3>
-      <p>Verwalte Aufgaben mit Fälligkeitsdaten, Prioritäten und Status. Verpasse nie mehr eine Abgabe.</p>
+    <div class="feature-row">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:var(--accent-s);">
+          <svg viewBox="0 0 24 24" stroke="var(--accent)"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <h3>Desktop &harr; Web Sync <span class="tag-pro">Pro</span></h3>
+        <p>Arbeite offline am Desktop, greife unterwegs per Browser zu. Echtzeit-Synchronisation &uuml;ber dein Konto.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#f3e8ff;">
+          <svg viewBox="0 0 24 24" stroke="#4f46e5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Studienplan &amp; Timeline</h3>
+        <p>Deine Semester-Roadmap: Module pro Semester, ECTS-Fortschritt und alle Deadlines chronologisch sortiert.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fce7f3;">
+          <svg viewBox="0 0 24 24" stroke="#db2777"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>Mobile App <span class="tag-soon">In Entwicklung</span></h3>
+        <p>Semetra Workspace kommt aufs Handy. Lerne unterwegs mit Karteikarten und behalte Deadlines im Blick.</p>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">📅</div>
-      <h3>Kalender &amp; Prüfungen</h3>
-      <p>Behalte Prüfungsdaten im Blick. Der integrierte Kalender zeigt alle wichtigen Termine auf einen Blick.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🤖</div>
-      <h3>KI-Studien-Coach <span class="pro-badge">Pro</span> <span style="font-size:.65em;font-weight:500;color:#6B6880;background:#F3F0FF;padding:2px 8px;border-radius:6px;margin-left:4px;">nur Desktop</span></h3>
-      <p>Lade Dokumente hoch und lass dir Zusammenfassungen, Erklärungen und Lernhilfen von der KI erstellen — direkt in der Desktop-App.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">⏱</div>
-      <h3>Lern-Timer</h3>
-      <p>Tracke deine Lernzeiten pro Modul mit dem integrierten Pomodoro-Timer. Sieh genau, wie viele Stunden du investierst.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🧠</div>
-      <h3>Lernziele &amp; Spaced Repetition</h3>
-      <p>Speichere Lernthemen mit Wissensstand und automatischer Wiederholungsplanung. Das System erinnert dich zum optimalen Zeitpunkt.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🗂️</div>
-      <h3>Karteikarten &amp; KI-Import</h3>
-      <p>Erstelle Karteikarten manuell oder lade ein Dokument hoch — unsere KI generiert automatisch Lernkarten. Mit Spaced-Repetition-Algorithmus für optimales Lernen.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">📊</div>
-      <h3>Noten, ECTS &amp; Statistiken</h3>
-      <p>Verfolge deine Noten, berechne den gewichteten Durchschnitt und sieh wie deine bestandenen Noten automatisch ECTS-Credits gutschreiben.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🗺️</div>
-      <h3>Studienplan</h3>
-      <p>Deine Semester-Roadmap auf einen Blick: Module pro Semester, ECTS-Fortschritt, Pflicht- vs. Wahlmodule — alles visuell aufbereitet.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">📋</div>
-      <h3>Timeline</h3>
-      <p>Alle Aufgaben und Prüfungen chronologisch sortiert. Überfällige Einträge werden markiert — damit du nichts verpasst.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🕐</div>
-      <h3>Stundenplan (KW-basiert)</h3>
-      <p>Wöchentlicher Stundenplan als Raster (7–20 Uhr) mit Kalenderwochen-Tabs. Einträge per Klick anlegen, Farben wählen — übersichtlich wie auf Papier.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">📱</div>
-      <h3>Mobile App <span style="font-size:.65em;font-weight:500;color:#7C3AED;background:#EDE9FE;padding:2px 8px;border-radius:6px;margin-left:4px;">Bald verfügbar</span></h3>
-      <p>Semetra kommt aufs Handy. Lerne unterwegs, synchronisiere Karteikarten und behalte dein Studium überall im Griff — mit Echtzeit-Sync zwischen Desktop, Web und Mobile.</p>
+    <!-- International Universities — wide card -->
+    <div class="feature-row">
+      <div class="feature-card feature-wide" style="background:linear-gradient(135deg,#ecfdf5,#f0fdf4);border-color:#86efac;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;">
+          <div>
+            <div class="feature-icon" style="background:var(--white);">
+              <svg viewBox="0 0 24 24" stroke="#059669"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 10 3 12 0v-5"/></svg>
+            </div>
+            <h3>Studiengang importieren <span class="tag-pro">Pro: Alle</span></h3>
+            <p>W&auml;hle dein Land, deine Hochschule und deinen Studiengang &mdash; alle Module werden automatisch geladen. &Uuml;ber 30 Hochschulen und 45+ Studieng&auml;nge aus 8 europ&auml;ischen L&auml;ndern. Landesspezifische Notensysteme inklusive.</p>
+          </div>
+          <div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127464;&#127469;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">Schweiz</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">ZHAW, HSLU, BFH, FHGR &hellip;</div>
+              </div>
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127465;&#127466;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">Deutschland</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">TH K&ouml;ln, HAW, DHBW &hellip;</div>
+              </div>
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127462;&#127481;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">&Ouml;sterreich</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">FH Technikum, Campus Wien &hellip;</div>
+              </div>
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127467;&#127479;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">Frankreich</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">IUT Paris, INSA, &Eacute;cole 42 &hellip;</div>
+              </div>
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127470;&#127481;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">Italien</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">Politecnico, Sapienza &hellip;</div>
+              </div>
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127475;&#127473;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">Niederlande</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">HvA Amsterdam, Fontys &hellip;</div>
+              </div>
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127466;&#127480;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">Spanien</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">UPM Madrid, UPC Barcelona &hellip;</div>
+              </div>
+              <div style="background:var(--white);border-radius:10px;padding:12px 14px;border:1px solid rgba(5,150,105,0.15);">
+                <div style="font-size:1rem;margin-bottom:2px;">&#127468;&#127463;</div>
+                <div style="font-size:0.72rem;font-weight:700;color:#059669;">Grossbritannien</div>
+                <div style="font-size:0.62rem;color:var(--ink-40);">Imperial, Manchester &hellip;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- ── WIE ES FUNKTIONIERT ───────────────────────────────────── -->
-<section class="steps-section">
-  <p class="section-label">So einfach geht's</p>
-  <h2 class="section-title">In 3 Schritten startklar</h2>
-  <p class="section-sub">Kostenlos registrieren — keine Kreditkarte nötig. Web App sofort, Desktop-App jederzeit.</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Konto erstellen</h3>
-      <p>Registriere dich in 30 Sekunden unter <strong>app.semetra.ch</strong> — oder lade die Desktop-App herunter und melde dich dort an.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>FH-Voreinstellungen laden</h3>
-      <p>Wähle deine Fachhochschule und deinen Studiengang — alle Module werden automatisch geladen (Pro). Oder füge sie manuell hinzu.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>Studium im Griff</h3>
-      <p>Aufgaben, Prüfungen, ECTS — alles auf allen Geräten synchron. Das Dashboard zeigt deinen Fortschritt.</p>
+<!-- PRODUCT STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <h2>Ein Werkzeug, das mitw&auml;chst</h2>
+    <p>Semetra Workspace wurde f&uuml;r den Studienalltag entwickelt &mdash; nicht als generisches Notiz-Tool, sondern als vollst&auml;ndiger Studienplaner.</p>
+    <div class="strip-grid">
+      <div class="strip-stat">
+        <div class="strip-stat-num">20+</div>
+        <div class="strip-stat-label">integrierte Werkzeuge</div>
+      </div>
+      <div class="strip-stat">
+        <div class="strip-stat-num">8</div>
+        <div class="strip-stat-label">europ&auml;ische L&auml;nder</div>
+      </div>
+      <div class="strip-stat">
+        <div class="strip-stat-num">30+</div>
+        <div class="strip-stat-label">Hochschulen integriert</div>
+      </div>
+      <div class="strip-stat">
+        <div class="strip-stat-num">2</div>
+        <div class="strip-stat-label">Plattformen: Desktop &amp; Web</div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ── PREISE ────────────────────────────────────────────────── -->
-<section id="preise">
-  <p class="section-label">Preise</p>
-  <h2 class="section-title">Fair &amp; transparent</h2>
-  <p class="section-sub">Starte kostenlos — ohne Kreditkarte. Upgrade wenn du mehr willst.</p>
+<!-- PRICING -->
+<section class="section section-alt" id="preise">
+  <div class="section-header">
+    <span class="section-label">Preise</span>
+    <h2 class="section-title">Starte kostenlos. Upgrade wenn du mehr brauchst.</h2>
+    <p class="section-desc">Keine Kreditkarte n&ouml;tig. Ein Abo &mdash; f&uuml;r Web App und Desktop.</p>
+  </div>
+
   <div class="pricing-grid">
-
     <!-- Free -->
     <div class="pricing-card">
       <p class="plan-name">Free</p>
-      <p class="plan-price"><sup>CHF</sup> 0</p>
-      <p class="plan-period">für immer kostenlos</p>
+      <p class="plan-price"><span class="currency">CHF</span> 0</p>
+      <p class="plan-sub">f&uuml;r immer kostenlos</p>
       <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> Web App &amp; Desktop App</li>
-        <li><span class="check">✓</span> Bis zu 6 Module</li>
-        <li><span class="check">✓</span> Bis zu 3 Noten</li>
-        <li><span class="check">✓</span> Bis zu 4 Stundenplan-Einträge</li>
-        <li><span class="check">✓</span> Aufgaben &amp; Deadlines</li>
-        <li><span class="check">✓</span> Kalender &amp; ECTS-Tracking</li>
-        <li class="locked"><span class="dash">—</span> FH-Voreinstellungen</li>
-        <li class="locked"><span class="dash">—</span> KI-Studien-Coach</li>
-        <li class="locked"><span class="dash">—</span> Unbegrenzte Module &amp; Noten</li>
-        <li class="locked"><span class="dash">—</span> Desktop ↔ Web Sync</li>
+      <ul class="plan-list">
+        <li><span class="icon-check">&check;</span> Bis zu 8 Module</li>
+        <li><span class="icon-check">&check;</span> Unbegrenzte Noten</li>
+        <li><span class="icon-check">&check;</span> Stundenplan &amp; Kalender</li>
+        <li><span class="icon-check">&check;</span> Aufgaben &amp; ECTS-Tracking</li>
+        <li><span class="icon-check">&check;</span> Mathe-Raum (5x/Tag)</li>
+        <li><span class="icon-check">&check;</span> KI-Features (Beta)</li>
+        <li><span class="icon-check">&check;</span> 15 Notizen, 3 Mind Maps</li>
+        <li class="locked"><span class="icon-dash">&mdash;</span> Desktop &harr; Web Sync</li>
+        <li class="locked"><span class="icon-dash">&mdash;</span> Notenanalyse &amp; Export</li>
       </ul>
-      <a href="https://app.semetra.ch" class="plan-btn outline">Kostenlos starten</a>
+      <a href="https://app.semetra.ch" class="plan-btn plan-btn-outline">Kostenlos starten</a>
     </div>
 
     <!-- Monthly -->
     <div class="pricing-card">
-      <p class="plan-name">Pro · Monatlich</p>
-      <p class="plan-price"><sup>CHF</sup> 4.90<span>/Mo</span></p>
-      <p class="plan-period">monatlich kündbar · Konto sofort aktiv</p>
+      <p class="plan-name">Pro &middot; Monatlich</p>
+      <p class="plan-price"><span class="currency">CHF</span> 4.90<span class="period">/Mo</span></p>
+      <p class="plan-sub">monatlich k&uuml;ndbar</p>
       <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> Alles aus Free</li>
-        <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
-        <li><span class="check">✓</span> FH-Voreinstellungen</li>
-        <li><span class="check">✓</span> Desktop ↔ Web Echtzeit-Sync</li>
-        <li><span class="check">✓</span> Karteikarten &amp; Spaced Repetition</li>
-        <li><span class="check">✓</span> KI-Studien-Coach (Desktop)</li>
-        <li><span class="check">✓</span> Alle zukünftigen Features</li>
-        <li><span class="check">✓</span> E-Mail Support</li>
+      <ul class="plan-list">
+        <li><span class="icon-check">&check;</span> Alles aus Free &mdash; ohne Limits</li>
+        <li><span class="icon-check">&check;</span> Unbegrenzte Module</li>
+        <li><span class="icon-check">&check;</span> Mathe-Raum unbegrenzt</li>
+        <li><span class="icon-check">&check;</span> Studiengang vollst&auml;ndig importieren</li>
+        <li><span class="icon-check">&check;</span> Desktop &harr; Web Sync</li>
+        <li><span class="icon-check">&check;</span> Notenprognosen &amp; Trends</li>
+        <li><span class="icon-check">&check;</span> Semester-Report Export</li>
+        <li><span class="icon-check">&check;</span> Alle zuk&uuml;nftigen Features</li>
       </ul>
-      <a href="https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01" class="plan-btn outline">Monatlich abonnieren</a>
+      <a href="https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01" class="plan-btn plan-btn-outline">Monatlich starten</a>
     </div>
 
-    <!-- Half-year (popular) -->
+    <!-- Half-Yearly -->
     <div class="pricing-card popular">
-      <span class="popular-badge">⭐ Beliebt</span>
-      <div style="margin-top:4px"><span class="savings-badge">15% günstiger</span></div>
-      <p class="plan-name">Pro · Halbjährlich</p>
-      <p class="plan-price"><sup>CHF</sup> 24.90</p>
-      <p class="plan-period">alle 6 Monate · CHF 4.15/Mo · Konto sofort aktiv</p>
+      <span class="popular-tag">Beliebt</span>
+      <span class="plan-savings">15% g&uuml;nstiger</span>
+      <p class="plan-name">Pro &middot; Halbj&auml;hrlich</p>
+      <p class="plan-price"><span class="currency">CHF</span> 24.90</p>
+      <p class="plan-sub">alle 6 Monate &middot; CHF 4.15/Mo</p>
       <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> Alles aus Free</li>
-        <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
-        <li><span class="check">✓</span> FH-Voreinstellungen</li>
-        <li><span class="check">✓</span> Desktop ↔ Web Echtzeit-Sync</li>
-        <li><span class="check">✓</span> Karteikarten &amp; Spaced Repetition</li>
-        <li><span class="check">✓</span> KI-Studien-Coach (Desktop)</li>
-        <li><span class="check">✓</span> Alle zukünftigen Features</li>
-        <li><span class="check">✓</span> E-Mail Support</li>
+      <ul class="plan-list">
+        <li><span class="icon-check">&check;</span> Alles aus Free &mdash; ohne Limits</li>
+        <li><span class="icon-check">&check;</span> Unbegrenzte Module</li>
+        <li><span class="icon-check">&check;</span> Mathe-Raum unbegrenzt</li>
+        <li><span class="icon-check">&check;</span> Studiengang vollst&auml;ndig importieren</li>
+        <li><span class="icon-check">&check;</span> Desktop &harr; Web Sync</li>
+        <li><span class="icon-check">&check;</span> Notenprognosen &amp; Trends</li>
+        <li><span class="icon-check">&check;</span> Semester-Report Export</li>
+        <li><span class="icon-check">&check;</span> Alle zuk&uuml;nftigen Features</li>
       </ul>
-      <a href="https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00" class="plan-btn primary">Jetzt abonnieren</a>
+      <a href="https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00" class="plan-btn plan-btn-primary">Jetzt starten</a>
     </div>
 
     <!-- Yearly -->
     <div class="pricing-card">
-      <div><span class="savings-badge">32% günstiger</span></div>
-      <p class="plan-name">Pro · Jährlich</p>
-      <p class="plan-price"><sup>CHF</sup> 39.90</p>
-      <p class="plan-period">pro Jahr · CHF 3.33/Mo · Konto sofort aktiv</p>
+      <span class="plan-savings">32% g&uuml;nstiger</span>
+      <p class="plan-name">Pro &middot; J&auml;hrlich</p>
+      <p class="plan-price"><span class="currency">CHF</span> 39.90</p>
+      <p class="plan-sub">pro Jahr &middot; CHF 3.33/Mo</p>
       <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> Alles aus Free</li>
-        <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
-        <li><span class="check">✓</span> FH-Voreinstellungen</li>
-        <li><span class="check">✓</span> Desktop ↔ Web Echtzeit-Sync</li>
-        <li><span class="check">✓</span> Karteikarten &amp; Spaced Repetition</li>
-        <li><span class="check">✓</span> KI-Studien-Coach (Desktop)</li>
-        <li><span class="check">✓</span> Alle zukünftigen Features</li>
-        <li><span class="check">✓</span> Prioritäts-Support</li>
+      <ul class="plan-list">
+        <li><span class="icon-check">&check;</span> Alles aus Free &mdash; ohne Limits</li>
+        <li><span class="icon-check">&check;</span> Unbegrenzte Module</li>
+        <li><span class="icon-check">&check;</span> Mathe-Raum unbegrenzt</li>
+        <li><span class="icon-check">&check;</span> Studiengang vollst&auml;ndig importieren</li>
+        <li><span class="icon-check">&check;</span> Desktop &harr; Web Sync</li>
+        <li><span class="icon-check">&check;</span> Notenprognosen &amp; Trends</li>
+        <li><span class="icon-check">&check;</span> Semester-Report Export</li>
+        <li><span class="icon-check">&check;</span> Priorit&auml;ts-Support</li>
       </ul>
-      <a href="https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02" class="plan-btn outline">Jahres-Abo</a>
+      <a href="https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02" class="plan-btn plan-btn-outline">Jahres-Abo starten</a>
     </div>
-
-    <!-- Desktop Pro Einmalkauf -->
-    <div class="pricing-card" style="border-color:#059669;background:linear-gradient(180deg,#F0FDF4 0%,#FFFFFF 100%);">
-      <div><span class="savings-badge" style="background:#DCFCE7;color:#15803D;">Einmalkauf</span></div>
-      <p class="plan-name">Desktop Pro</p>
-      <p class="plan-price"><sup>CHF</sup> 49.90</p>
-      <p class="plan-period">einmalig · kein Abo · dauerhaft gültig</p>
-      <div class="plan-divider"></div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> Desktop-App dauerhaft Pro</li>
-        <li><span class="check">✓</span> Unbegrenzte Module &amp; Noten</li>
-        <li><span class="check">✓</span> KI-Studien-Coach</li>
-        <li><span class="check">✓</span> FH-Voreinstellungen</li>
-        <li><span class="check">✓</span> Keine Registrierung nötig</li>
-        <li><span class="check">✓</span> Lizenzschlüssel per E-Mail</li>
-        <li><span class="check">✓</span> Alle Desktop-Features</li>
-        <li class="locked"><span class="dash">—</span> Web App / Sync</li>
-      </ul>
-      <a href="https://buy.stripe.com/3cIeVf54860AcOC2M3fYY03" class="plan-btn outline" style="border-color:#059669;color:#059669;">Desktop Pro kaufen</a>
-    </div>
-
   </div>
+
+  <!-- Lifetime -->
+  <div class="pricing-lifetime-row">
+    <div class="pricing-lifetime">
+      <div style="flex:1;min-width:0;">
+        <div style="display:inline-block;font-size:0.65rem;font-weight:700;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);padding:2px 10px;border-radius:100px;margin-bottom:10px;letter-spacing:0.3px;">EINMALIG</div>
+        <p class="plan-name">Pro &middot; Lifetime</p>
+        <p class="plan-price"><span class="currency">CHF</span> 89.90</p>
+        <p class="plan-sub">Einmalkauf &middot; kein Abo &middot; dauerhaft g&uuml;ltig</p>
+      </div>
+      <a href="https://buy.stripe.com/4gM3cx7cg3Ss15U3Q7fYY04" class="plan-btn-lifetime">Lifetime kaufen</a>
+    </div>
+    <p style="text-align:center;font-size:0.75rem;color:var(--ink-40);margin-top:10px;">Lizenzschl&uuml;ssel per E-Mail &middot; Gilt f&uuml;r Desktop, Web &amp; Mobile &middot; An dein Konto gebunden</p>
+  </div>
+
   <div class="pricing-note">
-    <span>🔒 Sichere Zahlung via Stripe</span>
-    <span>⚡ Konto nach Kauf sofort aktiv</span>
-    <span>🇨🇭 Alle Preise in CHF inkl. MwSt.</span>
-    <span>↩️ 14 Tage Rückgaberecht</span>
+    <span>
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Sichere Zahlung via Stripe
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Alle Preise in CHF inkl. MwSt.
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      14 Tage R&uuml;ckgaberecht
+    </span>
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ──────────────────────────────────────────── -->
-<!-- NOTE: Diese Testimonials sind von Beta-Testern. Bitte bei Bedarf mit echtem Feedback ersetzen. -->
-<section id="testimonials">
-  <p class="section-label">Was Studierende sagen</p>
-  <h2 class="section-title">Von FH-Studis für FH-Studis</h2>
-  <p class="section-sub">Ehrliches Feedback von Beta-Testern aus der Schweiz.</p>
-  <div class="testimonials-grid">
-
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p>„Ich hab früher alles auf Papier und in fünf Apps verwaltet. Mit Semetra hab ich endlich alles an einem Ort — und verpasse keine Deadline mehr."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">LK</div>
-        <div>
-          <p class="author-name">Lena K.</p>
-          <p class="author-role">BWL-Studentin, ZHAW</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p>„Der PDF-Import ist ein absoluter Game-Changer. Ich lade meinen Modulplan hoch und alles ist direkt strukturiert. Spart mir jede Woche mindestens eine Stunde."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">MS</div>
-        <div>
-          <p class="author-name">Michi S.</p>
-          <p class="author-role">Informatik-Student, FHNW</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p>„Der KI-Coach kennt meine Lernziele und gibt mir genau die Tipps, die ich brauche. Besser als viele teure Lern-Apps — und das komplett offline."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">AB</div>
-        <div>
-          <p class="author-name">Aline B.</p>
-          <p class="author-role">Wirtschaftsinformatik, BFH</p>
-        </div>
-      </div>
-    </div>
-
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-header">
+    <span class="section-label">H&auml;ufige Fragen</span>
+    <h2 class="section-title">Noch Fragen?</h2>
+    <p class="section-desc">Nicht gefunden was du suchst? Schreib uns: <a href="mailto:info@semetra.ch" style="color:var(--accent);">info@semetra.ch</a></p>
   </div>
-</section>
 
-<!-- ── FAQ ──────────────────────────────────────────────────── -->
-<section id="faq">
-  <p class="section-label">Häufige Fragen</p>
-  <h2 class="section-title">Alles Wichtige auf einen Blick</h2>
-  <p class="section-sub">Nicht gefunden was du suchst? Schreib uns: <a href="mailto:info@semetra.ch" style="color:var(--accent)">info@semetra.ch</a></p>
   <div class="faq-list">
-
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        Was passiert, wenn mein Pro-Abo abläuft?
-        <span class="faq-icon">+</span>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Was passiert, wenn mein Pro-Abo abl&auml;uft?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="faq-answer">
-        <p>Deine Daten bleiben vollständig erhalten. Du wechselst automatisch zur Free-Version: Du kannst weiterhin alle bestehenden Daten einsehen, aber neue Module sind auf 6 gesamt limitiert, Noten auf 3 und Stundenplan-Einträge auf 4. Pro-Funktionen wie FH-Voreinstellungen, Sync und KI-Coach werden pausiert.</p>
-      </div>
+      <div class="faq-a"><div class="faq-a-inner">Deine Daten bleiben vollst&auml;ndig erhalten. Du wechselst zur Free-Version: bestehende Daten sind weiterhin sichtbar, neue Module sind auf 8 limitiert. Pro-Funktionen wie Sync, unbegrenzte Wissens-Tools und Notenanalyse werden pausiert.</div></div>
     </div>
-
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
+      <button class="faq-q" onclick="toggleFaq(this)">
         Wie funktioniert die Aktivierung nach dem Kauf?
-        <span class="faq-icon">+</span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="faq-answer">
-        <p>Du erstellst einmalig ein kostenloses Konto unter <strong>app.semetra.ch</strong>. Nach dem Kauf wird dein Konto automatisch auf Pro hochgestuft — in wenigen Sekunden, kein manueller Code nötig. Melde dich anschliessend mit demselben Konto in der Desktop-App an und alle Pro-Features sind sofort verfügbar.</p>
-      </div>
+      <div class="faq-a"><div class="faq-a-inner">Erstelle ein kostenloses Konto unter app.semetra.ch. Nach dem Kauf wird dein Konto automatisch auf Pro hochgestuft &mdash; in wenigen Sekunden. Melde dich mit demselben Konto in der Desktop-App an und alle Pro-Features sind sofort verf&uuml;gbar.</div></div>
     </div>
-
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
+      <button class="faq-q" onclick="toggleFaq(this)">
         Kann ich die Desktop-App auch offline nutzen?
-        <span class="faq-icon">+</span>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="faq-answer">
-        <p>Ja — die Desktop-App funktioniert vollständig offline. Wenn du wieder online bist, werden alle Änderungen automatisch mit der Web App synchronisiert (Pro). Mit einem Free-Konto kannst du die Desktop-App ebenfalls offline nutzen, ohne Sync.</p>
-      </div>
+      <div class="faq-a"><div class="faq-a-inner">Ja &mdash; die Desktop-App funktioniert vollst&auml;ndig offline. Wenn du wieder online bist, werden &Auml;nderungen automatisch mit der Web App synchronisiert (Pro). Im Free-Plan kannst du die Desktop-App ebenfalls offline nutzen, ohne Sync.</div></div>
     </div>
-
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        Auf welchen Geräten läuft Semetra?
-        <span class="faq-icon">+</span>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Auf welchen Ger&auml;ten l&auml;uft Semetra Workspace?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="faq-answer">
-        <p>Die <strong>Web App</strong> läuft auf jedem Gerät mit Browser — Windows, Mac, Linux, iPad. Die <strong>Desktop-App</strong> läuft auf Windows 10 und 11 (64-bit), ca. 80 MB, keine Installation nötig. macOS folgt.</p>
-      </div>
+      <div class="faq-a"><div class="faq-a-inner">Die Web App l&auml;uft auf jedem Ger&auml;t mit Browser &mdash; Windows, Mac, Linux, iPad. Die Desktop-App l&auml;uft auf Windows 10/11 (64-bit), ca. 80 MB. macOS folgt.</div></div>
     </div>
-
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        Kann ich zwischen den Abo-Plänen wechseln oder kündigen?
-        <span class="faq-icon">+</span>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Kann ich mein Abo jederzeit k&uuml;ndigen?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="faq-answer">
-        <p>Ja, jederzeit. Du kannst dein Abo über das Kundenportal (Einstellungen → Abo &amp; Lizenz → Abo verwalten) selbst kündigen oder auf einen anderen Plan wechseln. Nach der Kündigung bleibst du bis zum Ende der bezahlten Periode Pro.</p>
-      </div>
+      <div class="faq-a"><div class="faq-a-inner">Ja, jederzeit. &Uuml;ber das Kundenportal (Einstellungen &rarr; Abo verwalten) kannst du k&uuml;ndigen oder den Plan wechseln. Nach K&uuml;ndigung bleibst du bis zum Ende der bezahlten Periode Pro.</div></div>
     </div>
-
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        Gibt es ein Rückgaberecht?
-        <span class="faq-icon">+</span>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Welche Hochschulen und L&auml;nder werden unterst&uuml;tzt?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="faq-answer">
-        <p>Ja — 14 Tage. Wenn Semetra nicht das ist, was du erwartet hast, schreib uns einfach an <a href="mailto:info@semetra.ch" style="color:var(--accent)">info@semetra.ch</a> und wir erstatten den vollen Betrag. Keine Fragen gestellt.</p>
-      </div>
+      <div class="faq-a"><div class="faq-a-inner">Semetra unterst&uuml;tzt aktuell &uuml;ber 30 Hochschulen aus 8 europ&auml;ischen L&auml;ndern: Schweiz, Deutschland, &Ouml;sterreich, Frankreich, Italien, Niederlande, Spanien und Grossbritannien. Pro Land wird das passende Notensystem automatisch verwendet (z.B. 1&ndash;6 f&uuml;r CH, 1.0&ndash;5.0 f&uuml;r DE, 0&ndash;20 f&uuml;r FR). Weitere Hochschulen werden laufend erg&auml;nzt.</div></div>
     </div>
-
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Was ist der Unterschied zwischen Free und Pro?
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Free gibt dir Zugang zu allen Werkzeugen mit Nutzungslimits (8 Module, 5 Mathe-Berechnungen/Tag, 15 Notizen). Pro entfernt alle Limits, aktiviert Desktop-Sync, Notenanalyse, vollst&auml;ndigen Studiengang-Import und Semester-Report-Export.</div></div>
+    </div>
   </div>
 </section>
 
-<!-- ── DOWNLOAD ──────────────────────────────────────────────── -->
-<section id="download" style="background:var(--white);">
-  <p class="section-label">Loslegen</p>
-  <h2 class="section-title">Wähle deinen Einstieg</h2>
-  <p class="section-sub">Direkt im Browser oder als Desktop-App — beides kostenlos, dasselbe Konto.</p>
-  <div style="max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+<!-- DOWNLOAD -->
+<section class="section section-alt" id="download">
+  <div class="section-header">
+    <span class="section-label">Loslegen</span>
+    <h2 class="section-title">W&auml;hle deinen Einstieg</h2>
+    <p class="section-desc">Im Browser oder als Desktop-App &mdash; beides kostenlos, dasselbe Konto.</p>
+  </div>
 
-    <!-- Web App -->
-    <div style="background:linear-gradient(135deg,#EDE9FE,#F5F3FF);border:2px solid #7C3AED;
-                border-radius:20px;padding:40px 32px;text-align:center;">
-      <div style="font-size:2.8rem;margin-bottom:14px;">🌐</div>
-      <h3 style="font-size:1.15rem;font-weight:800;color:#5B21B6;margin:0 0 10px;">
-        Web App — sofort starten
-      </h3>
-      <p style="color:#6D28D9;font-size:.88rem;margin:0 0 24px;line-height:1.7;">
-        Kein Download nötig. Einfach registrieren und loslegen — auf jedem Gerät.
-      </p>
-      <a href="https://app.semetra.ch"
-         style="display:inline-block;background:#7C3AED;color:white;border:none;border-radius:10px;
-                padding:13px 28px;font-size:.9rem;font-weight:700;text-decoration:none;
-                transition:background .2s;">
-        🚀 Web App öffnen
-      </a>
-      <p style="margin-top:12px;font-size:.76rem;color:#7C3AED;opacity:.75;">
-        Chrome, Firefox, Safari, Edge
-      </p>
+  <div class="download-grid">
+    <div class="download-box primary">
+      <div class="download-icon" style="background:var(--accent-s);">
+        <svg viewBox="0 0 24 24" stroke="var(--accent)"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3>Web App &mdash; sofort starten</h3>
+      <p>Kein Download n&ouml;tig. Registrieren und loslegen &mdash; auf jedem Ger&auml;t.</p>
+      <a href="https://app.semetra.ch" class="btn btn-dark" style="width:100%;justify-content:center;">Workspace &ouml;ffnen</a>
+      <p class="download-meta">Chrome, Firefox, Safari, Edge</p>
     </div>
 
-    <!-- Desktop -->
-    <div style="background:var(--bg);border:2px solid var(--border);
-                border-radius:20px;padding:40px 32px;text-align:center;">
-      <div style="font-size:2.8rem;margin-bottom:14px;">🖥️</div>
-      <h3 style="font-size:1.15rem;font-weight:800;color:var(--text);margin:0 0 10px;">
-        Desktop-App · Windows
-      </h3>
-      <p style="color:var(--muted);font-size:.88rem;margin:0 0 24px;line-height:1.7;">
-        Vollständig offline nutzbar. Mit Konto sync automatisch mit der Web App.
-      </p>
-      <form action="https://formsubmit.co/info@semetra.ch" method="POST"
-            style="display:flex;gap:8px;flex-direction:column;align-items:center;">
-        <input type="hidden" name="_subject" value="Semetra Desktop Beta-Anmeldung">
+    <div class="download-box">
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3>Desktop-App &middot; Windows</h3>
+      <p>Vollst&auml;ndig offline nutzbar. Mit Konto synchronisiert automatisch.</p>
+      <form class="download-form" action="https://formsubmit.co/info@semetra.ch" method="POST">
+        <input type="hidden" name="_subject" value="Semetra Desktop Download-Anfrage">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://semetra.ch/#download">
-        <input type="email" name="email" required placeholder="E-Mail für Download-Link"
-               style="width:100%;padding:12px 16px;border:2px solid var(--border);
-                      border-radius:10px;font-size:.875rem;outline:none;color:#1A1A2E;font-family:inherit;">
-        <button type="submit"
-                style="width:100%;background:var(--text);color:white;border:none;border-radius:10px;
-                       padding:12px 24px;font-size:.875rem;font-weight:700;cursor:pointer;
-                       font-family:inherit;transition:background .2s;">
-          ✉ Download-Link anfordern
-        </button>
+        <input type="email" name="email" required placeholder="E-Mail f&uuml;r Download-Link">
+        <button type="submit" class="btn btn-dark" style="width:100%;justify-content:center;">Download-Link anfordern</button>
       </form>
-      <p style="margin-top:12px;font-size:.76rem;color:var(--muted);">
-        Windows 10/11 · 64-bit · ~80 MB
-      </p>
+      <p class="download-meta">Windows 10/11 &middot; 64-bit &middot; ~80 MB</p>
     </div>
-
   </div>
-  <div style="text-align:center;margin-top:20px;">
-    <div style="background:#FFF8E1;border:1px solid #FFD54F;border-radius:10px;
-                display:inline-block;padding:12px 22px;font-size:.78rem;color:#5D4037;">
-      ⚠️ <strong>Windows SmartScreen:</strong> Falls eine Warnung erscheint → <em>„Weitere Informationen"</em> → <em>„Trotzdem ausführen"</em>. Die App ist sicher.
-    </div>
+  <div class="smartscreen-note">
+    <strong>Windows SmartScreen:</strong> Falls eine Warnung erscheint &rarr; &bdquo;Weitere Informationen&ldquo; &rarr; &bdquo;Trotzdem ausf&uuml;hren&ldquo;. Die App ist sicher.
   </div>
 </section>
 
-<!-- ── CTA BAND ──────────────────────────────────────────────── -->
-<div class="cta-band">
-  <h2>Starte heute — kostenlos.</h2>
-  <p>Konto erstellen, Studiengang wählen, loslegen. In 60 Sekunden ready.</p>
-  <a href="https://app.semetra.ch" class="btn-white">Jetzt kostenlos starten →</a>
-  <p class="cta-sub">Keine Kreditkarte nötig · Pro ab CHF 3.33/Mt.</p>
+<!-- CTA -->
+<div class="cta">
+  <h2>Starte heute &mdash; kostenlos.</h2>
+  <p>Konto erstellen, Module erfassen, loslegen. In 60 Sekunden.</p>
+  <a href="https://app.semetra.ch" class="btn-white">Semetra Workspace &ouml;ffnen</a>
+  <p class="cta-sub">Keine Kreditkarte n&ouml;tig &middot; Pro ab CHF 3.33/Mt.</p>
 </div>
 
-<!-- ── IMPRESSUM ─────────────────────────────────────────────── -->
-<section id="impressum">
+<!-- IMPRESSUM -->
+<section class="legal" id="impressum">
   <div class="legal-box">
     <h2>Impressum &amp; Datenschutz</h2>
 
     <h3>Anbieter</h3>
     <address>
-      Lopicic Technologies (JL DevTech)<br>
+      Lopicic Technologies<br>
       Schweiz<br>
       E-Mail: <a href="mailto:info@semetra.ch">info@semetra.ch</a>
     </address>
 
-    <h3>Verantwortlich für den Inhalt</h3>
-    <p>Lopicic Technologies (JL DevTech), Schweiz</p>
+    <h3>Verantwortlich f&uuml;r den Inhalt</h3>
+    <p>Lopicic Technologies, Schweiz</p>
 
     <h3>Datenschutz</h3>
-    <p>Semetra besteht aus einer <strong>Desktop-App</strong> (lokal, offline) und einer <strong>Web App</strong> (Cloud-basiert). Bei der Nutzung der Web App oder des Cloud-Sync werden Kontodaten (E-Mail, Studiumsdaten) verschlüsselt in der Cloud gespeichert.</p>
-    <p style="margin-top:10px;">Die Cloud-Infrastruktur basiert auf <strong>Supabase</strong> (PostgreSQL), gehostet in der EU. Alle Daten sind mit Row Level Security (RLS) geschützt — nur du hast Zugriff auf deine eigenen Daten. Die Desktop-App kann auch vollständig offline ohne Konto genutzt werden; in diesem Fall werden keine Daten an Server übermittelt.</p>
-    <p style="margin-top:10px;">Zahlungen werden über <strong>Stripe</strong> abgewickelt. Für die Verarbeitung deiner Zahlungsdaten gilt die <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Stripe</a>.</p>
+    <p>Semetra besteht aus einer Desktop-App (lokal, offline) und einer Web App (Cloud-basiert). Bei der Nutzung der Web App oder des Cloud-Sync werden Kontodaten (E-Mail, Studiumsdaten) verschl&uuml;sselt in der Cloud gespeichert.</p>
+    <p style="margin-top:10px;">Die Cloud-Infrastruktur basiert auf Supabase (PostgreSQL), gehostet in der EU. Alle Daten sind mit Row Level Security (RLS) gesch&uuml;tzt. Die Desktop-App kann vollst&auml;ndig offline ohne Konto genutzt werden.</p>
+    <p style="margin-top:10px;">Zahlungen werden &uuml;ber Stripe abgewickelt. F&uuml;r die Verarbeitung deiner Zahlungsdaten gilt die <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Datenschutzerkl&auml;rung von Stripe</a>.</p>
 
     <h3>Haftungsausschluss</h3>
-    <p>Lopicic Technologies (JL DevTech) übernimmt keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen. Für externe Links wird keine Haftung übernommen.</p>
+    <p>Lopicic Technologies &uuml;bernimmt keine Gew&auml;hr f&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der bereitgestellten Informationen.</p>
+
+    <h3>Hochschul- &amp; Studiengangdaten</h3>
+    <p>Semetra Workspace steht in keiner Verbindung zu den genannten Hochschulen und ist kein offizielles Angebot dieser Institutionen. Die angezeigten Studiengang-Daten (Modulnamen, ECTS, Semesterzuordnung) basieren auf &ouml;ffentlich zug&auml;nglichen Informationen und dienen ausschliesslich als Orientierungshilfe. Alle Angaben ohne Gew&auml;hr &mdash; verbindlich sind ausschliesslich die offiziellen Informationen der jeweiligen Hochschule. Es werden keine Logos, gesch&uuml;tzten Inhalte oder urheberrechtlich gesch&uuml;tzte Materialien der Hochschulen verwendet. Stand: April 2026.</p>
 
     <h3>Anwendbares Recht</h3>
     <p>Es gilt Schweizer Recht. Gerichtsstand ist die Schweiz.</p>
   </div>
 </section>
 
-<!-- ── FOOTER ────────────────────────────────────────────────── -->
-<footer>
-  <div class="footer-grid">
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
     <div>
-      <p class="footer-brand">Seme<span>tra</span></p>
+      <p class="footer-brand">Semetra</p>
       <p class="footer-tagline">
-        Der smarte Studienplaner für FH-Studierende in der Schweiz.<br>
-        Desktop-App &amp; Web App · Entwickelt von <strong style="color:#ccc">JL DevTech</strong> · Lopicic Technologies.
+        Der Studienplaner f&uuml;r Studierende.<br>
+        Desktop-App &amp; Web App &middot; Lopicic Technologies.
       </p>
-      <a href="mailto:info@semetra.ch" style="color:#9B97B0;font-size:.82rem;text-decoration:none;">
+      <a href="mailto:info@semetra.ch" style="color:rgba(255,255,255,0.45);font-size:0.82rem;text-decoration:none;">
         info@semetra.ch
       </a>
     </div>
@@ -995,13 +1442,30 @@
       <a href="#preise">Preise</a>
       <a href="#download">Download</a>
       <a href="#faq">FAQ</a>
-      <a href="https://app.semetra.ch">Web App</a>
+      <a href="https://app.semetra.ch">Workspace</a>
     </div>
     <div class="footer-col">
-      <h4>Kaufen</h4>
-      <a href="https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01">Pro Monatlich</a>
-      <a href="https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00">Pro Halbjährlich</a>
-      <a href="https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02">Pro Jährlich</a>
-      <a href="https://app.semetra.ch">Web App</a>
+      <h4>Pro Abo</h4>
+      <a href="https://buy.stripe.com/14A3cxbsw2Oo7ui9arfYY01">Monatlich &middot; CHF 4.90</a>
+      <a href="https://buy.stripe.com/dRmdRb548agQdSGcmDfYY00">Halbj&auml;hrlich &middot; CHF 24.90</a>
+      <a href="https://buy.stripe.com/7sY5kFfIM9cM9Cq5YffYY02">J&auml;hrlich &middot; CHF 39.90</a>
+      <a href="https://buy.stripe.com/4gM3cx7cg3Ss15U3Q7fYY04">Lifetime &middot; CHF 89.90</a>
     </div>
-    <div class="foote
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
+    <span><a href="#impressum" style="color:rgba(255,255,255,0.35);text-decoration:none;">Impressum &amp; Datenschutz</a></span>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+
+</body>
+</html>
