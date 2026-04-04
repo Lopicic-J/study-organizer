@@ -237,22 +237,52 @@ def generate_code() -> str:
 #  LicenseManager
 # ─────────────────────────────────────────────────────────────────────────────
 
-class _AccountStub:
-    """Platzhalter für Account-System (Login/Sync) — wird später implementiert."""
-    def is_logged_in(self) -> bool:
+def _check_account_pro(repo) -> Optional[bool]:
+    """
+    Prüft ob der eingeloggte User ein Pro-Konto hat (via Supabase profiles).
+    Returns: True (Pro), False (Free), None (nicht eingeloggt / Fehler).
+    """
+    if not ONLINE_CHECK_ENABLED:
+        return None
+
+    # Hol User-ID aus lokalem Setting (gesetzt beim Login)
+    user_id = repo.get_setting("supabase_user_id") or ""
+    if not user_id:
+        return None
+
+    try:
+        import urllib.request
+        import json
+
+        url = (
+            f"{SUPABASE_URL}/rest/v1/profiles"
+            f"?id=eq.{user_id}&select=plan,plan_type"
+        )
+        headers = {
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "apikey": SUPABASE_KEY,
+        }
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            rows = json.loads(resp.read())
+
+        if rows and rows[0].get("plan") == "pro":
+            return True
         return False
-    def get_email(self) -> str:
-        return ""
-    def login(self, email: str, password: str) -> tuple[bool, str]:
-        return False, "Account-System noch nicht verfügbar."
-    def logout(self) -> None:
-        pass
+
+    except Exception:
+        return None  # Offline → kann nicht prüfen
 
 
 class LicenseManager:
     """
     Hochlevel-API für Lizenzprüfung und -aktivierung.
-    Unterstützt Gumroad UUID-Keys (primär) und SOAPP Legacy-Codes.
+
+    Pro-Status kann auf 3 Wegen aktiviert sein:
+      1. Konto-basiert: User ist eingeloggt und hat plan='pro' in Supabase
+         (Lifetime-Kauf oder aktives Abo → gilt auf allen Geräten)
+      2. SOAPP-Code: Lokaler Lizenzcode (Offline-fähig, maschinengebunden)
+      3. Gumroad-Key: Legacy-Format (bestehende Kunden)
     """
 
     _SETTING_KEY = "pro_license_code"
@@ -260,14 +290,33 @@ class LicenseManager:
     def __init__(self, repo):
         self.repo = repo
         self._cached: Optional[bool] = None
-        self.account = _AccountStub()
+        self._account_pro: Optional[bool] = None
 
     def is_pro(self) -> bool:
-        """True wenn eine gültige Pro-Lizenz aktiviert ist."""
+        """True wenn Pro über Konto ODER lokalen Code aktiviert ist."""
         if self._cached is None:
+            # 1. Konto-basiert (Lifetime / Abo)
+            self._account_pro = _check_account_pro(self.repo)
+            if self._account_pro is True:
+                self._cached = True
+                return True
+
+            # 2. Lokaler Lizenzcode (SOAPP oder Gumroad)
             code = self.repo.get_setting(self._SETTING_KEY) or ""
             self._cached = _is_any_valid_format(code)
+
         return self._cached
+
+    def is_account_pro(self) -> bool:
+        """True wenn Pro über das Konto aktiv ist (nicht über lokalen Code)."""
+        if self._account_pro is None:
+            self._account_pro = _check_account_pro(self.repo)
+        return self._account_pro is True
+
+    def refresh(self) -> None:
+        """Setzt Cache zurück und prüft erneut (z.B. nach Login/Kauf)."""
+        self._cached = None
+        self._account_pro = None
 
     def activate(self, code: str) -> tuple[bool, str]:
         """

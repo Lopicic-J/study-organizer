@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preise — Semetra</title>
+  <meta name="description" content="Semetra Preise: Kostenlos starten, Pro Basic ab CHF 4.90/Mo, Pro Full ab CHF 9.90/Mo, oder Lifetime einmalig.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(160deg, #f8f6fc 0%, #eef2ff 50%, #ede9fe 100%);
+      padding: 100px 24px 64px; text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400; line-height: 1.2;
+      letter-spacing: -0.5px; margin-bottom: 16px;
+    }
+    .page-hero p {
+      font-size: 1.1rem; color: var(--ink-60);
+      max-width: 520px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* Toggle */
+    .period-toggle {
+      display: flex; justify-content: center; gap: 4px;
+      background: var(--surface); border-radius: 10px;
+      padding: 4px; margin-bottom: 48px;
+      max-width: 340px; margin-left: auto; margin-right: auto;
+    }
+    .period-btn {
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; border: none;
+      background: transparent; color: var(--ink-60);
+      font-family: inherit; transition: all 0.2s;
+    }
+    .period-btn.active {
+      background: var(--white); color: var(--ink);
+      box-shadow: var(--shadow-s);
+    }
+
+    /* Pricing grid */
+    .price-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-bottom: 64px;
+    }
+    .price-card {
+      background: var(--white); border: 1px solid var(--ink-10);
+      border-radius: var(--radius-lg); padding: 36px 28px;
+      position: relative;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .price-card:hover { box-shadow: var(--shadow-m); transform: translateY(-2px); }
+    .price-card.highlight {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), var(--shadow-l);
+      transform: scale(1.02);
+    }
+    .price-card.highlight:hover { transform: scale(1.02) translateY(-2px); }
+    .price-pop {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: var(--white);
+      font-size: 0.68rem; font-weight: 700;
+      padding: 4px 14px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .price-name { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .price-amount {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem; line-height: 1.2; margin-bottom: 2px;
+    }
+    .price-amount small {
+      font-size: 0.85rem; color: var(--ink-40);
+      font-family: 'DM Sans', sans-serif; font-weight: 400;
+    }
+    .price-note { font-size: 0.78rem; color: var(--ink-40); margin-bottom: 20px; }
+    .price-savings {
+      display: inline-block; font-size: 0.72rem; font-weight: 700;
+      padding: 2px 10px; border-radius: 100px;
+      background: #d1fae5; color: #059669;
+      margin-bottom: 8px;
+    }
+    .price-list { list-style: none; margin-bottom: 28px; }
+    .price-list li {
+      font-size: 0.82rem; color: var(--ink-80);
+      padding: 6px 0 6px 24px; position: relative;
+      border-bottom: 1px solid var(--ink-05);
+    }
+    .price-list li:last-child { border-bottom: none; }
+    .price-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 11px;
+      width: 12px; height: 12px;
+    }
+    .price-list li.yes::before {
+      border-radius: 50%;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .price-list li.no::before {
+      border-radius: 50%;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b5b0c5' stroke-width='3'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .price-list li.no { color: var(--ink-20); }
+
+    /* Lifetime section */
+    .lifetime-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px; margin-top: 32px; margin-bottom: 40px;
+    }
+    .lifetime-card {
+      background: var(--white); border: 1px solid var(--ink-10);
+      border-radius: var(--radius-lg); padding: 36px 28px;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .lifetime-card:hover { box-shadow: var(--shadow-m); transform: translateY(-2px); }
+    .lifetime-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .lifetime-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; margin-bottom: 4px;
+    }
+    .lifetime-price small { font-size: 0.85rem; color: var(--ink-40); font-family: 'DM Sans', sans-serif; }
+    .lifetime-note { font-size: 0.82rem; color: var(--ink-60); margin-bottom: 16px; line-height: 1.5; }
+    .lifetime-list { list-style: none; margin-bottom: 24px; }
+    .lifetime-list li {
+      font-size: 0.82rem; color: var(--ink-80);
+      padding: 4px 0 4px 22px; position: relative;
+    }
+    .lifetime-list li::before {
+      content: ''; position: absolute; left: 0; top: 9px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--green-s); border: 2px solid var(--green);
+    }
+
+    /* Add-on */
+    .addon-box {
+      background: linear-gradient(135deg, #ede9fe, #eef2ff);
+      border: 1px solid var(--violet-s);
+      border-radius: var(--radius-lg); padding: 36px;
+      text-align: center; max-width: 560px;
+      margin: 0 auto;
+    }
+    .addon-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .addon-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; margin-bottom: 4px;
+    }
+    .addon-box p { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; }
+
+    /* FAQ */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--ink-10);
+      padding: 20px 0;
+    }
+    .faq-q {
+      font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; display: flex;
+      justify-content: space-between; align-items: center;
+    }
+    .faq-q::after {
+      content: '+'; font-size: 1.2rem; color: var(--ink-40);
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-a {
+      font-size: 0.88rem; color: var(--ink-60);
+      line-height: 1.7; max-height: 0;
+      overflow: hidden; transition: max-height 0.3s;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+
+    @media (max-width: 860px) {
+      .price-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .price-card.highlight { transform: none; }
+      .price-card.highlight:hover { transform: translateY(-2px); }
+      .lifetime-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html">Warum Semetra?</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="pricing.html" class="active">Preise</a></li>
+      <li><a href="changelog.html">Neu</a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <a href="login.html" class="nav-login-link" style="color:var(--ink-60);text-decoration:none;font-size:0.85rem;font-weight:500;margin-right:12px;">Anmelden</a>
+      <a href="register.html" class="nav-cta">Registrieren</a>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="nav-mobile-menu">
+    <a href="warum-semetra.html">Warum Semetra?</a>
+    <a href="features.html">Features</a>
+    <a href="pricing.html">Preise</a>
+    <a href="changelog.html">Neu</a>
+    <div id="nav-auth-mobile">
+      <a href="login.html">Anmelden</a>
+      <a href="register.html" class="nav-mobile-cta">Registrieren</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <span class="section-label fade-up">Preise</span>
+  <h1 class="fade-up fade-up-d1">Faire Preise für Studierende</h1>
+  <p class="fade-up fade-up-d2">Starte kostenlos. Upgrade, wenn du mehr brauchst. Keine versteckten Kosten.</p>
+</section>
+
+<!-- ═══ SUBSCRIPTION PLANS ═══ -->
+<section class="section" id="pro">
+  <div class="container">
+    <div class="period-toggle fade-up">
+      <button class="period-btn active" data-period="monthly">Monatlich</button>
+      <button class="period-btn" data-period="halfyearly">6 Monate</button>
+      <button class="period-btn" data-period="yearly">12 Monate</button>
+    </div>
+
+    <div class="price-grid">
+      <!-- FREE -->
+      <div class="price-card fade-up">
+        <div class="price-name">Free</div>
+        <div class="price-amount">CHF 0</div>
+        <div class="price-note">Für immer kostenlos</div>
+        <ul class="price-list">
+          <li class="yes">Bis zu 3 Module</li>
+          <li class="yes">Stundenplan & Kalender</li>
+          <li class="yes">Aufgaben & ECTS-Tracking</li>
+          <li class="yes">Bis zu 10 Notizen</li>
+          <li class="yes">Bis zu 2 Mind Maps</li>
+          <li class="yes">Bis zu 3 Karteikarten-Sets</li>
+          <li class="yes">PDF-Werkzeuge (unbegrenzt)</li>
+          <li class="yes">3 KI-Requests / Tag</li>
+          <li class="yes">Lernziele & Pomodoro</li>
+          <li class="no">Notenprognosen</li>
+          <li class="no">Spaced Repetition</li>
+          <li class="no">Desktop &#8596; Web Sync</li>
+        </ul>
+        <a href="https://app.semetra.ch" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;">Loslegen</a>
+      </div>
+
+      <!-- PRO BASIC -->
+      <div class="price-card highlight fade-up fade-up-d1">
+        <div class="price-pop">Beliebt</div>
+        <div class="price-name">Pro Basic</div>
+        <div class="price-amount" data-monthly="4.90" data-halfyearly="4.15" data-yearly="3.33">CHF 4.90<small>/Mo.</small></div>
+        <div class="price-note" data-monthly="Monatlich kündbar" data-halfyearly="CHF 24.90 / 6 Monate" data-yearly="CHF 39.90 / Jahr">Monatlich kündbar</div>
+        <div class="price-savings" data-monthly="" data-halfyearly="15% sparen" data-yearly="32% sparen" style="display:none;"></div>
+        <ul class="price-list">
+          <li class="yes">Alles aus Free — ohne Limits</li>
+          <li class="yes">Unbegrenzte Module</li>
+          <li class="yes">Unbegrenzte Notizen & Mind Maps</li>
+          <li class="yes">Unbegrenzte Karteikarten</li>
+          <li class="yes">10 KI-Requests / Monat</li>
+          <li class="yes">Mathe-Raum ohne Tageslimit</li>
+          <li class="yes">Notenprognosen & Trendanalyse</li>
+          <li class="yes">Semester-Report PDF Export</li>
+          <li class="yes">Smart Spaced Repetition</li>
+          <li class="yes">Desktop &#8596; Web Echtzeit-Sync</li>
+          <li class="yes">Benutzerdefinierte Themes</li>
+        </ul>
+        <a href="https://app.semetra.ch/upgrade" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Upgraden</a>
+      </div>
+
+      <!-- PRO FULL -->
+      <div class="price-card fade-up fade-up-d2">
+        <div class="price-name">Pro Full</div>
+        <div class="price-amount" data-monthly="9.90" data-halfyearly="8.32" data-yearly="7.90">CHF 9.90<small>/Mo.</small></div>
+        <div class="price-note" data-monthly="Monatlich kündbar" data-halfyearly="CHF 49.90 / 6 Monate" data-yearly="CHF 94.90 / Jahr">Monatlich kündbar</div>
+        <div class="price-savings" data-monthly="" data-halfyearly="16% sparen" data-yearly="20% sparen" style="display:none;"></div>
+        <ul class="price-list">
+          <li class="yes">Alles aus Pro Basic</li>
+          <li class="yes">100 KI-Requests / Monat</li>
+          <li class="yes">KI-Lernassistent komplett</li>
+          <li class="yes">Mathe-Raum ohne Tageslimit</li>
+          <li class="yes">Notenprognosen & Trendanalyse</li>
+          <li class="yes">Semester-Report PDF Export</li>
+          <li class="yes">Smart Spaced Repetition</li>
+          <li class="yes">Desktop &#8596; Web Echtzeit-Sync</li>
+          <li class="yes">Benutzerdefinierte Themes</li>
+          <li class="yes">Prioritäts-Support</li>
+        </ul>
+        <a href="https://buy.stripe.com/bJe7sN68c1Kk7uicmDfYY05" class="btn btn-dark btn-sm pro-full-link" style="width:100%;justify-content:center;">Upgraden</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIFETIME ═══ -->
+<section class="section section-alt" id="lifetime">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Einmalig zahlen</span>
+      <h2 class="section-title">Lifetime-Lizenzen</h2>
+      <p class="section-desc">Einmal zahlen, für immer nutzen. Keine monatlichen Kosten, alle zukünftigen Updates inklusive.</p>
+    </div>
+    <div class="lifetime-grid">
+      <div class="lifetime-card fade-up">
+        <h3>Lifetime Basic</h3>
+        <div class="lifetime-price">CHF 89.90 <small>einmalig</small></div>
+        <p class="lifetime-note">Alle Pro-Features für immer — keine KI inkludiert, aber über Add-on erweiterbar.</p>
+        <ul class="lifetime-list">
+          <li>Alle Pro-Features — für immer</li>
+          <li>Keine monatlichen Kosten</li>
+          <li>Keine KI inkludiert</li>
+          <li>KI über Add-on buchbar (+200 für CHF 6.90)</li>
+        </ul>
+        <a href="https://buy.stripe.com/4gM3cx7cg3Ss15U3Q7fYY04" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;">Lifetime Basic wählen</a>
+      </div>
+      <div class="lifetime-card fade-up fade-up-d1">
+        <h3>Lifetime Full</h3>
+        <div class="lifetime-price">CHF 129.90 <small>einmalig</small></div>
+        <p class="lifetime-note">Alle Pro-Features + 20 KI-Requests pro Monat inklusive. Erweiterbar über Add-on.</p>
+        <ul class="lifetime-list">
+          <li>Alle Pro-Features — für immer</li>
+          <li>Keine monatlichen Kosten</li>
+          <li>20 KI-Requests / Monat inkludiert</li>
+          <li>Erweiterbar über Add-on (+200 für CHF 6.90)</li>
+        </ul>
+        <a href="https://buy.stripe.com/eVq28t1RW74E3e2dqHfYY08" class="btn btn-dark btn-sm" style="width:100%;justify-content:center;">Lifetime Full wählen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KI ADD-ON ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Add-on</span>
+      <h2 class="section-title">Mehr KI-Power gefällig?</h2>
+    </div>
+    <div class="addon-box fade-up">
+      <h3>+200 KI-Requests <span class="tag tag-ai">KI</span></h3>
+      <div class="addon-price">CHF 6.90<small style="font-size:0.85rem;color:var(--ink-40);font-family:'DM Sans',sans-serif;"> einmalig</small></div>
+      <p>200 zusätzliche KI-Requests sofort verfügbar. Jederzeit nachkaufbar, wenn aufgebraucht. Verfügbar für alle Pro- und Lifetime-Nutzer.</p>
+      <a href="https://buy.stripe.com/bJe8wRbsw9cMaGu1HZfYY09" class="btn btn-primary btn-sm" style="margin-top:20px;">Add-on kaufen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Häufige Fragen</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Kann ich Semetra wirklich kostenlos nutzen?</div>
+        <div class="faq-a">Ja! Der Free-Plan ist für immer kostenlos und bietet genug für den Einstieg: bis zu 3 Module, Stundenplan, Kalender, Aufgaben und PDF-Werkzeuge. Keine Kreditkarte nötig.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Was ist der Unterschied zwischen Pro Basic und Pro Full?</div>
+        <div class="faq-a">Beide Pläne bieten unbegrenzte Module und alle Pro-Features. Der Hauptunterschied liegt in den KI-Requests: Pro Basic enthält 10 pro Monat, Pro Full enthält 100. Pro Full bietet zusätzlich Prioritäts-Support.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Kann ich jederzeit kündigen?</div>
+        <div class="faq-a">Ja, du kannst dein Abo jederzeit kündigen. Es läuft bis zum Ende der bezahlten Periode weiter, danach wechselst du automatisch zum Free-Plan. Deine Daten bleiben erhalten.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Was passiert mit meinen Daten beim Downgrade?</div>
+        <div class="faq-a">Alle deine Daten bleiben erhalten. Du kannst sie weiterhin ansehen, aber einige Features (wie Sync, Prognosen) werden deaktiviert. Beim erneuten Upgrade ist sofort alles wieder da.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Welche KI wird verwendet?</div>
+        <div class="faq-a">Semetra nutzt Claude von Anthropic — ein führendes KI-Modell, das für seine Genauigkeit und Verständlichkeit bekannt ist. Die KI verarbeitet deine Anfragen sicher und kontextbasiert.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Funktioniert Semetra offline?</div>
+        <div class="faq-a">Die Desktop-App funktioniert komplett offline. Deine Daten werden lokal gespeichert. Mit einem Pro-Abo werden Änderungen bei Internetverbindung automatisch mit der Web-App synchronisiert.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline">Der smarte Study Workspace für Studierende in Europa. Desktop & Web App mit KI-Lernassistent.</p>
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.3);">Ein Produkt von Lopicic Technologies</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produkt</h4>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Preise</a>
+      <a href="warum-semetra.html">Warum Semetra?</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="https://app.semetra.ch">Web App</a>
+    </div>
+    <div class="footer-col">
+      <h4>Pläne</h4>
+      <a href="pricing.html">Free</a>
+      <a href="pricing.html#pro">Pro Basic</a>
+      <a href="pricing.html#pro">Pro Full</a>
+      <a href="pricing.html#lifetime">Lifetime</a>
+    </div>
+    <div class="footer-col">
+      <h4>Konto</h4>
+      <a href="login.html">Anmelden</a>
+      <a href="register.html">Registrieren</a>
+      <a href="profil.html">Profil</a>
+    </div>
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 – 2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script>
+  // Period toggle
+  const proFullLinks = {
+    monthly: 'https://buy.stripe.com/bJe7sN68c1Kk7uicmDfYY05',
+    halfyearly: 'https://buy.stripe.com/7sYcN7548ex63e20DVfYY06',
+    yearly: 'https://buy.stripe.com/5kQ6oJbswbkU9CqbizfYY07'
+  };
+  const btns = document.querySelectorAll('.period-btn');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    const p = b.dataset.period;
+    document.querySelectorAll('.price-amount[data-monthly]').forEach(el => {
+      const val = el.dataset[p];
+      el.innerHTML = 'CHF ' + val + '<small>/Mo.</small>';
+    });
+    document.querySelectorAll('.price-note[data-monthly]').forEach(el => {
+      el.textContent = el.dataset[p];
+    });
+    document.querySelectorAll('.price-savings[data-monthly]').forEach(el => {
+      const txt = el.dataset[p];
+      if (txt) { el.textContent = txt; el.style.display = 'inline-block'; }
+      else { el.style.display = 'none'; }
+    });
+    // Update Pro Full payment link
+    const fullLink = document.querySelector('.pro-full-link');
+    if (fullLink && proFullLinks[p]) { fullLink.href = proFullLinks[p]; }
+  }));
+
+  // FAQ
+  // handled via onclick in HTML
+
+  // Fade-up observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; }});
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>
