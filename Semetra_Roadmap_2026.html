@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semetra Roadmap 2026</title>
+<style>
+  :root {
+    --brand: #1a568e;
+    --brand-light: #e8f0fe;
+    --green: #27ae60;
+    --green-bg: #d5f5e3;
+    --orange: #f39c12;
+    --orange-bg: #fef9e7;
+    --red: #e74c3c;
+    --red-bg: #fadbd8;
+    --blue: #3498db;
+    --blue-bg: #d6eaf8;
+    --gray: #95a5a6;
+    --gray-bg: #f4f6f7;
+    --dark: #2c3e50;
+    --text: #333;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f8f9fa;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, var(--brand) 0%, #2980b9 100%);
+    color: white;
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .header h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .subtitle { font-size: 16px; opacity: 0.85; margin-top: 6px; }
+  .header .meta {
+    margin-top: 20px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header .meta-item {
+    background: rgba(255,255,255,0.15);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    backdrop-filter: blur(4px);
+  }
+  .header .meta-item strong { font-size: 22px; display: block; }
+
+  /* ── Container ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  /* ── Progress Bar ── */
+  .overall-progress {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .overall-progress h2 { font-size: 18px; color: var(--dark); margin-bottom: 14px; }
+  .progress-bar {
+    height: 28px;
+    background: #ecf0f1;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+  }
+  .progress-bar .segment {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    transition: width 0.6s ease;
+  }
+  .progress-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .progress-legend span {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .progress-legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* ── Sprint Cards ── */
+  .sprint {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .sprint-header {
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+  }
+  .sprint-header:hover { background: #fafbfc; }
+  .sprint-header .left { display: flex; align-items: center; gap: 14px; }
+  .sprint-header .sprint-badge {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .sprint-header h3 { font-size: 18px; color: var(--dark); }
+  .sprint-header .sprint-meta {
+    display: flex; gap: 16px; align-items: center;
+    font-size: 13px; color: var(--gray);
+  }
+  .sprint-header .effort-tag {
+    background: var(--gray-bg);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+  .sprint-header .chevron {
+    font-size: 20px;
+    color: var(--gray);
+    transition: transform 0.3s ease;
+  }
+  .sprint.open .chevron { transform: rotate(180deg); }
+
+  .sprint-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .sprint.open .sprint-body { max-height: 2000px; }
+
+  .sprint-content { padding: 0 28px 24px; }
+
+  /* ── Task items ── */
+  .task-group { margin-bottom: 16px; }
+  .task-group-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gray);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    transition: background 0.15s;
+  }
+  .task:hover { background: #f8f9fa; }
+  .task .checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .task .checkbox.done {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .task .checkbox.done::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .task .checkbox:hover { border-color: var(--brand); }
+  .task .task-text { flex: 1; }
+  .task .task-title { font-size: 14px; font-weight: 500; }
+  .task .task-desc { font-size: 12px; color: var(--gray); margin-top: 2px; }
+  .task .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .tag.masterplan { background: var(--blue-bg); color: var(--blue); }
+  .tag.optimization { background: var(--orange-bg); color: var(--orange); }
+  .tag.quick { background: var(--green-bg); color: var(--green); }
+
+  /* ── Phase badges ── */
+  .badge-p0 { background: var(--red-bg); color: var(--red); }
+  .badge-p1 { background: var(--orange-bg); color: var(--orange); }
+  .badge-p2 { background: var(--blue-bg); color: var(--blue); }
+  .badge-p3 { background: var(--gray-bg); color: #5d6d7e; }
+
+  /* ── Timeline connector ── */
+  .timeline-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+  }
+  .timeline-connector .line {
+    width: 2px;
+    height: 24px;
+    background: linear-gradient(to bottom, var(--border), var(--brand), var(--border));
+    border-radius: 1px;
+  }
+
+  /* ── Completion stats ── */
+  .completion-ring {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ring-svg { width: 36px; height: 36px; }
+  .ring-bg { fill: none; stroke: #ecf0f1; stroke-width: 3; }
+  .ring-fill { fill: none; stroke-width: 3; stroke-linecap: round; transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset 0.6s ease; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  /* ── Print ── */
+  @media print {
+    .sprint-body { max-height: none !important; }
+    .sprint-header .chevron { display: none; }
+    .header { background: var(--brand) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sprint { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Semetra Roadmap 2026</h1>
+  <div class="subtitle">Priorisierter Aktionsplan — Codebase-Abgleich vom 13. April 2026</div>
+  <div class="meta">
+    <div class="meta-item"><strong>87%</strong>Gesamtfortschritt</div>
+    <div class="meta-item"><strong>7</strong>Sprints geplant</div>
+    <div class="meta-item"><strong>~47</strong>Aufgaben total</div>
+    <div class="meta-item"><strong>5/8</strong>Phasen ≥90%</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Overall Progress -->
+  <div class="overall-progress">
+    <h2>Masterplan Fortschritt nach Phase</h2>
+    <div class="progress-bar">
+      <div class="segment" style="width:12.5%; background: var(--green);" title="Phase 1: 100%">P1</div>
+      <div class="segment" style="width:11.9%; background: #2ecc71;" title="Phase 2: 95%">P2</div>
+      <div class="segment" style="width:12.5%; background: var(--green);" title="Phase 3: 100%">P3</div>
+      <div class="segment" style="width:12.5%; background: var(--green);" title="Phase 4: 100%">P4</div>
+      <div class="segment" style="width:11.25%; background: #2ecc71;" title="Phase 5: 90%">P5</div>
+      <div class="segment" style="width:10.6%; background: var(--orange);" title="Phase 6: 85%">P6</div>
+      <div class="segment" style="width:8.75%; background: var(--orange);" title="Phase 7: 70%">P7</div>
+      <div class="segment" style="width:5%; background: var(--red);" title="Phase 8: 40%">P8</div>
+    </div>
+    <div class="progress-legend">
+      <span><span class="dot" style="background:var(--green)"></span> Complete (P1, P3, P4)</span>
+      <span><span class="dot" style="background:#2ecc71"></span> Fast fertig (P2, P5)</span>
+      <span><span class="dot" style="background:var(--orange)"></span> In Arbeit (P6, P7)</span>
+      <span><span class="dot" style="background:var(--red)"></span> Frühe Phase (P8)</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SPRINT 1 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="sprint open" onclick="this.classList.toggle('open')">
+    <div class="sprint-header">
+      <div class="left">
+        <span class="sprint-badge badge-p0">Sprint 1</span>
+        <h3>Quick Wins — Phasen abschliessen</h3>
+      </div>
+      <div class="sprint-meta">
+        <span class="effort-tag">~1 Tag</span>
+        <span>7 Aufgaben</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="sprint-body">
+      <div class="sprint-content">
+
+        <div class="task-group">
+          <div class="task-group-label">Phase 2 — Lern-DNA (95% → 100%)</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Preference-Suggestions Confirmation UI</div>
+              <div class="task-desc">Modal/Sheet: DNA-Empfehlungen anzeigen → Nutzer bestätigt/ablehnt → Anwendung</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Suggestion-History in Datenbank</div>
+              <div class="task-desc">Tabelle für akzeptierte/abgelehnte Vorschläge (Feedback-Loop)</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Phase 5 — Lernnachweis (90% → 100%)</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">SHA-256 Hash-Verifikation pro Nachweis</div>
+              <div class="task-desc">Hash über Nachweis-Inhalt generieren, in DB speichern, Verify-Endpoint</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Modul-Zertifikate Generator</div>
+              <div class="task-desc">PDF-Zertifikat pro abgeschlossenem Modul mit QR-Code zur Verifikation</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Zertifikat-Sharing (Link + Download)</div>
+              <div class="task-desc">Öffentlicher Verify-Link + PDF-Download für LinkedIn/Bewerbungen</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Dark Mode Fix (aktueller Bug)</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Dark Mode Revert pushen</div>
+              <div class="task-desc">git add -A && git commit && git push — entfernt falsche dark:surface-* Overrides</div>
+            </div>
+            <span class="tag quick">Quick Fix</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Semantische Farben Dark-Audit</div>
+              <div class="task-desc">Amber, Red, Blue, Brand-Farben in allen Komponenten auf korrekte dark:-Varianten prüfen</div>
+            </div>
+            <span class="tag quick">Quick Fix</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-connector"><div class="line"></div></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SPRINT 2 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="sprint" onclick="this.classList.toggle('open')">
+    <div class="sprint-header">
+      <div class="left">
+        <span class="sprint-badge badge-p0">Sprint 2</span>
+        <h3>Onboarding & First-Time Experience</h3>
+      </div>
+      <div class="sprint-meta">
+        <span class="effort-tag">~1 Session</span>
+        <span>6 Aufgaben</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="sprint-body">
+      <div class="sprint-content">
+
+        <div class="task-group">
+          <div class="task-group-label">Onboarding-Wizard</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Interaktiver Setup-Wizard (3-5 Schritte)</div>
+              <div class="task-desc">Hochschule → Module importieren → Lernziel setzen → Erste Session planen</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Progress-Indikator im Onboarding</div>
+              <div class="task-desc">Stepper-UI: "Schritt 2 von 4" mit visueller Fortschrittsleiste</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Personalisiertes Starter-Dashboard</div>
+              <div class="task-desc">Nach Setup: Nicht leeres Dashboard, sondern Vorschläge und nächste Schritte</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Guided Tour</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Tooltip-Tour für Erstnutzer</div>
+              <div class="task-desc">Highlight-Tooltips: "Das ist dein Lernplan", "Hier trackst du Noten", etc.</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Template-Lernpläne pro Studiengang</div>
+              <div class="task-desc">Vorkonfigurierte Pläne als Startpunkt (Informatik, BWL, etc.)</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">"Aha-Moment" Metrik definieren</div>
+              <div class="task-desc">Tracking: Wann hat ein Nutzer sein erstes Erfolgserlebnis (Session, Note, Plan)?</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-connector"><div class="line"></div></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SPRINT 3 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="sprint" onclick="this.classList.toggle('open')">
+    <div class="sprint-header">
+      <div class="left">
+        <span class="sprint-badge badge-p1">Sprint 3</span>
+        <h3>Monitoring, Analytics & SEO</h3>
+      </div>
+      <div class="sprint-meta">
+        <span class="effort-tag">~1 Session</span>
+        <span>8 Aufgaben</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="sprint-body">
+      <div class="sprint-content">
+
+        <div class="task-group">
+          <div class="task-group-label">Error Monitoring (Phase 8 Teilstück)</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Sentry Integration</div>
+              <div class="task-desc">Error-Tracking für Production: SDK einbinden, Source Maps, Release Tracking</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Custom Error Boundaries mit Sentry</div>
+              <div class="task-desc">Bestehende ErrorBoundary-Komponente mit Sentry.captureException verbinden</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Analytics</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Plausible/Umami Analytics Setup</div>
+              <div class="task-desc">Privacy-freundliches Analytics: Pageviews, Referrer, Geräte — ohne Cookies</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Feature-Usage Events definieren</div>
+              <div class="task-desc">Custom Events: timer_started, module_created, exam_planned, ai_used, etc.</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Onboarding-Funnel Tracking</div>
+              <div class="task-desc">Registrierung → Onboarding-Start → Completion → Erste Session → Tag 7 Retention</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">SEO & Marketing</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">JSON-LD Structured Data</div>
+              <div class="task-desc">SoftwareApplication Schema für Google Rich Snippets auf Landing Page</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Open Graph & Twitter Cards</div>
+              <div class="task-desc">Meta-Tags für Social-Media-Sharing mit Preview-Bild</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Sitemap & robots.txt optimieren</div>
+              <div class="task-desc">Dynamische Sitemap, saubere robots.txt, canonical URLs</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-connector"><div class="line"></div></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SPRINT 4 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="sprint" onclick="this.classList.toggle('open')">
+    <div class="sprint-header">
+      <div class="left">
+        <span class="sprint-badge badge-p2">Sprint 4</span>
+        <h3>Engine-Perfektionierung (Phase 7)</h3>
+      </div>
+      <div class="sprint-meta">
+        <span class="effort-tag">~2 Sessions</span>
+        <span>8 Aufgaben</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="sprint-body">
+      <div class="sprint-content">
+
+        <div class="task-group">
+          <div class="task-group-label">Schedule Engine</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Feiertags-Kalender (CH/DE/AT)</div>
+              <div class="task-desc">Automatische Erkennung von Feiertagen, keine Lernplan-Einträge an freien Tagen</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Semester-Auto-Reset</div>
+              <div class="task-desc">Automatischer Wechsel HS→FS mit Archivierung und Neustart</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Flashcards & Grades</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Anki-Import (.apkg Parser)</div>
+              <div class="task-desc">Nutzer können bestehende Anki-Decks importieren und in Semetra weiterlernen</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Flashcard-Sharing zwischen Nutzern</div>
+              <div class="task-desc">Decks teilen in Lerngruppen oder Community-weit</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Notenrechner-Widget</div>
+              <div class="task-desc">Inline-Kalkulator auf der Noten-Seite: "Was brauche ich für eine 5.0?"</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Gamification & Dashboard</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Leaderboard-System</div>
+              <div class="task-desc">Anonymisiertes oder Gruppen-basiertes Ranking nach Lernzeit/Streaks</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Weekly Review Print-CSS</div>
+              <div class="task-desc">Sauberer Druck/PDF-Export des Wochenrückblicks</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Konfigurierbares Command Center</div>
+              <div class="task-desc">Dashboard-Widgets per Drag & Drop anordnen und ein-/ausblenden</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-connector"><div class="line"></div></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SPRINT 5 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="sprint" onclick="this.classList.toggle('open')">
+    <div class="sprint-header">
+      <div class="left">
+        <span class="sprint-badge badge-p2">Sprint 5</span>
+        <h3>Plugin-Hardening (Phase 6)</h3>
+      </div>
+      <div class="sprint-meta">
+        <span class="effort-tag">~2 Sessions</span>
+        <span>5 Aufgaben</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="sprint-body">
+      <div class="sprint-content">
+
+        <div class="task-group">
+          <div class="task-group-label">Webhook-System</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Eingehende Webhooks</div>
+              <div class="task-desc">External Services → Semetra: Endpoints mit Signature-Verifikation</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Ausgehende Webhooks mit HMAC</div>
+              <div class="task-desc">Semetra → External: Event-basierte Benachrichtigungen mit Signierung</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Sicherheit & API</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Plugin Sandbox-Hardening</div>
+              <div class="task-desc">Isolierte Ausführungsumgebung für Drittanbieter-Plugins (CSP, Scope-Limits)</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Plugin API v2</div>
+              <div class="task-desc">Erweiterte Endpunkte: Batch-Operationen, Streaming, Plugin-Config-Storage</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Plugin Review & Approval Pipeline</div>
+              <div class="task-desc">Workflow für Community-Plugins: Submit → Review → Publish</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-connector"><div class="line"></div></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SPRINT 6 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="sprint" onclick="this.classList.toggle('open')">
+    <div class="sprint-header">
+      <div class="left">
+        <span class="sprint-badge badge-p3">Sprint 6</span>
+        <h3>Testing & Production Polish (Phase 8)</h3>
+      </div>
+      <div class="sprint-meta">
+        <span class="effort-tag">~2 Sessions</span>
+        <span>7 Aufgaben</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="sprint-body">
+      <div class="sprint-content">
+
+        <div class="task-group">
+          <div class="task-group-label">E2E Tests</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Playwright Setup + kritische User-Flows</div>
+              <div class="task-desc">Login, Registrierung, Modul-Erstellung, Lernplan, Timer, Notenerfassung</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Visual Regression Tests</div>
+              <div class="task-desc">Screenshot-Vergleich für Dark Mode + responsive Layouts</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Unit Tests</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Engine Unit-Tests (Schedule, Decision, Timer, Pattern)</div>
+              <div class="task-desc">100+ Tests für alle Core Engines — Ziel: 80% Coverage auf /lib/engines/</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">API-Route Tests</div>
+              <div class="task-desc">Alle /api/ Endpunkte: Auth, Validierung, Error-Handling, Rate-Limits</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Performance & Quality</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Lighthouse CI in GitHub Actions</div>
+              <div class="task-desc">Automatischer Performance/A11y-Score bei jedem PR</div>
+            </div>
+            <span class="tag masterplan">Masterplan</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Bundle-Size Budget</div>
+              <div class="task-desc">next-bundle-analyzer + Budget-Limits in CI</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">WCAG 2.1 AA Audit</div>
+              <div class="task-desc">Keyboard-Nav, Farbkontraste, Screen-Reader, reduced-motion</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-connector"><div class="line"></div></div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SPRINT 7 -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="sprint" onclick="this.classList.toggle('open')">
+    <div class="sprint-header">
+      <div class="left">
+        <span class="sprint-badge badge-p3">Sprint 7</span>
+        <h3>Skalierung & Zukunftssicherheit</h3>
+      </div>
+      <div class="sprint-meta">
+        <span class="effort-tag">~2 Sessions</span>
+        <span>6 Aufgaben</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="sprint-body">
+      <div class="sprint-content">
+
+        <div class="task-group">
+          <div class="task-group-label">Offline & Sync</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">IndexedDB Offline-Store</div>
+              <div class="task-desc">Lernplan + Timer + Flashcards offline verfügbar mit Background-Sync</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Offline-Indikator & Sync-Queue</div>
+              <div class="task-desc">"3 Änderungen warten auf Sync" — transparente UX bei Connectivity-Problemen</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">Security & Scale</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Redis Rate-Limiting</div>
+              <div class="task-desc">Skalierbares Rate-Limiting statt In-Memory, IP-basiertes Throttling</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Database Query-Optimierung</div>
+              <div class="task-desc">N+1 Queries eliminieren, Dashboard-Queries profilen und indexieren</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+        <div class="task-group">
+          <div class="task-group-label">i18n & Expansion</div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Professionelle Übersetzungs-Review</div>
+              <div class="task-desc">Maschinelle Übersetzungen (FR/IT/ES/NL) durch Muttersprachler prüfen</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+          <div class="task">
+            <div class="checkbox"></div>
+            <div class="task-text">
+              <div class="task-title">Regionale Hochschul-DB erweitern</div>
+              <div class="task-desc">UK, Frankreich, Skandinavien — Basis für internationale Expansion</div>
+            </div>
+            <span class="tag optimization">Optimierung</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Semetra Roadmap 2026 — Lopicic Technologies — Stand: 13. April 2026<br>
+    <span style="font-size:11px; opacity:0.7;">Klicke auf einen Sprint um die Details zu sehen</span>
+  </div>
+
+</div>
+
+<script>
+// All sprints start collapsed except Sprint 1
+document.querySelectorAll('.sprint').forEach((s, i) => {
+  if (i > 0) s.classList.remove('open');
+});
+
+// Checkbox toggle
+document.querySelectorAll('.checkbox').forEach(cb => {
+  cb.addEventListener('click', (e) => {
+    e.stopPropagation();
+    cb.classList.toggle('done');
+  });
+});
+</script>
+
+</body>
+</html>

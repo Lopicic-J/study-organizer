@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-de="Technologie — Semetra" data-en="Technology — Semetra">Technologie — Semetra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description"
+    data-de="Semetra unter der Haube: Decision Engine, Cortex KI, Spaced Repetition, Lern-DNA und 50+ Features im Detail."
+    data-en="Semetra under the hood: Decision Engine, Cortex AI, Spaced Repetition, Learning DNA and 50+ features in detail."
+    content="Semetra unter der Haube: Decision Engine, Cortex KI, Spaced Repetition, Lern-DNA und 50+ Features im Detail.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(160deg, #0d0820 0%, #1a1040 50%, #0d0820 100%);
+      padding: 120px 24px 80px; text-align: center; overflow: hidden;
+      color: #fff; position: relative;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(124,58,237,0.15), transparent);
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400;
+      line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; position: relative;
+    }
+    .page-hero p {
+      font-size: 1.1rem; color: rgba(255,255,255,0.6);
+      max-width: 620px; margin: 0 auto; line-height: 1.7; position: relative;
+    }
+
+    .cat-header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 32px; padding-bottom: 16px;
+      border-bottom: 2px solid var(--ink-05);
+    }
+    .cat-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .cat-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; font-weight: 400; }
+    .cat-header p { font-size: 0.9rem; color: var(--ink-40); margin-top: 2px; }
+
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-bottom: 64px;
+    }
+    .feat-card {
+      padding: 24px; border-radius: 14px;
+      border: 1px solid var(--ink-10); background: var(--white);
+      transition: all 0.3s;
+    }
+    .feat-card:hover { border-color: var(--accent); box-shadow: 0 8px 32px rgba(79,70,229,0.06); transform: translateY(-2px); }
+    .feat-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .feat-card p { font-size: 0.82rem; color: var(--ink-60); line-height: 1.6; }
+    .feat-badge {
+      display: inline-block; font-size: 0.58rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.3px;
+    }
+    .feat-free { background: var(--green-s); color: #059669; }
+    .feat-pro { background: var(--accent-s); color: var(--accent); }
+    .feat-new { background: #fef3c7; color: #92400e; }
+    .feat-ai { background: var(--violet-s); color: var(--violet); }
+
+    .cta-bottom {
+      text-align: center; padding: 80px 24px;
+      background: linear-gradient(160deg, #0d0820 0%, #1a1040 50%, #0d0820 100%);
+    }
+    .cta-bottom h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: white; margin-bottom: 16px; }
+    .cta-bottom p { color: rgba(255,255,255,0.6); margin-bottom: 32px; font-size: 1.05rem; }
+
+    /* Language switch pill */
+    .lang-switch {
+      display: flex; align-items: center;
+      background: var(--ink-05); border: 1px solid var(--ink-10);
+      border-radius: 8px; overflow: hidden;
+      cursor: pointer; user-select: none;
+    }
+    .lang-opt {
+      padding: 5px 10px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.5px; color: var(--ink-20);
+      transition: all 0.2s;
+    }
+    .lang-opt.active {
+      background: var(--ink); color: #fff;
+    }
+
+    .nav-mobile-actions {
+      display: none; align-items: center; gap: 8px;
+    }
+
+    @media (max-width: 860px) { .feat-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 720px) {
+      .nav-mobile-actions { display: flex; }
+    }
+    @media (max-width: 560px) {
+      .feat-grid { grid-template-columns: 1fr; }
+      .feat-card { padding: 16px; }
+      .cat-header { gap: 12px; }
+      .cat-header h2 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?"></a></li>
+      <li><a href="tech.html" class="active" data-de="Technologie" data-en="Technology"></a></li>
+      <li><a href="pricing.html" data-de="Preise" data-en="Pricing"></a></li>
+      <li><a href="changelog.html" data-de="Neu" data-en="New"></a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <a href="https://app.semetra.ch/login" class="nav-login-link" data-de="Anmelden" data-en="Sign in"></a>
+      <a href="https://app.semetra.ch/register" class="nav-cta" data-de="Kostenlos starten" data-en="Start for free"></a>
+    </div>
+    <div class="nav-mobile-actions">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <button class="nav-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div id="mobile-menu" class="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?"></a>
+  <a href="tech.html" data-de="Technologie" data-en="Technology"></a>
+  <a href="pricing.html" data-de="Preise" data-en="Pricing"></a>
+  <a href="changelog.html" data-de="Neu" data-en="New"></a>
+  <a href="https://app.semetra.ch/login" data-de="Anmelden" data-en="Sign in"></a>
+  <a href="https://app.semetra.ch/register" class="nav-mobile-cta" data-de="Kostenlos registrieren" data-en="Sign up for free"></a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <span class="section-label" data-de="Unter der Haube" data-en="Under the Hood"></span>
+  <h1 data-de="Die Technologie hinter Semetra" data-en="The Technology behind Semetra"></h1>
+  <p data-de="Für alle die es genau wissen wollen: Decision Engine, Cortex KI, Spaced Repetition, Lern-DNA und über 50 Features im Detail." data-en="For those who want the details: Decision Engine, Cortex AI, Spaced Repetition, Learning DNA and over 50 features explained."></p>
+</section>
+
+<div class="container" style="padding-top: 64px; padding-bottom: 32px;">
+
+  <!-- ═══ 1. INTELLIGENCE & DASHBOARD ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #ede9fe; color: #7c3aed;">&#129504;</div>
+    <div>
+      <h2 data-de="Intelligence & Dashboard" data-en="Intelligence & Dashboard"></h2>
+      <p data-de="KI-gesteuerte Analyse, Risiko-Bewertung und automatisierte Studiensteuerung" data-en="AI-powered analysis, risk assessment and automated study management"></p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3>Unified Dashboard <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Alles auf einen Blick: Streak, ECTS, GPA, Heatmap, Prüfungen, Aufgaben, Risiko-Monitor, Prognosen und Tagesplan — in einer einzigen Ansicht vereint." data-en="Everything at a glance: Streak, ECTS, GPA, Heatmap, Exams, Tasks, Risk Monitor, Predictions and Daily Plan — combined in a single view."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Decision Engine <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Analysiert deine Module in Echtzeit: Risiko-Bewertung, Prioritäts-Scoring, Bestehenswahrscheinlichkeit und automatische Tagesplan-Generierung." data-en="Analyzes your modules in real-time: Risk assessment, priority scoring, pass probability and automatic daily plan generation."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Cortex Engine <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="KI-Orchestrierung über 6 Sub-Engines: Integrity Monitor, Cross-Engine Insights, Adaptive Gewichtung, Lernkurven-Tracking und Wochen-Digest." data-en="AI orchestration across 6 sub-engines: Integrity Monitor, Cross-Engine Insights, Adaptive Weighting, Learning Curve Tracking and Weekly Digest."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Alert-System" data-en="Alert System"> <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Intelligente Warnungen bei kritischen Modulen, bevorstehenden Deadlines und niedrigem Wissensstand — direkt im Dashboard." data-en="Smart warnings for critical modules, upcoming deadlines and low knowledge levels — directly in the dashboard."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Risiko-Monitor <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Zeigt Module mit erhöhtem Durchfallrisiko. Farbcodierte Risiko-Balken (kritisch, hoch, mittel) mit den wichtigsten Risikofaktoren." data-en="Shows modules at higher risk of failure. Color-coded risk bars (critical, high, medium) with key risk factors."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Tagesplan-Generator" data-en="Daily Plan Generator"> <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="KI-generierter Tagesplan mit priorisierten Lernaktionen, Zeitschätzungen und Fokus-Modul-Empfehlung." data-en="AI-generated daily plan with prioritized study actions, time estimates and focus module recommendation."></p>
+    </div>
+  </div>
+
+  <!-- ═══ 2. STUDIUM ORGANISIEREN ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #dbeafe; color: #2563eb;">&#127891;</div>
+    <div>
+      <h2 data-de="Studium organisieren" data-en="Study Organization"></h2>
+      <p data-de="Module, Zeitplan, Aufgaben und Semester im Griff" data-en="Modules, schedule, tasks and semesters under control"></p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3 data-de="Module verwalten" data-en="Module Management"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Module erstellen mit ECTS, Farben, Status und Beschreibung. Hochschul-Datenbank mit 17 Ländern und Notensystemen." data-en="Create modules with ECTS, colors, status and description. University database with 17 countries and grading systems."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Stundenplan" data-en="Timetable"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="7-Tage-Woche (Mo-So) mit echten Kalenderdaten pro KW. Drag-and-Drop, Overlap-Layout, Modul-Farben und Raumangaben." data-en="7-day week (Mon-Sun) with real calendar dates per CW. Drag-and-drop, overlap layout, module colors and room info."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Smart Schedule <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="KI-optimierte Zeitblöcke: Analysiert deine Prioritäten und erstellt optimale Lernzeiten basierend auf Decision Engine Daten." data-en="AI-optimized time blocks: Analyzes your priorities and creates optimal study times based on Decision Engine data."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Kalender" data-en="Calendar"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Monats-, Wochen- und Tagesansicht. Prüfungen, Deadlines und Events farbcodiert auf einen Blick." data-en="Month, week and day views. Exams, deadlines and events color-coded at a glance."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Aufgaben" data-en="Tasks"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Aufgaben pro Modul mit Prioritäten (hoch/mittel/niedrig), Fälligkeitsdaten, Beschreibungen und Anhaengen." data-en="Tasks per module with priorities (high/medium/low), due dates, descriptions and attachments."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Semester-Uebersicht & ECTS" data-en="Semester Overview & ECTS"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Gesamtfortschritt: Verdiente ECTS, Fortschrittsbalken, Semester-Tracking und voraussichtliche Abschlusszeit." data-en="Overall progress: Earned ECTS, progress bars, semester tracking and estimated graduation."></p>
+    </div>
+  </div>
+
+  <!-- ═══ 3. NOTEN & ANALYSE ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #d1fae5; color: #059669;">&#128200;</div>
+    <div>
+      <h2 data-de="Noten & Analyse" data-en="Grades & Analysis"></h2>
+      <p data-de="Notenberechnung, Prüfungs-Intelligence und Fortschrittsverfolgung" data-en="Grade calculation, Exam Intelligence and progress tracking"></p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3 data-de="ECTS-gewichteter Schnitt" data-en="ECTS-Weighted Average"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Automatischer Notendurchschnitt gewichtet nach ECTS-Punkten. Unterstützt 17 Notensysteme (CH, DE, AT, FR, UK, US u.v.m.)." data-en="Automatic grade average weighted by ECTS credits. Supports 17 grading systems (CH, DE, AT, FR, UK, US and more)."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Exam Intelligence <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="KI-Analyse deiner Prüfungshistorie: Notenvorhersagen, Fehlerquoten, Schwächen-Erkennung und optimierte Lernstrategien." data-en="AI analysis of your exam history: Grade predictions, error rates, weakness detection and optimized study strategies."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Lern-DNA <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="5-Dimensionales Lernprofil: Konsistenz, Intensität, Breite, Effizienz, Ausdauer. Zeitliche Snapshots zeigen deine Entwicklung." data-en="5-Dimensional learning profile: Consistency, Intensity, Breadth, Efficiency, Stamina. Temporal snapshots show your development."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="30-Tage Heatmap" data-en="30-Day Heatmap"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Visualisierung deiner täglichen Lernaktivität der letzten 30 Tage — wie bei GitHub, nur für dein Studium." data-en="Visualization of your daily study activity over the last 30 days — like GitHub, but for your studies."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Wissens-Level pro Thema" data-en="Knowledge Level per Topic"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Tracke dein Verständnis pro Thema (nicht verstanden &rarr; beherrscht). Warnungen wenn Prüfung naht und Wissen fehlt." data-en="Track your understanding per topic (not understood &rarr; mastered). Warnings when exam is near and knowledge is lacking."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Insights & Statistiken" data-en="Insights & Statistics"> <span class="feat-badge feat-pro">Pro</span></h3>
+      <p data-de="Detaillierte Analysen: Lernzeit pro Modul, Wochencharts, Fortschrittsbalken und Trend-Erkennung." data-en="Detailed analytics: Study time per module, weekly charts, progress bars and trend detection."></p>
+    </div>
+  </div>
+
+  <!-- ═══ 4. LERNEN & PRODUKTIVITAET ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #fef3c7; color: #d97706;">&#128221;</div>
+    <div>
+      <h2 data-de="Lernen & Produktivität" data-en="Learning & Productivity"></h2>
+      <p data-de="Karteikarten, Timer, Lernziele und Materialien" data-en="Flashcards, timer, study goals and materials"></p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3 data-de="Karteikarten" data-en="Flashcards"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Erstelle Flashcard-Sets pro Modul. Vorder- und Rückseite, Lernmodus mit Statistiken." data-en="Create flashcard sets per module. Front and back, study mode with statistics."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Spaced Repetition <span class="feat-badge feat-pro">Pro</span></h3>
+      <p data-de="Intelligente Wiederholungen basierend auf dem Vergessenskurve-Algorithmus. Lerne effizienter mit optimalen Intervallen." data-en="Smart repetitions based on the forgetting curve algorithm. Learn more efficiently with optimal intervals."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Pomodoro-Timer <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Fokussiertes Lernen mit dem integrierten Timer. Zeit wird automatisch pro Modul getrackt." data-en="Focused studying with the built-in timer. Time is automatically tracked per module."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Lernziele" data-en="Study Goals"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Setze dir tägliche und wöchentliche Ziele. Tracke deinen Fortschritt und bleibe motiviert." data-en="Set daily and weekly goals. Track your progress and stay motivated."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Lernmaterialien" data-en="Study Materials"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Links, Notizen und Dateien pro Modul organisieren. Alles an einem zentralen Ort." data-en="Organize links, notes and files per module. Everything in one central place."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Lerngruppen" data-en="Study Groups"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Gruppen erstellen, Mitglieder einladen und gemeinsam am Studium arbeiten." data-en="Create groups, invite members and study together."></p>
+    </div>
+  </div>
+
+  <!-- ═══ 5. KI & WERKZEUGE ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #ede9fe; color: #7c3aed;">&#129302;</div>
+    <div>
+      <h2 data-de="KI-Assistent & Werkzeuge" data-en="AI Assistant & Tools"></h2>
+      <p data-de="Powered by Claude (Anthropic) — dein persönlicher Lernassistent" data-en="Powered by Claude (Anthropic) — your personal study assistant"></p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3 data-de="KI-Lernassistent" data-en="AI Study Assistant"> <span class="feat-badge feat-ai">KI</span></h3>
+      <p data-de="Erklärt Konzepte, beantwortet Fragen, generiert Zusammenfassungen — kontextbezogen zu deinen Modulen." data-en="Explains concepts, answers questions, generates summaries — contextual to your modules."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Mathe-Raum" data-en="Math Room"> <span class="feat-badge feat-ai">KI</span></h3>
+      <p data-de="LaTeX-Rendering, Schritt-für-Schritt Lösungen, Graphen und mathematische Erklärungen direkt in der App." data-en="LaTeX rendering, step-by-step solutions, graphs and mathematical explanations directly in the app."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Kreativ-Tools" data-en="Creative Tools"> <span class="feat-badge feat-ai">KI</span></h3>
+      <p data-de="Brainstorming, Mind Maps und kreative Ideenfindung mit KI-Unterstützung." data-en="Brainstorming, Mind Maps and creative ideation with AI support."></p>
+    </div>
+    <div class="feat-card">
+      <h3>PDF-Tools <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="PDFs zusammenführen, teilen, komprimieren, drehen — alles ohne externe Software." data-en="Merge, split, compress, rotate PDFs — all without external software."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Dokumenten-Verwaltung" data-en="Document Management"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Dokumente pro Modul organisieren und schnell wiederfinden." data-en="Organize documents per module and find them quickly."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Notenrechner" data-en="Grade Calculator"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Berechne was du brauchst um zu bestehen. Verschiedene Gewichtungen und Szenarien simulieren." data-en="Calculate what you need to pass. Simulate different weightings and scenarios."></p>
+    </div>
+  </div>
+
+  <!-- ═══ 6. PLATTFORM & SYSTEM ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #fce7f3; color: #db2777;">&#9881;&#65039;</div>
+    <div>
+      <h2 data-de="Plattform & System" data-en="Platform & System"></h2>
+      <p data-de="Rollen, Sync, Sprachen und Gamification" data-en="Roles, Sync, Languages and Gamification"></p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3 data-de="4-Rollen-System" data-en="4-Role System"> <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Admin, Institution, Student, Non-Student — mit automatischer Verifizierung über Hochschul-E-Mail." data-en="Admin, Institution, Student, Non-Student — with automatic verification via university email."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Academic Builder <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Institutionen und Studiengänge erstellen und verwalten. Europäische Hochschul-Datenbank mit 17 Ländern." data-en="Create and manage institutions and study programs. European university database with 17 countries."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Erfolge & Gamification" data-en="Achievements & Gamification"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Achievements freischalten, Streaks aufbauen, tägliche Ziele. Motivation die funktioniert." data-en="Unlock achievements, build streaks, daily goals. Motivation that works."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Semetra Connect <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Vernetze dich mit Studierenden deines Studiengangs an anderen Hochschulen. Privacy-first mit 5 Sichtbarkeitseinstellungen." data-en="Connect with students in your program at other universities. Privacy-first with 5 visibility settings."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="Lernnachweis & Export" data-en="Study Proof & Export"> <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Leistungsnachweis als PDF, CSV oder JSON exportieren. KPI-Dashboard mit allen Studienmetriken." data-en="Export study proof as PDF, CSV or JSON. KPI dashboard with all study metrics."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Notification Center <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Benachrichtigungszentrale mit Daily Nudge, Prüfungswarnungen und Wochenbriefing." data-en="Notification center with Daily Nudge, exam warnings and weekly briefing."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Desktop-App <span class="feat-badge" style="background: #f1f5f9; color: #64748b;">Geplant</span></h3>
+      <p data-de="Offline-fähige Desktop-App mit bidirektionaler Synchronisation. In Entwicklung." data-en="Offline-capable desktop app with bidirectional sync. In development."></p>
+    </div>
+    <div class="feat-card">
+      <h3 data-de="6 Sprachen" data-en="6 Languages"> <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Deutsch, English, Francais, Italiano, Espanol, Nederlands — jederzeit wechselbar." data-en="Deutsch, English, Francais, Italiano, Espanol, Nederlands — switch anytime."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Dark Mode <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Vollständiger Dark Mode mit System-Erkennung. Augenschonend und modern." data-en="Full dark mode with system detection. Easy on the eyes and modern."></p>
+    </div>
+    <div class="feat-card">
+      <h3>PWA-Installation <span class="feat-badge feat-free">Free</span></h3>
+      <p data-de="Installiere Semetra als Progressive Web App auf jedem Gerät — für schnellen Zugriff." data-en="Install Semetra as a Progressive Web App on any device — for quick access."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Offline-Modus <span class="feat-badge" style="background: #f1f5f9; color: #64748b;">Geplant</span></h3>
+      <p data-de="Die Desktop-App wird komplett offline funktionieren. Sync bei Verbindung." data-en="The desktop app will work fully offline. Syncs when connected."></p>
+    </div>
+    <div class="feat-card">
+      <h3>Plugin-System <span class="feat-badge feat-new">Neu</span></h3>
+      <p data-de="Erweiterbar durch Plugins: Noten-Export, Pomodoro-Plus und mehr — installierbar über den Plugin-Manager." data-en="Extensible through plugins: Grade Export, Pomodoro-Plus and more — installable via the Plugin Manager."></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-bottom">
+  <h2 data-de="Ueberzeugt? Dann leg los." data-en="Convinced? Let's go."></h2>
+  <p data-de="Kostenlos starten. Kein Abo nötig. Upgrade jederzeit." data-en="Start for free. No subscription needed. Upgrade anytime."></p>
+  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+    <a href="https://app.semetra.ch/register" class="btn-white" data-de-html="&#10022; Kostenlos registrieren" data-en-html="&#10022; Sign up for free"></a>
+    <a href="pricing.html" class="btn" style="background: rgba(255,255,255,0.1); color: white; border: 1.5px solid rgba(255,255,255,0.3);" data-de="Preise ansehen &rarr;" data-en="View pricing &rarr;"></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline">
+        <span data-de="Dein Studium. Dein System." data-en="Your studies. Your system."></span><br>
+        <span data-de="Gebaut in der Schweiz — für ganz Europa &#127466;&#127482;" data-en="Built in Switzerland — for all of Europe &#127466;&#127482;"></span>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Produkt" data-en="Product"></h4>
+      <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?"></a>
+      <a href="tech.html" data-de="Technologie" data-en="Technology"></a>
+      <a href="pricing.html" data-de="Preise" data-en="Pricing"></a>
+      <a href="changelog.html" data-de="Changelog" data-en="Changelog"></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Starten" data-en="Get Started"></h4>
+      <a href="https://app.semetra.ch/register" data-de="Registrieren" data-en="Sign up"></a>
+      <a href="https://app.semetra.ch/login" data-de="Anmelden" data-en="Sign in"></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Rechtliches" data-en="Legal"></h4>
+      <a href="impressum.html" data-de="Impressum" data-en="Imprint"></a>
+      <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy"></a>
+      <a href="agb.html" data-de="AGB" data-en="Terms"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2024&ndash;2026 Lopicic Technologies</span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

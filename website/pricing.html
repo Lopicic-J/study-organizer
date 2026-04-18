@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Preise — Semetra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description" content="Semetra Preise: Kostenlos starten, Pro Basic ab CHF 4.90/Mo, Pro Full ab CHF 9.90/Mo, oder Lifetime einmalig. Faire Preise für Studierende.">
   <meta property="og:title" content="Semetra Preise — Fair & transparent für Studierende">
   <meta property="og:description" content="Starte kostenlos mit 50+ Tools. Upgrade auf Pro für unbegrenzte Module, KI-Assistent, Sync und mehr.">
@@ -178,9 +179,13 @@
     .addon-box p { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; }
 
     /* Comparison table */
+    .compare-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 32px; margin-bottom: 24px;
+    }
     .compare-table {
       width: 100%; border-collapse: collapse;
-      margin-top: 32px; margin-bottom: 24px;
       font-size: 0.82rem;
     }
     .compare-table th {
@@ -246,6 +251,16 @@
       .compare-table { font-size: 0.72rem; }
       .compare-table th, .compare-table td { padding: 8px 6px; }
     }
+    @media (max-width: 560px) {
+      .price-card { padding: 24px 16px; }
+      .price-card h3 { font-size: 1.1rem; }
+      .price-amount { font-size: 2rem; }
+      .compare-table { font-size: 0.65rem; min-width: 480px; }
+      .compare-table th, .compare-table td { padding: 6px 4px; }
+      .compare-table td:first-child { min-width: 100px; }
+      .guarantee-box { padding: 20px; }
+      .lifetime-card { padding: 24px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -259,6 +274,7 @@
       <li><a href="features.html">Features</a></li>
       <li><a href="pricing.html" class="active">Preise</a></li>
       <li><a href="changelog.html">Neu</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
     </ul>
     <div id="nav-auth-desktop">
       <a href="https://app.semetra.ch/login" class="nav-login-link" style="color:var(--ink-60);text-decoration:none;font-size:0.85rem;font-weight:500;margin-right:12px;">Anmelden</a>
@@ -268,17 +284,18 @@
       <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div class="nav-mobile-menu">
-    <a href="warum-semetra.html">Warum Semetra?</a>
-    <a href="features.html">Features</a>
-    <a href="pricing.html">Preise</a>
-    <a href="changelog.html">Neu</a>
-    <div id="nav-auth-mobile">
-      <a href="https://app.semetra.ch/login">Anmelden</a>
-      <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos starten</a>
-    </div>
-  </div>
 </nav>
+<div class="nav-mobile-menu">
+  <a href="warum-semetra.html">Warum Semetra?</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Preise</a>
+  <a href="changelog.html">Neu</a>
+  <a href="ueber-mich.html">Über mich</a>
+  <div id="nav-auth-mobile">
+    <a href="https://app.semetra.ch/login">Anmelden</a>
+    <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos starten</a>
+  </div>
+</div>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -306,20 +323,18 @@
         <div class="price-note">Für immer kostenlos</div>
         <ul class="price-list">
           <li class="yes">Bis zu 3 Module</li>
-          <li class="yes">Unified Dashboard</li>
-          <li class="yes">7-Tage Stundenplan & Kalender</li>
+          <li class="yes">Dashboard & Kalender</li>
+          <li class="yes">Stundenplan & Timer</li>
           <li class="yes">Aufgaben & ECTS-Tracking</li>
-          <li class="yes">Bis zu 10 Notizen</li>
-          <li class="yes">Bis zu 2 Mind Maps</li>
           <li class="yes">Bis zu 3 Karteikarten-Sets</li>
           <li class="yes">PDF-Werkzeuge (unbegrenzt)</li>
-          <li class="yes">3 KI-Requests / Tag</li>
-          <li class="yes">Lernziele & Pomodoro-Timer</li>
-          <li class="yes">6 Sprachen</li>
-          <li class="no">Decision Engine</li>
-          <li class="no">Lern-DNA & Prüfungs-Intelligence</li>
-          <li class="no">Notenprognosen</li>
-          <li class="no">Desktop &#8596; Web Sync</li>
+          <li class="yes">Mind Maps & Brainstorming</li>
+          <li class="yes">10 KI-Requests / Monat</li>
+          <li class="yes">6 Sprachen & Dark Mode</li>
+          <li class="no">Smart Schedule & Auto-Plan</li>
+          <li class="no">KI-Lernraum & Prüfungssimulator</li>
+          <li class="no">Lern-DNA & Pattern Insights</li>
+          <li class="no">Geführte Lernsessions</li>
         </ul>
         <a href="https://app.semetra.ch/register" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;">Kostenlos starten</a>
       </div>
@@ -333,17 +348,17 @@
         <div class="price-savings" data-monthly="" data-halfyearly="15% sparen" data-yearly="32% sparen" style="display:none;"></div>
         <ul class="price-list">
           <li class="yes">Alles aus Free — ohne Limits</li>
-          <li class="yes">Unbegrenzte Module & Notizen</li>
-          <li class="yes">Unbegrenzte Karteikarten & Mind Maps</li>
-          <li class="yes">Decision Engine & Risiko-Analyse</li>
-          <li class="yes">Lern-DNA (5D-Profil)</li>
-          <li class="yes">Prüfungs-Intelligence</li>
-          <li class="yes">Notenprognosen & Trendanalyse</li>
-          <li class="yes">Smart Spaced Repetition</li>
-          <li class="yes">10 KI-Requests / Monat</li>
+          <li class="yes">Unbegrenzte Module & Karteikarten</li>
+          <li class="yes">Smart Schedule & intelligente Tagesplanung</li>
+          <li class="yes">Decision Engine & Risiko-Monitor</li>
+          <li class="yes">Lern-DNA (5 Dimensionen + Trends)</li>
+          <li class="yes">Geführte Lernsessions mit Prüfungsfokus</li>
+          <li class="yes">KI-Lernraum pro Modul</li>
+          <li class="yes">Prüfungssimulator & Exam Prep</li>
+          <li class="yes">Notenprognosen & Wellness-Tracking</li>
+          <li class="yes">150 KI-Requests / Monat</li>
+          <li class="yes">Floating Timer & Pattern Insights</li>
           <li class="yes">Semester-Report PDF Export</li>
-          <li class="yes">Desktop &#8596; Web Echtzeit-Sync</li>
-          <li class="yes">Benutzerdefinierte Themes</li>
         </ul>
         <a href="https://app.semetra.ch/upgrade" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Upgraden</a>
       </div>
@@ -356,13 +371,13 @@
         <div class="price-savings" data-monthly="" data-halfyearly="16% sparen" data-yearly="20% sparen" style="display:none;"></div>
         <ul class="price-list">
           <li class="yes">Alles aus Pro Basic</li>
-          <li class="yes">100 KI-Requests / Monat</li>
-          <li class="yes">KI-Lernassistent komplett</li>
-          <li class="yes">Streak & Gamification</li>
-          <li class="yes">Lerngruppen & Sharing</li>
-          <li class="yes">Erweiterte Heatmaps & Insights</li>
-          <li class="yes">Mathe-Raum ohne Tageslimit</li>
+          <li class="yes">500 KI-Requests / Monat</li>
+          <li class="yes">KI-Assistent ohne Tageslimit</li>
+          <li class="yes">Dokument-Analyse & Zusammenfassung</li>
+          <li class="yes">Lerngruppen & Community Decks</li>
+          <li class="yes">Challenges & Bestenliste</li>
           <li class="yes">Plugin-System</li>
+          <li class="yes">Mathe-Raum unbegrenzt</li>
           <li class="yes">Prioritäts-Support</li>
         </ul>
         <a href="https://buy.stripe.com/bJe7sN68c1Kk7uicmDfYY05" class="btn btn-dark btn-sm pro-full-link" style="width:100%;justify-content:center;">Upgraden</a>
@@ -378,6 +393,7 @@
       <span class="section-label fade-up">Vergleich</span>
       <h2 class="section-title fade-up fade-up-d1">Was ist in welchem Plan?</h2>
     </div>
+    <div class="compare-wrapper">
     <table class="compare-table fade-up">
       <thead>
         <tr>
@@ -389,27 +405,30 @@
       </thead>
       <tbody>
         <tr><td>Module</td><td class="plan-col limit">3</td><td class="plan-col highlight-col check">&infin;</td><td class="plan-col check">&infin;</td></tr>
-        <tr><td>Unified Dashboard</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>7-Tage Stundenplan</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Dashboard & Kalender</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Stundenplan & Timer</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
         <tr><td>Aufgaben & ECTS</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>Notizen</td><td class="plan-col limit">10</td><td class="plan-col highlight-col check">&infin;</td><td class="plan-col check">&infin;</td></tr>
-        <tr><td>Karteikarten</td><td class="plan-col limit">3 Sets</td><td class="plan-col highlight-col check">&infin;</td><td class="plan-col check">&infin;</td></tr>
-        <tr><td>Mind Maps</td><td class="plan-col limit">2</td><td class="plan-col highlight-col check">&infin;</td><td class="plan-col check">&infin;</td></tr>
+        <tr><td>Karteikarten (FSRS)</td><td class="plan-col limit">3 Sets</td><td class="plan-col highlight-col check">&infin;</td><td class="plan-col check">&infin;</td></tr>
+        <tr><td>PDF-Tools & Mind Maps</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Smart Schedule</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
         <tr><td>Decision Engine</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>Lern-DNA (5D-Profil)</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>Prüfungs-Intelligence</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>Notenprognosen</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>Spaced Repetition</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>KI-Requests</td><td class="plan-col limit">3/Tag</td><td class="plan-col highlight-col limit">10/Mo.</td><td class="plan-col check">100/Mo.</td></tr>
-        <tr><td>KI-Lernassistent</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col cross">&mdash;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>Lerngruppen & Sharing</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col cross">&mdash;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>KI-Lernraum</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Prüfungssimulator</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Geführte Lernsessions</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Lern-DNA & Pattern Insights</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Exam Prep & Notenprognosen</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Wellness & Recovery-Modus</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Floating Timer</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>KI-Requests</td><td class="plan-col limit">10/Mo.</td><td class="plan-col highlight-col check">150/Mo.</td><td class="plan-col check">500/Mo.</td></tr>
+        <tr><td>Dokument-Analyse</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col cross">&mdash;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Lerngruppen & Community</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col cross">&mdash;</td><td class="plan-col check">&#10003;</td></tr>
         <tr><td>Plugin-System</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col cross">&mdash;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>Desktop &#8596; Web Sync</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>PDF-Werkzeuge</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
-        <tr><td>6 Sprachen</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>Semetra Connect</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
+        <tr><td>6 Sprachen & Dark Mode</td><td class="plan-col check">&#10003;</td><td class="plan-col highlight-col check">&#10003;</td><td class="plan-col check">&#10003;</td></tr>
         <tr><td>Prioritäts-Support</td><td class="plan-col cross">&mdash;</td><td class="plan-col highlight-col cross">&mdash;</td><td class="plan-col check">&#10003;</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 </section>
 
@@ -490,15 +509,15 @@
     <div class="faq-list">
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Kann ich Semetra wirklich kostenlos nutzen?</div>
-        <div class="faq-a">Ja! Der Free-Plan ist für immer kostenlos und bietet genug für den Einstieg: bis zu 3 Module, Stundenplan, Kalender, Aufgaben, PDF-Werkzeuge und 3 KI-Anfragen pro Tag. Keine Kreditkarte nötig.</div>
+        <div class="faq-a">Ja! Der Free-Plan ist für immer kostenlos und bietet genug für den Einstieg: bis zu 3 Module, Stundenplan, Kalender, Aufgaben, PDF-Werkzeuge, Mind Maps und 10 KI-Anfragen pro Monat. Keine Kreditkarte nötig.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Was ist der Unterschied zwischen Pro Basic und Pro Full?</div>
-        <div class="faq-a">Beide Pläne bieten unbegrenzte Module und alle Pro-Features wie Decision Engine, Lern-DNA und Prüfungs-Intelligence. Pro Basic hat 10 KI-Requests/Monat, Pro Full hat 100 plus KI-Lernassistent, Lerngruppen, Plugin-System und Prioritäts-Support.</div>
+        <div class="faq-a">Beide Pläne bieten unbegrenzte Module und alle Pro-Features: Smart Schedule, Decision Engine, KI-Lernraum, Prüfungssimulator, Lern-DNA und Geführte Sessions. Pro Basic hat 150 KI-Requests/Monat, Pro Full hat 500 plus Dokument-Analyse, Lerngruppen, Plugin-System und Prioritäts-Support.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Was bringt mir die Decision Engine?</div>
-        <div class="faq-a">Die Decision Engine analysiert deine Module, Aufgaben, Prüfungen und Lernmuster. Sie berechnet Risikostufen, erstellt Prioritäten und schlägt dir jeden Tag vor, worauf du dich konzentrieren solltest — wie ein intelligenter Studienberater.</div>
+        <div class="faq-a">Die Decision Engine analysiert deine Module, Aufgaben, Prüfungen und Lernmuster mit Bayesian Prediction. Sie berechnet Risikostufen, erstellt Prioritäten und füttert den Smart Schedule — der dann automatisch optimale Lernblöcke in deinen Tag einplant. Zusammen mit der Lern-DNA passt sich alles an deinen persönlichen Lernstil an.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Kann ich jederzeit kündigen?</div>
@@ -540,7 +559,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Semetra</div>
-      <p class="footer-tagline">Der smarte Study Workspace — Desktop & Web App mit Decision Engine, KI-Assistent und 50+ Tools.</p>
+      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa.</p>
       <p style="font-size:0.72rem; color:rgba(255,255,255,0.3);">Ein Produkt von Lopicic Technologies</p>
     </div>
     <div class="footer-col">

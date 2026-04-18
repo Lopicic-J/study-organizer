@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Warum Semetra? — Der Vergleich</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description" content="Warum Semetra? Vergleich mit Notion, Anki, StudySmarter, Todoist und Co. — alles in einer App statt in fünf.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -177,13 +178,22 @@
     }
     .cta-bottom p { color: rgba(255,255,255,0.6); margin-bottom: 32px; font-size: 1.05rem; }
 
+    .compare-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
     @media (max-width: 860px) {
       .problem-grid { grid-template-columns: 1fr; }
       .adv-grid { grid-template-columns: 1fr 1fr; }
-      .compare-table { font-size: 0.75rem; }
+      .compare-table { font-size: 0.75rem; min-width: 600px; }
+      .compare-table th, .compare-table td { padding: 10px 12px; }
     }
     @media (max-width: 560px) {
       .adv-grid { grid-template-columns: 1fr; }
+      .compare-table { font-size: 0.7rem; min-width: 520px; }
+      .compare-table th, .compare-table td { padding: 8px 10px; }
     }
   </style>
 </head>
@@ -198,6 +208,7 @@
       <li><a href="features.html">Features</a></li>
       <li><a href="pricing.html">Preise</a></li>
       <li><a href="changelog.html">Neu</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
     </ul>
     <div id="nav-auth-desktop">
       <a href="https://app.semetra.ch/login" class="nav-login-link">Anmelden</a>
@@ -207,13 +218,16 @@
       <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="warum-semetra.html">Warum Semetra?</a>
-    <a href="features.html">Features</a>
-    <a href="pricing.html">Preise</a>
-    <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos registrieren</a>
-  </div>
 </nav>
+<div id="mobile-menu" class="nav-mobile-menu">
+  <a href="warum-semetra.html">Warum Semetra?</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Preise</a>
+  <a href="changelog.html">Neu</a>
+  <a href="ueber-mich.html">Über mich</a>
+  <a href="https://app.semetra.ch/login">Anmelden</a>
+  <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos starten</a>
+</div>
 
 <!-- HERO -->
 <section class="page-hero">
@@ -241,17 +255,17 @@
     </div>
     <div class="solution-box">
       <h3>Die Lösung: Semetra</h3>
-      <p>Eine einzige Plattform die alles vereint — und mit einer Decision Engine dein Studium intelligent steuert.</p>
+      <p>Eine einzige Plattform die alles vereint — und mit 5 KI-Engines dein Studium intelligent steuert.</p>
       <ul class="solution-features">
-        <li>Module, Noten, ECTS & Prüfungen</li>
-        <li>Stundenplan mit 7-Tage-Woche & Kalenderdaten</li>
-        <li>Karteikarten mit Spaced Repetition</li>
-        <li>KI-Assistent (Claude) im Studien-Kontext</li>
-        <li>Decision Engine: Risiko, Prognosen, Tagesplan</li>
-        <li>Lern-DNA & Prüfungs-Intelligence</li>
-        <li>Timer, Heatmap, Streak & Achievements</li>
-        <li>Desktop-App + Web-App mit Sync</li>
-        <li>6 Sprachen, Dark Mode, PWA</li>
+        <li>Smart Schedule plant deinen Tag automatisch</li>
+        <li>Decision Engine analysiert Risiken & Prioritäten</li>
+        <li>KI-Lernraum erklärt Stoff pro Modul</li>
+        <li>Prüfungssimulator generiert realistische Fragen</li>
+        <li>Lern-DNA zeigt wie du am besten lernst</li>
+        <li>Geführte Sessions mit Inline-Flashcards</li>
+        <li>Karteikarten mit FSRS (Spaced Repetition)</li>
+        <li>Floating Timer läuft auf allen Seiten</li>
+        <li>6 Sprachen, Dark Mode, DSGVO-konform</li>
       </ul>
     </div>
   </div>
@@ -263,6 +277,7 @@
     <span class="section-label">Feature-Vergleich</span>
     <h2 class="section-title">Semetra vs. die Alternativen</h2>
   </div>
+  <div class="compare-wrapper">
   <table class="compare-table">
     <thead>
       <tr>
@@ -324,6 +339,14 @@
         <td><span class="cross">✗</span></td>
       </tr>
       <tr>
+        <td>Smart Schedule (Auto-Planung)</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
         <td>Decision Engine & Risiko-Analyse</td>
         <td class="semetra-col"><span class="check">✓</span></td>
         <td><span class="cross">✗</span></td>
@@ -332,7 +355,31 @@
         <td><span class="cross">✗</span></td>
       </tr>
       <tr>
-        <td>Lern-DNA & Prognosen</td>
+        <td>KI-Lernraum pro Modul</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Prüfungssimulator (AI)</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="partial">~</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Lern-DNA & Pattern Insights</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Geführte Lernsessions</td>
         <td class="semetra-col"><span class="check">✓</span></td>
         <td><span class="cross">✗</span></td>
         <td><span class="cross">✗</span></td>
@@ -373,6 +420,7 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </section>
 
 <!-- ADVANTAGES -->
@@ -384,33 +432,33 @@
   <div class="adv-grid">
     <div class="adv-card">
       <div class="emoji">🧠</div>
-      <h3>Decision Engine</h3>
-      <p>Keine andere Studien-App analysiert dein Verhalten in Echtzeit und generiert Risiko-Bewertungen, Prognosen und einen KI-Tagesplan.</p>
+      <h3>5 KI-Engines</h3>
+      <p>Decision Engine, KI-Lernraum, Prüfungssimulator, KI-Assistent und Pattern Analyzer — keine andere Studien-App hat so viel Intelligenz.</p>
     </div>
     <div class="adv-card">
-      <div class="emoji">🇪🇺</div>
-      <h3>Für ganz Europa gebaut</h3>
-      <p>17 Notensysteme, europäische Hochschul-Datenbank, ECTS-Tracking und 6 Sprachen. Gebaut in der Schweiz — für Studierende überall.</p>
+      <div class="emoji">📅</div>
+      <h3>Plant deinen Tag</h3>
+      <p>Smart Schedule kombiniert Vorlesungen, fällige Karten, Deadlines und Prüfungen zu einem optimalen Tagesplan — ein Tap, fertig.</p>
     </div>
     <div class="adv-card">
-      <div class="emoji">🔄</div>
-      <h3>Desktop + Web</h3>
-      <p>Arbeite offline mit der Desktop-App und synchronisiere nahtlos mit der Web-App. Deine Daten überall — dein Studium überall.</p>
+      <div class="emoji">🧬</div>
+      <h3>Lernt von dir</h3>
+      <p>Deine Lern-DNA zeigt dein Profil in 5 Dimensionen. Die Decision Engine passt sich an dich an — je mehr du lernst, desto smarter wird Semetra.</p>
     </div>
     <div class="adv-card">
-      <div class="emoji">🤖</div>
-      <h3>KI im Kontext</h3>
-      <p>Der KI-Assistent kennt deine Module und Inhalte. Er erklärt, löst und generiert — direkt bezogen auf dein Studium.</p>
+      <div class="emoji">🌍</div>
+      <h3>Für ganz Europa</h3>
+      <p>17 Notensysteme, europäische Hochschul-Datenbank, ECTS-Tracking und 6 Sprachen. Gebaut in der Schweiz.</p>
     </div>
     <div class="adv-card">
       <div class="emoji">🎯</div>
       <h3>Alles in Einem</h3>
-      <p>Module, Noten, Stundenplan, Aufgaben, Karteikarten, Timer, PDF-Tools, Kalender — keine anderen Apps mehr nötig.</p>
+      <p>Module, Schedule, Karteikarten, Timer, Kalender, Noten, PDF-Tools, Mind Maps — eine App statt fünf.</p>
     </div>
     <div class="adv-card">
       <div class="emoji">💰</div>
       <h3>Fair & Transparent</h3>
-      <p>Grosszügiger Free-Tier. Kein verstecktes Abo. Pro ab CHF 4.90/Monat. Lifetime-Lizenzen verfügbar.</p>
+      <p>Grosszügiger Free-Plan mit 50+ Tools. Pro ab CHF 4.90/Monat. Lifetime-Lizenzen verfügbar. 30 Tage Geld-zurück.</p>
     </div>
   </div>
 </section>
@@ -430,7 +478,8 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Semetra</div>
-      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa 🇪🇺</p>
+      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa.</p>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 8px;">Ein Produkt von Lopicic Technologies</p>
     </div>
     <div class="footer-col">
       <h4>Produkt</h4>

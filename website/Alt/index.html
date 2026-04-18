@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-de="Semetra — Dein Studium. Dein System." data-en="Semetra — Your Studies. Your System.">Semetra — Dein Studium. Dein System.</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description"
+    data-de="Semetra ist dein persönlicher Studien-Workspace: Alles für dein Studium an einem Ort. Module, Noten, Stundenplan, Aufgaben, Karteikarten und mehr."
+    data-en="Semetra is your personal study workspace: Everything for your studies in one place. Modules, grades, schedule, tasks, flashcards and more."
+    content="Semetra ist dein persönlicher Studien-Workspace: Alles für dein Studium an einem Ort. Module, Noten, Stundenplan, Aufgaben, Karteikarten und mehr.">
+  <meta property="og:title" content="Semetra — Dein persönlicher Studien-Workspace">
+  <meta property="og:description" content="Alles was du fürs Studium brauchst — endlich an einem Ort.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://semetra.ch">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ═══ HERO ═══ */
+    .hero {
+      position: relative;
+      padding: 120px 24px 100px;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0d0820 0%, #1a1040 50%, #0d0820 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.25), transparent 70%);
+      animation: floatOrb 15s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -15%; left: -5%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.2), transparent 70%);
+      animation: floatOrb 20s ease-in-out infinite reverse;
+      pointer-events: none;
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, 30px) scale(1.1); }
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 16px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 32px;
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 0.8s ease forwards;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #10b981; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -1px; color: #ffffff;
+      margin: 0 auto 24px;
+      animation: fadeInDown 0.8s ease 0.1s forwards;
+      opacity: 0;
+    }
+    .hero h1 strong {
+      font-weight: 400;
+      background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #7c3aed 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .hero-subheading {
+      font-size: 1.25rem; color: rgba(255, 255, 255, 0.7);
+      max-width: 700px; margin: 0 auto 48px; line-height: 1.7;
+      animation: fadeInDown 0.8s ease 0.2s forwards; opacity: 0;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 60px;
+      animation: fadeInDown 0.8s ease 0.3s forwards; opacity: 0;
+    }
+    .btn-hero-primary {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: white; padding: 16px 40px; border-radius: 12px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: all 0.3s; border: none; cursor: pointer;
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+    }
+    .btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 48px rgba(124, 58, 237, 0.4); }
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.1); color: white;
+      padding: 16px 40px; border-radius: 12px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: all 0.3s;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    .btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-3px); }
+    .hero-trust {
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.55);
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; }
+    .trust-icon {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #10b981; display: flex; align-items: center;
+      justify-content: center; color: white; font-size: 0.7rem; font-weight: 700;
+    }
+
+    /* ═══ STATS BAR ═══ */
+    .stats-bar { background: var(--white); border-bottom: 1px solid var(--ink-10); padding: 40px 24px; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; max-width: 900px; margin: 0 auto; text-align: center;
+    }
+    .stat-number { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.8rem; color: var(--ink-40); font-weight: 500; }
+
+    /* ═══ PROBLEM/SOLUTION ═══ */
+    .problem-section { padding: 100px 24px; background: var(--white); }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; max-width: 1120px; margin: 0 auto; align-items: center;
+    }
+    .problem-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      line-height: 1.2; margin-bottom: 20px;
+    }
+    .problem-text p { color: var(--ink-60); font-size: 1.05rem; line-height: 1.7; margin-bottom: 16px; }
+    .pain-list { list-style: none; padding: 0; margin-top: 24px; }
+    .pain-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; font-size: 0.95rem; color: var(--ink-60);
+    }
+    .pain-list li .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .solution-box {
+      background: linear-gradient(135deg, #0d0820, #1a1040);
+      border-radius: 24px; padding: 48px; color: white;
+    }
+    .solution-box h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; margin-bottom: 16px;
+    }
+    .solution-box p { color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 24px; font-size: 1.05rem; }
+    .solution-list { list-style: none; padding: 0; }
+    .solution-list li {
+      padding: 8px 0; font-size: 0.92rem; color: rgba(255,255,255,0.85);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .solution-list li::before { content: '\2713'; color: #10b981; font-weight: 700; font-size: 1rem; }
+
+    /* ═══ SHOWCASE (Benefits) ═══ */
+    .showcase-section {
+      padding: 100px 24px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f6fc 100%);
+    }
+    .showcase-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; max-width: 1120px; margin: 0 auto;
+    }
+    .showcase-card {
+      position: relative; border-radius: 20px; padding: 40px;
+      background: var(--white); border: 1px solid var(--ink-10);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      overflow: hidden;
+    }
+    .showcase-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(13,8,32,0.1); border-color: var(--accent); }
+    .showcase-card.featured {
+      grid-column: 1 / -1; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+      background: linear-gradient(135deg, #0d0820, #1a1040);
+      border-color: rgba(124, 58, 237, 0.3); color: white;
+    }
+    .showcase-card.featured:hover { border-color: rgba(124, 58, 237, 0.6); }
+    .showcase-card.featured .showcase-card-label { color: rgba(255,255,255,0.5); }
+    .showcase-card.featured .showcase-card-title { color: white; }
+    .showcase-card.featured .showcase-card-desc { color: rgba(255,255,255,0.7); }
+    .showcase-card.featured .showcase-card-features li { color: rgba(255,255,255,0.8); }
+    .showcase-card.featured .showcase-card-features li::before { color: #10b981; }
+    .showcase-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .showcase-card-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px; }
+    .showcase-card-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; line-height: 1.2; color: var(--ink); margin-bottom: 12px; }
+    .showcase-card-desc { color: var(--ink-60); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px; }
+    .showcase-card-features { list-style: none; padding: 0; }
+    .showcase-card-features li { font-size: 0.85rem; color: var(--ink-60); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .showcase-card-features li::before { content: '\2713'; color: var(--green); font-weight: 700; font-size: 0.9rem; }
+    .showcase-mockup {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 24px; min-height: 280px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .mockup-bar { display: flex; gap: 6px; margin-bottom: 8px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+    .mockup-row { display: flex; gap: 8px; align-items: center; }
+    .mockup-pill { padding: 6px 14px; border-radius: 8px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+
+    /* ═══ TESTIMONIAL / SOCIAL PROOF ═══ */
+    .social-section { padding: 80px 24px; background: var(--surface); }
+    .social-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; max-width: 1000px; margin: 0 auto;
+    }
+    .social-card {
+      padding: 28px; border-radius: 16px; background: var(--white);
+      border: 1px solid var(--ink-10);
+    }
+    .social-card .emoji { font-size: 1.4rem; margin-bottom: 12px; }
+    .social-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .social-card p { font-size: 0.88rem; color: var(--ink-60); line-height: 1.6; }
+
+    /* ═══ CTA SECTION ═══ */
+    .cta-section {
+      padding: 100px 24px;
+      background: linear-gradient(160deg, #0d0820 0%, #1a1040 50%, #0d0820 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+    .cta-content h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: white; margin-bottom: 16px; }
+    .cta-content p { color: rgba(255,255,255,0.65); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.7; }
+
+    /* ═══ LANG TOGGLE ═══ */
+    /* Language switch pill */
+    .lang-switch {
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; overflow: hidden;
+      cursor: pointer; user-select: none;
+    }
+    .lang-opt {
+      padding: 5px 10px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.5px; color: rgba(255,255,255,0.4);
+      transition: all 0.2s;
+    }
+    .lang-opt.active {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    /* Light variant for pages with light nav */
+    .nav-light .lang-switch {
+      background: var(--ink-05); border-color: var(--ink-10);
+    }
+    .nav-light .lang-opt { color: var(--ink-20); }
+    .nav-light .lang-opt.active { background: var(--ink); color: #fff; }
+    .nav-mobile-actions {
+      display: none; align-items: center; gap: 8px;
+    }
+    .nav-light .lang-toggle {
+      background: var(--ink-05); border-color: var(--ink-10);
+      color: var(--ink-60);
+    }
+    .nav-light .lang-toggle:hover { background: var(--ink-10); color: var(--ink); }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 860px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .problem-grid { grid-template-columns: 1fr; gap: 40px; }
+      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-card.featured { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .hero { padding: 80px 16px 60px; min-height: auto; }
+      .hero h1 { font-size: clamp(2rem, 6vw, 3rem); }
+      .showcase-card { padding: 24px; }
+      .showcase-card.featured { padding: 24px; }
+      .nav-mobile-actions { display: flex; }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .social-grid { grid-template-columns: 1fr; }
+      .hero-trust { flex-direction: column; gap: 8px; }
+      .showcase-card { padding: 20px; }
+      .showcase-card.featured { padding: 20px; }
+      .showcase-card-title { font-size: 1.3rem !important; }
+      .showcase-mockup { padding: 16px; min-height: auto; }
+      .mockup-row { flex-wrap: wrap; }
+      .mockup-pill { font-size: 0.65rem !important; padding: 5px 10px; }
+      .cta-content h2 { font-size: 1.5rem; }
+      .cta-content p { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" style="background: rgba(13, 8, 32, 0.95); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" style="color: white;">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html" style="color: rgba(255,255,255,0.7);" data-de="Warum Semetra?" data-en="Why Semetra?"></a></li>
+      <li><a href="tech.html" style="color: rgba(255,255,255,0.7);" data-de="Technologie" data-en="Technology"></a></li>
+      <li><a href="pricing.html" style="color: rgba(255,255,255,0.7);" data-de="Preise" data-en="Pricing"></a></li>
+      <li><a href="changelog.html" style="color: rgba(255,255,255,0.7);" data-de="Neu" data-en="New"></a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <div class="lang-switch" onclick="toggleLang()">
+        <span class="lang-opt" data-lang="de">DE</span>
+        <span class="lang-opt" data-lang="en">EN</span>
+      </div>
+      <a href="https://app.semetra.ch/login" class="nav-login-link" style="color: rgba(255,255,255,0.7);" data-de="Anmelden" data-en="Sign in"></a>
+      <a href="https://app.semetra.ch/register" class="btn-hero-primary" style="padding: 10px 24px; font-size: 0.85rem;" data-de="Kostenlos starten" data-en="Start for free"></a>
+    </div>
+    <div class="nav-mobile-actions">
+      <div class="lang-switch" onclick="toggleLang()">
+        <span class="lang-opt" data-lang="de">DE</span>
+        <span class="lang-opt" data-lang="en">EN</span>
+      </div>
+      <button class="nav-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+        <svg viewBox="0 0 24 24" style="stroke: white;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div id="mobile-menu" class="nav-mobile-menu nav-mobile-dark">
+  <button class="nav-mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?"></a>
+  <a href="tech.html" data-de="Technologie" data-en="Technology"></a>
+  <a href="pricing.html" data-de="Preise" data-en="Pricing"></a>
+  <a href="changelog.html" data-de="Neu" data-en="New"></a>
+  <a href="https://app.semetra.ch/login" data-de="Anmelden" data-en="Sign in"></a>
+  <a href="https://app.semetra.ch/register" class="nav-mobile-cta" data-de="Kostenlos registrieren" data-en="Sign up for free"></a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span data-de="Der Studien-Workspace für Europa" data-en="The study workspace for Europe"></span>
+    </div>
+    <h1>
+      <span data-de-html="Studieren mit<br><strong>System.</strong>" data-en-html="Study with<br><strong>a system.</strong>"></span>
+    </h1>
+    <p class="hero-subheading">
+      <span data-de="Semetra ist der Workspace, der dein Studium zusammenhält. Module, Noten, Stundenplan, Aufgaben, Karteikarten, Lerngruppen und ein KI-Assistent — alles in einer App, die dein Studium versteht." data-en="Semetra is the workspace that holds your studies together. Modules, grades, timetable, tasks, flashcards, study groups and an AI assistant — all in one app that understands your studies."></span>
+    </p>
+    <div class="hero-actions">
+      <a href="https://app.semetra.ch/register" class="btn-hero-primary">
+        <span data-de="Kostenlos starten" data-en="Get started for free"></span>
+      </a>
+      <a href="warum-semetra.html" class="btn-hero-secondary">
+        <span data-de="Mehr erfahren &rarr;" data-en="Learn more &rarr;"></span>
+      </a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-item"><span class="trust-icon">&check;</span> <span data-de="Kostenlos starten" data-en="Start for free"></span></span>
+      <span class="trust-item"><span class="trust-icon">&check;</span> <span data-de="Web, Tablet & Mobile" data-en="Web, Tablet & Mobile"></span></span>
+      <span class="trust-item"><span class="trust-icon">&check;</span> <span data-de="6 Sprachen" data-en="6 Languages"></span></span>
+      <span class="trust-item"><span class="trust-icon">&check;</span> <span data-de="Gebaut in der Schweiz 🇨🇭" data-en="Built in Switzerland 🇨🇭"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ═══ -->
+<section class="stats-bar">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-number">50+</div>
+      <div class="stat-label" data-de="Studien-Tools" data-en="Study tools"></div>
+    </div>
+    <div>
+      <div class="stat-number">6</div>
+      <div class="stat-label" data-de="Sprachen" data-en="Languages"></div>
+    </div>
+    <div>
+      <div class="stat-number">17</div>
+      <div class="stat-label" data-de="Notensysteme" data-en="Grading systems"></div>
+    </div>
+    <div>
+      <div class="stat-number">0.–</div>
+      <div class="stat-label" data-de="Zum Starten" data-en="To get started"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT IS SEMETRA ═══ -->
+<section class="problem-section">
+  <div class="problem-grid">
+    <div class="problem-text">
+      <h2 data-de-html="Dein ganzes Studium.<br>Ein Workspace." data-en-html="Your entire studies.<br>One workspace."></h2>
+      <p data-de="Semetra gibt dir einen zentralen Ort für alles, was im Studium wichtig ist. Kein Suchen, kein Vergessen, kein Durcheinander — du öffnest Semetra und weisst sofort, wo du stehst und was als Nächstes kommt." data-en="Semetra gives you one central place for everything that matters in your studies. No searching, no forgetting, no mess — you open Semetra and instantly know where you stand and what comes next."></p>
+      <ul class="pain-list">
+        <li><span class="icon">📚</span> <span data-de="Module, Noten, ECTS und Semester — immer aktuell" data-en="Modules, grades, ECTS and semesters — always up to date"></span></li>
+        <li><span class="icon">📅</span> <span data-de="Stundenplan, Kalender, Prüfungen und Deadlines" data-en="Timetable, calendar, exams and deadlines"></span></li>
+        <li><span class="icon">✅</span> <span data-de="Aufgaben pro Modul — mit Prioritäten und Fristen" data-en="Tasks per module — with priorities and due dates"></span></li>
+        <li><span class="icon">🧠</span> <span data-de="Karteikarten, Lern-Timer und KI-Assistent" data-en="Flashcards, study timer and AI assistant"></span></li>
+        <li><span class="icon">👥</span> <span data-de="Lerngruppen und Vernetzung mit anderen Studierenden" data-en="Study groups and connecting with other students"></span></li>
+        <li><span class="icon">📊</span> <span data-de="Fortschritt sehen, Ziele setzen, motiviert bleiben" data-en="See progress, set goals, stay motivated"></span></li>
+      </ul>
+    </div>
+    <div class="solution-box">
+      <h3 data-de="Mehr als nur ein Tool." data-en="More than just a tool."></h3>
+      <p data-de="Semetra denkt mit. Je mehr du es nutzt, desto besser versteht es dein Studium — und zeigt dir, worauf du dich konzentrieren solltest, wo Risiken liegen und wie du dich verbesserst." data-en="Semetra thinks with you. The more you use it, the better it understands your studies — and shows you what to focus on, where risks lie and how you're improving."></p>
+      <ul class="solution-list">
+        <li data-de="Semetra erkennt, welche Module Aufmerksamkeit brauchen" data-en="Semetra detects which modules need attention"></li>
+        <li data-de="Empfehlungen, worauf du dich heute konzentrieren solltest" data-en="Recommendations on what to focus on today"></li>
+        <li data-de="Dein Lernfortschritt — sichtbar, messbar, motivierend" data-en="Your study progress — visible, measurable, motivating"></li>
+        <li data-de="Wöchentliche Zusammenfassung deiner Studienleistung" data-en="Weekly summary of your study performance"></li>
+        <li data-de="Streaks und Erfolge die dich motiviert halten" data-en="Streaks and achievements that keep you motivated"></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BENEFIT SHOWCASE ═══ -->
+<section class="showcase-section">
+  <div class="section-header">
+    <span class="section-label" data-de="Das steckt in Semetra" data-en="What's inside Semetra"></span>
+    <h2 class="section-title" data-de="Organisiert. Intelligent. Gemeinsam." data-en="Organized. Intelligent. Together."></h2>
+    <p class="section-desc" data-de="Semetra begleitet dich vom ersten Semester bis zum Abschluss. So behältst du den Überblick, lernst effektiver und bleibst motiviert — Tag für Tag." data-en="Semetra accompanies you from your first semester to graduation. Stay on top of things, study more effectively and stay motivated — day after day."></p>
+  </div>
+
+  <div class="showcase-grid">
+
+    <!-- FEATURED: Alles auf einen Blick -->
+    <div class="showcase-card featured">
+      <div>
+        <div class="showcase-card-label" data-de="Dein Dashboard" data-en="Your Dashboard"></div>
+        <div class="showcase-card-title" style="font-size: 2rem;" data-de="Öffnen und sofort wissen, was zählt" data-en="Open and instantly know what matters"></div>
+        <p class="showcase-card-desc" data-de="Semetra zeigt dir beim Öffnen sofort: Was steht heute an? Wo musst du dranbleiben? Welche Prüfung kommt als Nächstes? Du bekommst einen klaren Überblick — und weisst immer, was der nächste Schritt ist." data-en="When you open Semetra, you instantly see: What's on today? Where do you need to stay on track? Which exam is coming next? You get a clear overview — and always know your next step."></p>
+        <ul class="showcase-card-features">
+          <li data-de="Dein Tagesüberblick: Was ist heute wichtig?" data-en="Your daily overview: What matters today?"></li>
+          <li data-de="Prüfungen, Deadlines und offene Aufgaben" data-en="Exams, deadlines and open tasks"></li>
+          <li data-de="Semetra erkennt, wo du dranbleiben musst" data-en="Semetra spots where you need to keep up"></li>
+          <li data-de="Dein Fortschritt — sichtbar und motivierend" data-en="Your progress — visible and motivating"></li>
+        </ul>
+      </div>
+      <div class="showcase-mockup">
+        <div class="mockup-bar">
+          <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+        </div>
+        <div class="mockup-row">
+          <span class="mockup-pill" style="background: rgba(249,115,22,0.2); color: #fb923c;">
+            <span data-de="&#128293; 12 Tage Streak" data-en="&#128293; 12 Day Streak"></span>
+          </span>
+          <span class="mockup-pill" style="background: rgba(99,102,241,0.2); color: #818cf8;">ECTS 96/180</span>
+          <span class="mockup-pill" style="background: rgba(16,185,129,0.2); color: #34d399;">GPA 5.2</span>
+        </div>
+        <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 10px 14px; font-size: 0.75rem; color: #fca5a5;">
+          <span data-de="⚠ Recht — Prüfung in 8 Tagen, du hast noch wenig gelernt" data-en="⚠ Law — Exam in 8 days, you haven't studied much yet"></span>
+        </div>
+        <div style="background: rgba(79,70,229,0.1); border: 1px solid rgba(79,70,229,0.2); border-radius: 10px; padding: 10px 14px; font-size: 0.75rem; color: #a5b4fc;">
+          <span data-de="⚡ Semetra empfiehlt: Mathe II — 45 Min lernen" data-en="⚡ Semetra recommends: Math II — 45 min study"></span>
+        </div>
+        <div class="mockup-row" style="gap: 6px; flex-wrap: wrap;">
+          <span class="mockup-pill" style="background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.65rem;" data-de="&#128200; Fortschritt" data-en="&#128200; Progress"></span>
+          <span class="mockup-pill" style="background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.65rem;" data-de="&#127919; Prognosen" data-en="&#127919; Predictions"></span>
+          <span class="mockup-pill" style="background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.65rem;" data-de="&#128200; Wochenbericht" data-en="&#128200; Weekly Report"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nie wieder Deadlines verpassen -->
+    <div class="showcase-card">
+      <div class="showcase-icon" style="background: #dbeafe; color: #2563eb;">&#128197;</div>
+      <div class="showcase-card-label" data-de="Organisation" data-en="Organization"></div>
+      <div class="showcase-card-title" data-de="Nie wieder Deadlines verpassen" data-en="Never miss a deadline again"></div>
+      <p class="showcase-card-desc" data-de="Stundenplan, Prüfungstermine, Abgaben — alles übersichtlich an einem Ort. Du siehst auf einen Blick was diese Woche ansteht und wirst rechtzeitig erinnert." data-en="Timetable, exam dates, assignments — all clearly in one place. See at a glance what's coming this week and get reminded in time."></p>
+      <ul class="showcase-card-features">
+        <li data-de="Stundenplan mit Wochenansicht und Räumen" data-en="Timetable with weekly view and rooms"></li>
+        <li data-de="Aufgaben pro Modul mit Fälligkeitsdatum" data-en="Tasks per module with due dates"></li>
+        <li data-de="Kalender mit Prüfungen, Events und Deadlines" data-en="Calendar with exams, events and deadlines"></li>
+        <li data-de="Erinnerungen, damit nichts untergeht" data-en="Reminders so nothing slips through"></li>
+      </ul>
+    </div>
+
+    <!-- Wissen, wo du stehst -->
+    <div class="showcase-card">
+      <div class="showcase-icon" style="background: #d1fae5; color: #059669;">&#128200;</div>
+      <div class="showcase-card-label" data-de="Fortschritt" data-en="Progress"></div>
+      <div class="showcase-card-title" data-de="Wissen, wo du stehst" data-en="Know where you stand"></div>
+      <p class="showcase-card-desc" data-de="Noten, ECTS, Durchschnitte — Semetra rechnet alles automatisch aus. Du siehst sofort, wie du stehst und was du noch brauchst um zu bestehen." data-en="Grades, ECTS, averages — Semetra calculates everything automatically. You immediately see where you stand and what you need to pass."></p>
+      <ul class="showcase-card-features">
+        <li data-de="Notenüberblick mit ECTS-gewichtetem Schnitt" data-en="Grade overview with ECTS-weighted average"></li>
+        <li data-de="Fortschritt pro Modul und Semester" data-en="Progress per module and semester"></li>
+        <li data-de="Unterstützt 17 Notensysteme europaweit" data-en="Supports 17 grading systems across Europe"></li>
+        <li data-de="Notenrechner: Was brauchst du noch?" data-en="Grade calculator: What do you still need?"></li>
+      </ul>
+    </div>
+
+    <!-- Effektiver lernen -->
+    <div class="showcase-card">
+      <div class="showcase-icon" style="background: #ede9fe; color: #7c3aed;">&#129504;</div>
+      <div class="showcase-card-label" data-de="Lernen" data-en="Learning"></div>
+      <div class="showcase-card-title" data-de="Besser lernen, weniger Stress" data-en="Study better, stress less"></div>
+      <p class="showcase-card-desc" data-de="Karteikarten die sich merken was du schon kannst, ein Timer der deine Lernzeit erfasst und ein KI-Assistent der dir Themen erklärt — alles direkt in Semetra, bezogen auf deine Module." data-en="Flashcards that remember what you already know, a timer that tracks your study time and an AI assistant that explains topics to you — all right in Semetra, linked to your modules."></p>
+      <ul class="showcase-card-features">
+        <li data-de="Karteikarten — merkt sich, was du wiederholen musst" data-en="Flashcards — remembers what you need to review"></li>
+        <li data-de="Lern-Timer — sieh wie viel Zeit du investierst" data-en="Study timer — see how much time you invest"></li>
+        <li data-de="KI-Assistent — stell Fragen, bekomm Antworten" data-en="AI assistant — ask questions, get answers"></li>
+        <li data-de="Alle Materialien und Links pro Modul gesammelt" data-en="All materials and links collected per module"></li>
+      </ul>
+    </div>
+
+    <!-- Zusammen lernen -->
+    <div class="showcase-card">
+      <div class="showcase-icon" style="background: #dbeafe; color: #2563eb;">👥</div>
+      <div class="showcase-card-label" data-de="Community" data-en="Community"></div>
+      <div class="showcase-card-title" data-de="Zusammen stärker" data-en="Stronger together"></div>
+      <p class="showcase-card-desc" data-de="Gründe Lerngruppen, teile Wissen und vernetze dich mit Studierenden deines Studiengangs — auch an anderen Hochschulen. Gemeinsam lernen, gemeinsam bestehen." data-en="Create study groups, share knowledge and connect with students in your program — even at other universities. Study together, succeed together."></p>
+      <ul class="showcase-card-features">
+        <li data-de="Lerngruppen erstellen und Mitglieder einladen" data-en="Create study groups and invite members"></li>
+        <li data-de="Semetra Connect: Studierende finden und vernetzen" data-en="Semetra Connect: Find and network with students"></li>
+        <li data-de="Dein Studiengang, deine Hochschule — oder andere" data-en="Your program, your university — or others"></li>
+        <li data-de="Privacy-first: Du entscheidest, was sichtbar ist" data-en="Privacy-first: You decide what's visible"></li>
+      </ul>
+    </div>
+
+    <!-- Motiviert bleiben -->
+    <div class="showcase-card">
+      <div class="showcase-icon" style="background: #fef3c7; color: #d97706;">🏆</div>
+      <div class="showcase-card-label" data-de="Motivation" data-en="Motivation"></div>
+      <div class="showcase-card-title" data-de="Dranbleiben leicht gemacht" data-en="Staying on track made easy"></div>
+      <p class="showcase-card-desc" data-de="Semetra macht deinen Fortschritt sichtbar — mit Streaks, Lern-Heatmaps und Erfolgen. So siehst du jeden Tag, dass sich dein Einsatz lohnt." data-en="Semetra makes your progress visible — with streaks, study heatmaps and achievements. Every day you see that your effort pays off."></p>
+      <ul class="showcase-card-features">
+        <li data-de="Tägliche Lernstreaks die motivieren" data-en="Daily study streaks that motivate"></li>
+        <li data-de="30-Tage Heatmap deiner Aktivität" data-en="30-day heatmap of your activity"></li>
+        <li data-de="Achievements und Meilensteine freischalten" data-en="Unlock achievements and milestones"></li>
+        <li data-de="Tägliche und wöchentliche Lernziele" data-en="Daily and weekly study goals"></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SEMETRA VISION ═══ -->
+<section class="social-section">
+  <div class="section-header">
+    <span class="section-label" data-de="Unsere Vision" data-en="Our Vision"></span>
+    <h2 class="section-title" data-de="Semetra wird die Art verändern, wie Europa studiert." data-en="Semetra will change how Europe studies."></h2>
+  </div>
+  <div class="social-grid">
+    <div class="social-card">
+      <div class="emoji">🎓</div>
+      <h3 data-de="Gebaut fürs Studium" data-en="Built for studying"></h3>
+      <p data-de="Semetra ist kein Allzweck-Tool. Jede Funktion wurde speziell für das Studium entwickelt — ECTS, Modulstrukturen, Semesterzyklen und Prüfungsphasen sind eingebaut, nicht nachgebaut." data-en="Semetra is not a general-purpose tool. Every feature was built specifically for university — ECTS, module structures, semester cycles and exam periods are built-in, not bolted on."></p>
+    </div>
+    <div class="social-card">
+      <div class="emoji">🇪🇺</div>
+      <h3 data-de="Europaweit, ab der Schweiz" data-en="Europe-wide, from Switzerland"></h3>
+      <p data-de="17 Notensysteme, eine europäische Hochschul-Datenbank und 6 Sprachen. Gebaut in der Schweiz mit dem Anspruch, das Studium für ganz Europa einfacher zu machen." data-en="17 grading systems, a European university database and 6 languages. Built in Switzerland with the ambition to make studying easier across all of Europe."></p>
+    </div>
+    <div class="social-card">
+      <div class="emoji">🔒</div>
+      <h3 data-de="Fair, sicher, transparent" data-en="Fair, secure, transparent"></h3>
+      <p data-de="Keine Werbung, kein Tracking, gehostet in Europa. Großzügiger Free-Plan zum Starten. Pro ab CHF 4.90/Monat. Deine Daten gehören dir — Export jederzeit möglich." data-en="No ads, no tracking, hosted in Europe. Generous free plan to start. Pro from CHF 4.90/month. Your data belongs to you — export anytime."></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA SECTION ═══ -->
+<section class="cta-section">
+  <div class="cta-content">
+    <h2 data-de="Dein Studium verdient ein System." data-en="Your studies deserve a system."></h2>
+    <p data-de="Erstelle deinen kostenlosen Account und erlebe, wie sich Semetra anfühlt. Kein Abo, keine Kreditkarte — du entscheidest, wann du bereit bist." data-en="Create your free account and experience how Semetra feels. No subscription, no credit card — you decide when you're ready."></p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://app.semetra.ch/register" class="btn-hero-primary">
+        <span data-de="Kostenlos registrieren" data-en="Sign up for free"></span>
+      </a>
+      <a href="pricing.html" class="btn-hero-secondary">
+        <span data-de="Preise ansehen &rarr;" data-en="View pricing &rarr;"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline">
+        <span data-de="Dein Studium. Dein System." data-en="Your studies. Your system."></span><br>
+        <span data-de="Gebaut in der Schweiz — für ganz Europa &#127466;&#127482;" data-en="Built in Switzerland — for all of Europe &#127466;&#127482;"></span>
+      </p>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 8px;">
+        Ein Produkt von Lopicic Technologies
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Produkt" data-en="Product"></h4>
+      <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?"></a>
+      <a href="tech.html" data-de="Technologie" data-en="Technology"></a>
+      <a href="pricing.html" data-de="Preise" data-en="Pricing"></a>
+      <a href="changelog.html" data-de="Changelog" data-en="Changelog"></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Starten" data-en="Get started"></h4>
+      <a href="https://app.semetra.ch/register" data-de="Kostenlos registrieren" data-en="Sign up for free"></a>
+      <a href="https://app.semetra.ch/login" data-de="Anmelden" data-en="Sign in"></a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Rechtliches" data-en="Legal"></h4>
+      <a href="impressum.html" data-de="Impressum" data-en="Imprint"></a>
+      <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy"></a>
+      <a href="agb.html" data-de="AGB" data-en="Terms"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2024&ndash;2026 Lopicic Technologies. <span data-de="Alle Rechte vorbehalten." data-en="All rights reserved."></span></span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="i18n.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

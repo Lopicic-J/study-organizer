@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warum Semetra? — Der Vergleich</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Warum Semetra? Vergleich mit Notion, Anki, StudySmarter, Todoist und Co. — alles in einer App statt in fünf.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(160deg, #f8f6fc 0%, #eef2ff 50%, #ede9fe 100%);
+      padding: 100px 24px 64px; text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400; line-height: 1.2;
+      letter-spacing: -0.5px; margin-bottom: 16px;
+    }
+    .page-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero p {
+      font-size: 1.1rem; color: var(--ink-60);
+      max-width: 600px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* Problem section */
+    .problem-section {
+      padding: 80px 24px;
+      background: var(--white);
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    .problem-list {
+      list-style: none; padding: 0;
+    }
+    .problem-list li {
+      padding: 12px 0;
+      font-size: 0.95rem;
+      color: var(--ink-60);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .problem-list li .icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .problem-list li strong {
+      color: var(--ink);
+    }
+
+    /* Solution box */
+    .solution-box {
+      background: linear-gradient(135deg, #0d0820, #1a1040);
+      border-radius: 20px;
+      padding: 40px;
+      color: white;
+    }
+    .solution-box h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .solution-box p {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .solution-features {
+      list-style: none; padding: 0;
+    }
+    .solution-features li {
+      padding: 6px 0;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .solution-features li::before {
+      content: '✓';
+      color: #10b981;
+      font-weight: 700;
+    }
+
+    /* Comparison table */
+    .compare-section {
+      padding: 80px 24px;
+      background: var(--surface);
+    }
+    .compare-table {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-m);
+      background: var(--white);
+    }
+    .compare-table th, .compare-table td {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--ink-05);
+    }
+    .compare-table th {
+      background: var(--ink);
+      color: white;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .compare-table th:first-child { border-radius: 16px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 16px 0 0; }
+    .compare-table td:first-child { font-weight: 600; color: var(--ink); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .check { color: var(--green); font-weight: 700; }
+    .cross { color: var(--ink-20); }
+    .partial { color: var(--amber); }
+    .semetra-col { background: #f0edff; }
+    .compare-table th.semetra-col {
+      background: var(--accent);
+    }
+
+    /* Advantages grid */
+    .adv-section { padding: 80px 24px; }
+    .adv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .adv-card {
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid var(--ink-10);
+      background: var(--white);
+      transition: all 0.3s;
+    }
+    .adv-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-m);
+    }
+    .adv-card .emoji { font-size: 1.5rem; margin-bottom: 12px; }
+    .adv-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .adv-card p { font-size: 0.85rem; color: var(--ink-60); line-height: 1.6; }
+
+    /* CTA */
+    .cta-bottom {
+      text-align: center; padding: 80px 24px;
+      background: linear-gradient(160deg, #0d0820 0%, #1a1040 50%, #0d0820 100%);
+    }
+    .cta-bottom h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: white; margin-bottom: 16px;
+    }
+    .cta-bottom p { color: rgba(255,255,255,0.6); margin-bottom: 32px; font-size: 1.05rem; }
+
+    .compare-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    @media (max-width: 860px) {
+      .problem-grid { grid-template-columns: 1fr; }
+      .adv-grid { grid-template-columns: 1fr 1fr; }
+      .compare-table { font-size: 0.75rem; min-width: 600px; }
+      .compare-table th, .compare-table td { padding: 10px 12px; }
+    }
+    @media (max-width: 720px) {
+      .nav-mobile-actions { display: flex; }
+    }
+    @media (max-width: 560px) {
+      .adv-grid { grid-template-columns: 1fr; }
+      .compare-table { font-size: 0.7rem; min-width: 520px; }
+      .compare-table th, .compare-table td { padding: 8px 10px; }
+    }
+
+    /* Language switch pill */
+    .lang-switch {
+      display: flex; align-items: center;
+      background: var(--ink-05); border: 1px solid var(--ink-10);
+      border-radius: 8px; overflow: hidden;
+      cursor: pointer; user-select: none;
+    }
+    .lang-opt {
+      padding: 5px 10px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.5px; color: var(--ink-20);
+      transition: all 0.2s;
+    }
+    .lang-opt.active {
+      background: var(--ink); color: #fff;
+    }
+
+    .nav-mobile-actions {
+      display: none; align-items: center; gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html" class="active" data-de="Warum Semetra?" data-en="Why Semetra?"></a></li>
+      <li><a href="tech.html" data-de="Technologie" data-en="Technology"></a></li>
+      <li><a href="pricing.html" data-de="Preise" data-en="Pricing"></a></li>
+      <li><a href="changelog.html">Neu</a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <a href="https://app.semetra.ch/login" class="nav-login-link" data-de="Anmelden" data-en="Sign in"></a>
+      <a href="https://app.semetra.ch/register" class="nav-cta" data-de="Kostenlos starten" data-en="Start for free"></a>
+    </div>
+    <div class="nav-mobile-actions">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <button class="nav-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div id="mobile-menu" class="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?"></a>
+  <a href="tech.html" data-de="Technologie" data-en="Technology"></a>
+  <a href="pricing.html" data-de="Preise" data-en="Pricing"></a>
+  <a href="https://app.semetra.ch/register" class="nav-mobile-cta" data-de="Kostenlos registrieren" data-en="Sign up for free"></a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <span class="section-label">Der Vergleich</span>
+  <h1>Warum <em>Semetra</em>?</h1>
+  <p>Du könntest 5 verschiedene Apps nutzen. Oder eine, die alles kann — und dein Studium versteht.</p>
+</section>
+
+<!-- PROBLEM vs SOLUTION -->
+<section class="problem-section">
+  <div class="problem-grid">
+    <div>
+      <h2 style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 24px;">Das Problem</h2>
+      <p style="color: var(--ink-60); margin-bottom: 24px; line-height: 1.7;">
+        Die meisten Studierenden jonglieren zwischen 5+ Apps für ihr Studium. Das Ergebnis: Chaos, vergessene Deadlines und keine Übersicht.
+      </p>
+      <ul class="problem-list">
+        <li><span class="icon">📋</span> <div><strong>Notion</strong> für Notizen — aber keine Noten-Berechnung</div></li>
+        <li><span class="icon">🧠</span> <div><strong>Anki</strong> für Karteikarten — aber kein Stundenplan</div></li>
+        <li><span class="icon">✅</span> <div><strong>Todoist</strong> für Aufgaben — aber kein Modul-Bezug</div></li>
+        <li><span class="icon">📊</span> <div><strong>Excel</strong> für Noten — aber keine Prognosen</div></li>
+        <li><span class="icon">📅</span> <div><strong>Google Calendar</strong> für Termine — aber kein KW-Stundenplan</div></li>
+        <li><span class="icon">🤖</span> <div><strong>ChatGPT</strong> für Fragen — aber ohne Studien-Kontext</div></li>
+      </ul>
+    </div>
+    <div class="solution-box">
+      <h3>Die Lösung: Semetra</h3>
+      <p>Eine einzige Plattform die alles vereint — und mit einer Decision Engine dein Studium intelligent steuert.</p>
+      <ul class="solution-features">
+        <li>Module, Noten, ECTS & Prüfungen</li>
+        <li>Stundenplan mit 7-Tage-Woche & Kalenderdaten</li>
+        <li>Karteikarten mit Spaced Repetition</li>
+        <li>KI-Assistent (Claude) im Studien-Kontext</li>
+        <li>Decision Engine: Risiko, Prognosen, Tagesplan</li>
+        <li>Lern-DNA & Prüfungs-Intelligence</li>
+        <li>Timer, Heatmap, Streak & Achievements</li>
+        <li>Desktop-App + Web-App mit Sync</li>
+        <li>6 Sprachen, Dark Mode, PWA</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <div class="section-header">
+    <span class="section-label">Feature-Vergleich</span>
+    <h2 class="section-title">Semetra vs. die Alternativen</h2>
+  </div>
+  <div class="compare-wrapper">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th class="semetra-col">Semetra</th>
+        <th>Notion</th>
+        <th>Anki</th>
+        <th>StudySmarter</th>
+        <th>Todoist</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Modul-Verwaltung & ECTS</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="partial">~</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Notenberechnung (ECTS-gewichtet)</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Stundenplan (KW + Kalender)</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Karteikarten</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Aufgaben mit Modul-Bezug</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="partial">~</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="partial">~</span></td>
+      </tr>
+      <tr>
+        <td>KI-Lernassistent</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="partial">~</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="partial">~</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Decision Engine & Risiko-Analyse</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Lern-DNA & Prognosen</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Lernzeit-Tracking & Heatmap</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="partial">~</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+      <tr>
+        <td>Desktop-App + Offline</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="check">✓</span></td>
+      </tr>
+      <tr>
+        <td>Kostenloser Start</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="partial">~</span></td>
+        <td><span class="check">✓</span></td>
+      </tr>
+      <tr>
+        <td>Europäische Hochschul-Integration</td>
+        <td class="semetra-col"><span class="check">✓</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+        <td><span class="cross">✗</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="adv-section">
+  <div class="section-header">
+    <span class="section-label">Vorteile</span>
+    <h2 class="section-title">Was Semetra besonders macht</h2>
+  </div>
+  <div class="adv-grid">
+    <div class="adv-card">
+      <div class="emoji">🧠</div>
+      <h3>Decision Engine</h3>
+      <p>Keine andere Studien-App analysiert dein Verhalten in Echtzeit und generiert Risiko-Bewertungen, Prognosen und einen KI-Tagesplan.</p>
+    </div>
+    <div class="adv-card">
+      <div class="emoji">🇪🇺</div>
+      <h3>Für ganz Europa gebaut</h3>
+      <p>17 Notensysteme, europäische Hochschul-Datenbank, ECTS-Tracking und 6 Sprachen. Gebaut in der Schweiz — für Studierende überall.</p>
+    </div>
+    <div class="adv-card">
+      <div class="emoji">🔄</div>
+      <h3>Desktop + Web</h3>
+      <p>Arbeite offline mit der Desktop-App und synchronisiere nahtlos mit der Web-App. Deine Daten überall — dein Studium überall.</p>
+    </div>
+    <div class="adv-card">
+      <div class="emoji">🤖</div>
+      <h3>KI im Kontext</h3>
+      <p>Der KI-Assistent kennt deine Module und Inhalte. Er erklärt, löst und generiert — direkt bezogen auf dein Studium.</p>
+    </div>
+    <div class="adv-card">
+      <div class="emoji">🎯</div>
+      <h3>Alles in Einem</h3>
+      <p>Module, Noten, Stundenplan, Aufgaben, Karteikarten, Timer, PDF-Tools, Kalender — keine anderen Apps mehr nötig.</p>
+    </div>
+    <div class="adv-card">
+      <div class="emoji">💰</div>
+      <h3>Fair & Transparent</h3>
+      <p>Grosszügiger Free-Tier. Kein verstecktes Abo. Pro ab CHF 4.90/Monat. Lifetime-Lizenzen verfügbar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bottom">
+  <h2>Bereit für den Wechsel?</h2>
+  <p>Schluss mit dem App-Chaos. Starte jetzt mit Semetra — kostenlos.</p>
+  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+    <a href="https://app.semetra.ch/register" class="btn-white">✦ Kostenlos registrieren</a>
+    <a href="tech.html" class="btn" style="background: rgba(255,255,255,0.1); color: white; border: 1.5px solid rgba(255,255,255,0.3);" data-de="Alle Features →" data-en="All Features →">Alle Features →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa 🇪🇺</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produkt</h4>
+      <a href="tech.html" data-de="Technologie" data-en="Technology"></a>
+      <a href="pricing.html">Preise</a>
+      <a href="changelog.html">Changelog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Starten</h4>
+      <a href="https://app.semetra.ch/register">Registrieren</a>
+      <a href="https://app.semetra.ch/login">Anmelden</a>
+    </div>
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024–2026 Lopicic Technologies</span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

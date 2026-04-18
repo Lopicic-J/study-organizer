@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alle Features — Semetra</title>
-  <meta name="description" content="50+ Features: Unified Dashboard, Decision Engine, KI-Assistent, Stundenplan, Prüfungs-Intelligence, Lern-DNA und mehr.">
+  <title>Alle Features — Semetra Study System</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="50+ Features: Smart Schedule, KI-Lernraum, Decision Engine, Prüfungssimulator, Lern-DNA, Geführte Sessions und mehr. Alles für dein Studium.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -12,19 +13,14 @@
   <style>
     .page-hero {
       background: linear-gradient(160deg, #f8f6fc 0%, #eef2ff 50%, #ede9fe 100%);
-      padding: 100px 24px 64px;
-      text-align: center;
+      padding: 100px 24px 64px; text-align: center;
     }
     .page-hero h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 400; line-height: 1.2;
-      letter-spacing: -0.5px; margin-bottom: 16px;
+      font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400;
+      line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px;
     }
-    .page-hero p {
-      font-size: 1.1rem; color: var(--ink-60);
-      max-width: 620px; margin: 0 auto; line-height: 1.7;
-    }
+    .page-hero p { font-size: 1.1rem; color: var(--ink-60); max-width: 640px; margin: 0 auto; line-height: 1.7; }
     .cat-header {
       display: flex; align-items: center; gap: 16px;
       margin-bottom: 32px; padding-bottom: 16px;
@@ -35,34 +31,19 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.3rem; flex-shrink: 0;
     }
-    .cat-header h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem; font-weight: 400;
-    }
+    .cat-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; font-weight: 400; }
     .cat-header p { font-size: 0.9rem; color: var(--ink-40); margin-top: 2px; }
-    .feat-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; margin-bottom: 64px;
-    }
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 64px; }
     .feat-card {
       padding: 24px; border-radius: 14px;
-      border: 1px solid var(--ink-10); background: var(--white);
-      transition: all 0.3s;
+      border: 1px solid var(--ink-10); background: var(--white); transition: all 0.3s;
     }
-    .feat-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 8px 32px rgba(79,70,229,0.06);
-      transform: translateY(-2px);
-    }
-    .feat-card h3 {
-      font-size: 0.95rem; font-weight: 700;
-      margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
-    }
+    .feat-card:hover { border-color: var(--accent); box-shadow: 0 8px 32px rgba(79,70,229,0.06); transform: translateY(-2px); }
+    .feat-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
     .feat-card p { font-size: 0.82rem; color: var(--ink-60); line-height: 1.6; }
     .feat-badge {
       display: inline-block; font-size: 0.58rem; font-weight: 700;
-      padding: 2px 7px; border-radius: 100px; text-transform: uppercase;
-      letter-spacing: 0.3px; vertical-align: middle;
+      padding: 2px 7px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.3px;
     }
     .feat-free { background: var(--green-s); color: #059669; }
     .feat-pro { background: var(--accent-s); color: var(--accent); }
@@ -72,14 +53,15 @@
       text-align: center; padding: 80px 24px;
       background: linear-gradient(160deg, #0d0820 0%, #1a1040 50%, #0d0820 100%);
     }
-    .cta-bottom h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      color: white; margin-bottom: 16px;
-    }
+    .cta-bottom h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: white; margin-bottom: 16px; }
     .cta-bottom p { color: rgba(255,255,255,0.6); margin-bottom: 32px; font-size: 1.05rem; }
     @media (max-width: 860px) { .feat-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 560px) { .feat-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) {
+      .feat-grid { grid-template-columns: 1fr; }
+      .feat-card { padding: 16px; }
+      .cat-header { gap: 12px; }
+      .cat-header h2 { font-size: 1.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -93,6 +75,7 @@
       <li><a href="features.html" class="active">Features</a></li>
       <li><a href="pricing.html">Preise</a></li>
       <li><a href="changelog.html">Neu</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
     </ul>
     <div id="nav-auth-desktop">
       <a href="https://app.semetra.ch/login" class="nav-login-link">Anmelden</a>
@@ -102,244 +85,315 @@
       <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="warum-semetra.html">Warum Semetra?</a>
-    <a href="features.html">Features</a>
-    <a href="pricing.html">Preise</a>
-    <a href="changelog.html">Neu</a>
-    <a href="https://app.semetra.ch/login">Anmelden</a>
-    <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos registrieren</a>
-  </div>
 </nav>
+<div id="mobile-menu" class="nav-mobile-menu">
+  <a href="warum-semetra.html">Warum Semetra?</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Preise</a>
+  <a href="changelog.html">Neu</a>
+  <a href="ueber-mich.html">Über mich</a>
+  <a href="https://app.semetra.ch/login">Anmelden</a>
+  <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos starten</a>
+</div>
 
 <!-- HERO -->
 <section class="page-hero">
-  <span class="section-label">50+ Features</span>
+  <span class="section-label">50+ Features · 5 KI-Engines</span>
   <h1>Alles was Semetra kann</h1>
-  <p>Von der Decision Engine bis zum PDF-Tool — hier findest du jedes Feature im Detail. Semetra ist die All-in-One-Plattform für dein Studium.</p>
+  <p>Smart Schedule, KI-Lernraum, Decision Engine, Prüfungssimulator, Lern-DNA und mehr — hier findest du jedes Feature im Detail.</p>
 </section>
 
 <div class="container" style="padding-top: 64px; padding-bottom: 32px;">
 
-  <!-- ═══ 1. INTELLIGENCE & DASHBOARD ═══ -->
+  <!-- ═══ 1. SMART SCHEDULE & PLANUNG ═══ -->
   <div class="cat-header">
-    <div class="cat-icon" style="background: #ede9fe; color: #7c3aed;">🧠</div>
+    <div class="cat-icon" style="background: #dbeafe; color: #2563eb;">📅</div>
     <div>
-      <h2>Intelligence & Dashboard</h2>
-      <p>Das Gehirn von Semetra — KI-gesteuerte Analyse und Steuerung</p>
+      <h2>Smart Schedule & Planung</h2>
+      <p>Intelligente Tagesplanung die sich an dich anpasst</p>
     </div>
   </div>
   <div class="feat-grid">
     <div class="feat-card">
-      <h3>Unified Dashboard <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Alles auf einen Blick: Streak, ECTS, GPA, Heatmap, Prüfungen, Aufgaben, Risiko-Monitor, Prognosen und Tagesplan — in einer einzigen Ansicht vereint.</p>
+      <h3>Smart Schedule <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Plant deinen Tag automatisch: Kombiniert Decision Engine Prioritäten, fällige Flashcards, Task-Deadlines und Prüfungs-Countdown zu optimalen Zeitblöcken.</p>
     </div>
     <div class="feat-card">
-      <h3>Decision Engine <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Analysiert deine Module in Echtzeit: Risiko-Bewertung, Prioritäts-Scoring, Bestehenswahrscheinlichkeit und automatische Tagesplan-Generierung.</p>
+      <h3>Energy-Aware Scheduling <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Schwere Aufgaben landen in Hoch-Energie-Zeiten, leichte Reviews in Tiefs. Basiert auf deinem DNA-Profil und Pattern-Daten.</p>
     </div>
     <div class="feat-card">
-      <h3>Alert-System <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Intelligente Warnungen bei kritischen Modulen, bevorstehenden Deadlines und niedrigem Wissensstand — direkt im Dashboard.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Risiko-Monitor <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Zeigt Module mit erhöhtem Durchfallrisiko. Farbcodierte Risiko-Balken (kritisch, hoch, mittel) mit den wichtigsten Risikofaktoren.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Modul-Prognosen <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Voraussichtliche Endnoten und Bestehenswahrscheinlichkeit pro Modul — basierend auf Lernverhalten, Noten und Zeitinvestment.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Tagesplan-Generator <span class="feat-badge feat-new">Neu</span></h3>
-      <p>KI-generierter Tagesplan mit priorisierten Lernaktionen, Zeitschätzungen und Fokus-Modul-Empfehlung.</p>
-    </div>
-  </div>
-
-  <!-- ═══ 2. STUDIUM ORGANISIEREN ═══ -->
-  <div class="cat-header">
-    <div class="cat-icon" style="background: #dbeafe; color: #2563eb;">🎓</div>
-    <div>
-      <h2>Studium organisieren</h2>
-      <p>Module, Zeitplan, Aufgaben und Semester im Griff</p>
-    </div>
-  </div>
-  <div class="feat-grid">
-    <div class="feat-card">
-      <h3>Module verwalten <span class="feat-badge feat-free">Free</span></h3>
-      <p>Module erstellen mit ECTS, Farben, Status und Beschreibung. Hochschul-Datenbank mit 17 Ländern und Notensystemen.</p>
+      <h3>Kalender-Sync <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Kalender-Events und Stundenplan-Einträge synchronisieren automatisch mit dem Smart Schedule. Lernblöcke weichen Terminen aus.</p>
     </div>
     <div class="feat-card">
       <h3>Stundenplan <span class="feat-badge feat-free">Free</span></h3>
-      <p>7-Tage-Woche (Mo–So) mit echten Kalenderdaten pro KW. Drag-and-Drop, Overlap-Layout, Modul-Farben und Raumangaben.</p>
+      <p>7-Tage-Woche (Mo–So) mit Kalenderdaten pro KW. Drag-and-Drop, Modul-Farben und Raumangaben. Automatische Schedule-Sync.</p>
     </div>
     <div class="feat-card">
-      <h3>Smart Schedule <span class="feat-badge feat-new">Neu</span></h3>
-      <p>KI-optimierte Zeitblöcke: Analysiert deine Prioritäten und erstellt optimale Lernzeiten basierend auf Decision Engine Daten.</p>
+      <h3>Wellness-Modulation <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Bei niedrigem Wellness-Score (Energie, Verständnis, Sicherheit) werden Lernblöcke automatisch gekürzt — Recovery-Modus.</p>
     </div>
     <div class="feat-card">
-      <h3>Kalender <span class="feat-badge feat-free">Free</span></h3>
-      <p>Monats-, Wochen- und Tagesansicht. Prüfungen, Deadlines und Events farbcodiert auf einen Blick.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Aufgaben <span class="feat-badge feat-free">Free</span></h3>
-      <p>Aufgaben pro Modul mit Prioritäten (hoch/mittel/niedrig), Fälligkeitsdaten, Beschreibungen und Anhängen.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Semester-Übersicht & ECTS <span class="feat-badge feat-free">Free</span></h3>
-      <p>Gesamtfortschritt: Verdiente ECTS, Fortschrittsbalken, Semester-Tracking und voraussichtliche Abschlusszeit.</p>
+      <h3>Auto-Reschedule <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Wenn ein neuer Stundenplan-Eintrag einen Lernblock überlappt, wird der Lernblock automatisch in einen freien Slot verschoben.</p>
     </div>
   </div>
 
-  <!-- ═══ 3. NOTEN & ANALYSE ═══ -->
+  <!-- ═══ 2. DECISION ENGINE & INTELLIGENCE ═══ -->
   <div class="cat-header">
-    <div class="cat-icon" style="background: #d1fae5; color: #059669;">📈</div>
+    <div class="cat-icon" style="background: #ede9fe; color: #7c3aed;">🧠</div>
     <div>
-      <h2>Noten & Analyse</h2>
-      <p>Notenberechnung, Prüfungs-Intelligence und Fortschrittsverfolgung</p>
+      <h2>Decision Engine & Intelligence</h2>
+      <p>Das Gehirn von Semetra — analysiert, priorisiert und empfiehlt</p>
     </div>
   </div>
   <div class="feat-grid">
     <div class="feat-card">
-      <h3>ECTS-gewichteter Schnitt <span class="feat-badge feat-free">Free</span></h3>
-      <p>Automatischer Notendurchschnitt gewichtet nach ECTS-Punkten. Unterstützt 17 Notensysteme (CH, DE, AT, FR, UK, US u.v.m.).</p>
+      <h3>Decision Engine <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Bayesian Prediction, adaptive Gewichte und Pearson-Korrelation analysieren deine Module in Echtzeit. Risiko-Scoring, Prioritäts-Ranking und automatische Tagesplan-Generierung.</p>
     </div>
     <div class="feat-card">
-      <h3>Prüfungs-Intelligence <span class="feat-badge feat-new">Neu</span></h3>
-      <p>KI-Analyse deiner Prüfungshistorie: Notenvorhersagen, Fehlerquoten, Schwächen-Erkennung und optimierte Lernstrategien.</p>
+      <h3>Risiko-Monitor <span class="feat-badge feat-pro">Pro</span></h3>
+      <p>Farbcodierte Risiko-Balken (kritisch, hoch, mittel) mit den wichtigsten Risikofaktoren pro Modul. Warnungen bei bevorstehenden Prüfungen.</p>
     </div>
     <div class="feat-card">
-      <h3>Lern-DNA <span class="feat-badge feat-new">Neu</span></h3>
-      <p>5-Dimensionales Lernprofil: Konsistenz, Intensität, Breite, Effizienz, Ausdauer. Zeitliche Snapshots zeigen deine Entwicklung.</p>
+      <h3>Coach & Tagesplan <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>KI-generierter Tagesplan mit priorisierten Aktionen. Ein Tap auf "Tag planen" erstellt optimale Schedule-Blöcke aus Coach-Empfehlungen.</p>
     </div>
     <div class="feat-card">
-      <h3>30-Tage Heatmap <span class="feat-badge feat-free">Free</span></h3>
-      <p>Visualisierung deiner täglichen Lernaktivität der letzten 30 Tage — wie bei GitHub, nur für dein Studium.</p>
+      <h3>Modul-Prognosen <span class="feat-badge feat-pro">Pro</span></h3>
+      <p>Voraussichtliche Endnoten und Bestehenswahrscheinlichkeit — basierend auf Lernverhalten, Noten und Zeitinvestment.</p>
     </div>
     <div class="feat-card">
-      <h3>Wissens-Level pro Thema <span class="feat-badge feat-free">Free</span></h3>
-      <p>Tracke dein Verständnis pro Thema (nicht verstanden → beherrscht). Warnungen wenn Prüfung naht und Wissen fehlt.</p>
+      <h3>Dashboard <span class="feat-badge feat-free">Free</span></h3>
+      <p>Alles auf einen Blick: Streak, ECTS, GPA, Heatmap, fällige Flashcards, nächste Blöcke, Prüfungs-Countdown und Coach-Empfehlungen.</p>
     </div>
     <div class="feat-card">
-      <h3>Insights & Statistiken <span class="feat-badge feat-pro">Pro</span></h3>
-      <p>Detaillierte Analysen: Lernzeit pro Modul, Wochencharts, Fortschrittsbalken und Trend-Erkennung.</p>
+      <h3>Today at a Glance <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Kompakte Tages-Übersicht auf dem Dashboard: Fällige Karten, Schedule-Timeline und Prüfungs-Countdown auf einen Blick.</p>
     </div>
   </div>
 
-  <!-- ═══ 4. LERNEN & PRODUKTIVITÄT ═══ -->
+  <!-- ═══ 3. KI-LERNEN ═══ -->
   <div class="cat-header">
-    <div class="cat-icon" style="background: #fef3c7; color: #d97706;">📝</div>
+    <div class="cat-icon" style="background: #fce7f3; color: #db2777;">🤖</div>
     <div>
-      <h2>Lernen & Produktivität</h2>
-      <p>Karteikarten, Timer, Lernziele und Materialien</p>
+      <h2>KI-gestütztes Lernen</h2>
+      <p>5 KI-Engines für effizienteres Studieren</p>
     </div>
   </div>
   <div class="feat-grid">
     <div class="feat-card">
-      <h3>Karteikarten <span class="feat-badge feat-free">Free</span></h3>
-      <p>Erstelle Flashcard-Sets pro Modul. Vorder- und Rückseite, Lernmodus mit Statistiken.</p>
+      <h3>KI-Lernraum <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>AI-generierte Lernumgebung pro Modul: Überblick, Topic-Guide, Konzeptkarten mit Alltagsbeispielen und Quick-Start Prioritäten.</p>
     </div>
     <div class="feat-card">
-      <h3>Spaced Repetition <span class="feat-badge feat-pro">Pro</span></h3>
-      <p>Intelligente Wiederholungen basierend auf dem Vergessenskurve-Algorithmus. Lerne effizienter mit optimalen Intervallen.</p>
+      <h3>Prüfungssimulator <span class="feat-badge feat-ai">KI</span></h3>
+      <p>AI generiert realistische Prüfungsfragen (Multiple Choice + offen) basierend auf deinen Modulthemen. Schwache Topics werden priorisiert.</p>
     </div>
     <div class="feat-card">
-      <h3>Pomodoro-Timer <span class="feat-badge feat-free">Free</span></h3>
-      <p>Fokussiertes Lernen mit dem integrierten Timer. Zeit wird automatisch pro Modul getrackt.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Lernziele <span class="feat-badge feat-free">Free</span></h3>
-      <p>Setze dir tägliche und wöchentliche Ziele. Tracke deinen Fortschritt und bleibe motiviert.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Lernmaterialien <span class="feat-badge feat-free">Free</span></h3>
-      <p>Links, Notizen und Dateien pro Modul organisieren. Alles an einem zentralen Ort.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Lerngruppen <span class="feat-badge feat-free">Free</span></h3>
-      <p>Gruppen erstellen, Mitglieder einladen und gemeinsam am Studium arbeiten.</p>
-    </div>
-  </div>
-
-  <!-- ═══ 5. KI & WERKZEUGE ═══ -->
-  <div class="cat-header">
-    <div class="cat-icon" style="background: #ede9fe; color: #7c3aed;">🤖</div>
-    <div>
-      <h2>KI-Assistent & Werkzeuge</h2>
-      <p>Powered by Claude (Anthropic) — dein persönlicher Lernassistent</p>
-    </div>
-  </div>
-  <div class="feat-grid">
-    <div class="feat-card">
-      <h3>KI-Lernassistent <span class="feat-badge feat-ai">KI</span></h3>
-      <p>Erklärt Konzepte, beantwortet Fragen, generiert Zusammenfassungen — kontextbezogen zu deinen Modulen.</p>
+      <h3>KI-Assistent <span class="feat-badge feat-ai">KI</span></h3>
+      <p>Erklärt Konzepte, beantwortet Fragen, generiert Zusammenfassungen und Karteikarten — kontextbezogen zu deinen Modulen.</p>
     </div>
     <div class="feat-card">
       <h3>Mathe-Raum <span class="feat-badge feat-ai">KI</span></h3>
-      <p>LaTeX-Rendering, Schritt-für-Schritt Lösungen, Graphen und mathematische Erklärungen direkt in der App.</p>
+      <p>LaTeX-Rendering, Schritt-für-Schritt Lösungen, Graphen-Plotter mit Zoom & Pan und mathematische Erklärungen.</p>
     </div>
     <div class="feat-card">
-      <h3>Kreativ-Tools <span class="feat-badge feat-ai">KI</span></h3>
-      <p>Brainstorming, Mind Maps und kreative Ideenfindung mit KI-Unterstützung.</p>
+      <h3>Dokument-Analyse <span class="feat-badge feat-ai">KI</span></h3>
+      <p>Lade Texte hoch — die KI erstellt Zusammenfassungen, Schlüsselbegriffe, Karteikarten und prüfungsrelevante Fragen.</p>
     </div>
     <div class="feat-card">
-      <h3>PDF-Tools <span class="feat-badge feat-free">Free</span></h3>
-      <p>PDFs zusammenführen, teilen, komprimieren, drehen — alles ohne externe Software.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Dokumenten-Verwaltung <span class="feat-badge feat-free">Free</span></h3>
-      <p>Dokumente pro Modul organisieren und schnell wiederfinden.</p>
-    </div>
-    <div class="feat-card">
-      <h3>Notenrechner <span class="feat-badge feat-free">Free</span></h3>
-      <p>Berechne was du brauchst um zu bestehen. Verschiedene Gewichtungen und Szenarien simulieren.</p>
+      <h3>Brainstorming & Mind Maps <span class="feat-badge feat-free">Free</span></h3>
+      <p>Visuelle Mind Maps mit individuellen Farben und verschiebbaren Knoten. KI-unterstütztes Brainstorming für Ideenfindung.</p>
     </div>
   </div>
 
-  <!-- ═══ 6. PLATTFORM & SYSTEM ═══ -->
+  <!-- ═══ 4. GEFÜHRTES LERNEN ═══ -->
   <div class="cat-header">
-    <div class="cat-icon" style="background: #fce7f3; color: #db2777;">⚙️</div>
+    <div class="cat-icon" style="background: #d1fae5; color: #059669;">📋</div>
     <div>
-      <h2>Plattform & System</h2>
-      <p>Rollen, Sync, Sprachen und Gamification</p>
+      <h2>Geführtes Lernen & Sessions</h2>
+      <p>Strukturierte Lernphasen mit integrierten Tools</p>
     </div>
   </div>
   <div class="feat-grid">
     <div class="feat-card">
-      <h3>4-Rollen-System <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Admin, Institution, Student, Non-Student — mit automatischer Verifizierung über Hochschul-E-Mail.</p>
+      <h3>Geführte Lernsessions <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Strukturierte Sessions in 5 Phasen: Review, Lernen, Übung, Test, Reflexion. Mit Timer pro Phase und automatischer DNA-Aktualisierung.</p>
     </div>
     <div class="feat-card">
-      <h3>Academic Builder <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Institutionen und Studiengänge erstellen und verwalten. Europäische Hochschul-Datenbank mit 17 Ländern.</p>
+      <h3>Inline Flashcards <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Flashcards direkt in der Lernsession lernen — ohne die Session zu verlassen. Ergebnisse fliessen in die Reflexion ein.</p>
     </div>
     <div class="feat-card">
-      <h3>Erfolge & Gamification <span class="feat-badge feat-free">Free</span></h3>
-      <p>Achievements freischalten, Streaks aufbauen, tägliche Ziele. Motivation die funktioniert.</p>
+      <h3>Inline Prüfungssimulator <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>5 Quick-Fragen direkt in der Übungsphase: Multiple Choice oder offen, mit Erklärungen und Ergebnis-Tracking.</p>
     </div>
     <div class="feat-card">
-      <h3>Desktop ↔ Web Sync <span class="feat-badge feat-pro">Pro</span></h3>
-      <p>Bidirektionale Synchronisation zwischen Desktop-App (Python/PySide6) und Web-App.</p>
+      <h3>Prüfungsfokus <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Sessions können auf eine spezifische Prüfung ausgerichtet werden — Flashcards und Simulator filtern auf prüfungsrelevante Topics.</p>
     </div>
+    <div class="feat-card">
+      <h3>Floating Timer <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Timer-Bubble auf allen Seiten: Session läuft im Hintergrund weiter. Klick navigiert zur Timer-Page — ohne Session-Verlust.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Wiederkehrende Sessions <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Gute Session? Ein Tap speichert sie als wöchentlichen Block im Smart Schedule — zur gleichen Zeit, am gleichen Tag.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 5. LERN-DNA & ANALYTICS ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #fef3c7; color: #d97706;">🧬</div>
+    <div>
+      <h2>Lern-DNA & Analytics</h2>
+      <p>Verstehe wie du lernst und optimiere dich</p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3>Lern-DNA Profil <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>5 Dimensionen: Konsistenz, Fokus, Ausdauer, Anpassungsfähigkeit, Planung. Radar-Chart mit Trend-Vergleich zum vorherigen Snapshot.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Lerner-Typen <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>6 Typen: Marathon-Lerner, Sprinter, Stratege, Anpasser, Entdecker, Einsteiger. Der Typ passt die Decision Engine an dich an.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Pattern Insights <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Deine produktivsten Stunden, beste Wochentage, optimale Session-Dauer, Energie-Kurven und Prokrastinations-Erkennung.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Wellness & Balance <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Balance-Score aus Energie, Verständnis und Sicherheit. Warnungen bei Überarbeitung, Vorschläge bei Energie-Tief.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Wochenrückblick <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Wöchentliche Performance-Analyse: Planeinhaltung, Studienzeit, Modul-Breakdown, Insights und personalisierte Empfehlungen.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Lernnachweis & Export <span class="feat-badge feat-free">Free</span></h3>
+      <p>Vollständiger Leistungsnachweis als PDF: KPI-Dashboard, Modul-Übersicht, Streak-Historie und Zertifikate für bestandene Module.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 6. FLASHCARDS & PRÜFUNGSVORBEREITUNG ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #fce7f3; color: #db2777;">🎯</div>
+    <div>
+      <h2>Flashcards & Prüfungsvorbereitung</h2>
+      <p>Karteikarten, Spaced Repetition und Exam Prep</p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3>Flashcards mit FSRS <span class="feat-badge feat-free">Free</span></h3>
+      <p>Spaced Repetition nach dem FSRS-Algorithmus. Due-Cards werden automatisch als Blöcke im Smart Schedule eingeplant.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Quick Review <span class="feat-badge feat-free">Free</span></h3>
+      <p>Mobile-optimierte Flashcard-Review mit grossen Touch-Targets und Swipe-Animation. Ergebnis mit Statistik.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Community Decks <span class="feat-badge feat-free">Free</span></h3>
+      <p>Flashcard-Decks mit der Community teilen und importieren. Finde Sets von anderen Studierenden deines Studiengangs.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Exam Prep Planer <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Tagesgenauer Vorbereitungsplan mit automatischen Schedule-Blöcken. Intelligente Platzierung in freien Zeitslots.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Prüfungsrelevanz <span class="feat-badge feat-free">Free</span></h3>
+      <p>Markiere Topics als prüfungsrelevant. Dozent-Notizen und Wissens-Level-Tracking pro Topic.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Notenprognose <span class="feat-badge feat-pro">Pro</span></h3>
+      <p>Berechne welche Note du brauchst um 4.0, 4.5 oder 5.0 zu erreichen. ECTS werden erst bei genügendem Schnitt gutgeschrieben.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 7. ORGANISATION & TOOLS ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #dbeafe; color: #2563eb;">🛠</div>
+    <div>
+      <h2>Organisation & Tools</h2>
+      <p>Module, Aufgaben, Kalender und Studien-Werkzeuge</p>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <h3>Module & ECTS <span class="feat-badge feat-free">Free</span></h3>
+      <p>Module erstellen mit ECTS, Farben, Status. 17 europäische Notensysteme. Institution-Import für vorkonfigurierte Module.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Aufgaben & Deadlines <span class="feat-badge feat-free">Free</span></h3>
+      <p>Tasks mit Prioritäten und Deadlines. Der Smart Schedule plant automatisch Blöcke für fällige Aufgaben ein.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Kalender <span class="feat-badge feat-free">Free</span></h3>
+      <p>Monatsansicht mit Feiertagen. Events erstellen und bearbeiten — synchronisiert automatisch mit Smart Schedule.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Timer & Pomodoro <span class="feat-badge feat-free">Free</span></h3>
+      <p>Focus, Deep Work und Pomodoro Modi. Lernziel-System: Coach schlägt vor was du lernen sollst, Timer trackt es.</p>
+    </div>
+    <div class="feat-card">
+      <h3>PDF-Tools <span class="feat-badge feat-free">Free</span></h3>
+      <p>PDFs zusammenführen, teilen, Seiten neu ordnen per Drag-and-Drop. Komplett kostenlos — kein Upload an externe Server.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Notizen & Dokumente <span class="feat-badge feat-free">Free</span></h3>
+      <p>Rich-Text Notizen und Dokument-Verwaltung pro Modul. Links, Dateien und Lernmaterialien zentral organisieren.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 8. PLATTFORM & SOZIALES ═══ -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background: #fef3c7; color: #d97706;">🌍</div>
+    <div>
+      <h2>Plattform & Soziales</h2>
+      <p>Sprachen, Gamification, Community und Rollen</p>
+    </div>
+  </div>
+  <div class="feat-grid">
     <div class="feat-card">
       <h3>6 Sprachen <span class="feat-badge feat-free">Free</span></h3>
-      <p>Deutsch, English, Français, Italiano, Español, Nederlands — jederzeit wechselbar.</p>
+      <p>Deutsch, English, Francais, Italiano, Espanol, Nederlands — mit 2670+ Übersetzungsschlüsseln pro Sprache.</p>
     </div>
     <div class="feat-card">
       <h3>Dark Mode <span class="feat-badge feat-free">Free</span></h3>
-      <p>Vollständiger Dark Mode mit System-Erkennung. Augenschonend und modern.</p>
+      <p>Vollständiger Dark Mode auf allen Seiten, Modals und Inputs. Automatische System-Erkennung oder manuell wählbar.</p>
     </div>
     <div class="feat-card">
-      <h3>PWA-Installation <span class="feat-badge feat-free">Free</span></h3>
-      <p>Installiere Semetra als Progressive Web App auf jedem Gerät — für schnellen Zugriff.</p>
+      <h3>Lerngruppen <span class="feat-badge feat-free">Free</span></h3>
+      <p>Gruppen erstellen, Mitglieder einladen, gemeinsam lernen. Mit Chat, Aktivitäts-Feed und Rollen-Management.</p>
     </div>
     <div class="feat-card">
-      <h3>Offline-Modus (Desktop) <span class="feat-badge feat-free">Free</span></h3>
-      <p>Die Desktop-App funktioniert komplett offline. Sync bei Verbindung.</p>
+      <h3>Semetra Connect <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Vernetze dich mit Studierenden deines Studiengangs an anderen Hochschulen. Privacy-first mit granularen Sichtbarkeitseinstellungen.</p>
     </div>
     <div class="feat-card">
-      <h3>Plugin-System <span class="feat-badge feat-new">Neu</span></h3>
-      <p>Erweiterbar durch Plugins: Noten-Export, Pomodoro-Plus und mehr — installierbar über den Plugin-Manager.</p>
+      <h3>Erfolge & Challenges <span class="feat-badge feat-free">Free</span></h3>
+      <p>Achievements freischalten, Streaks aufbauen, Challenges beitreten. Bestenliste und Semester-Review als Motivation.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Academic Builder <span class="feat-badge feat-new">v3.0</span></h3>
+      <p>Institutionen erstellen Studiengänge, Module und Bewertungskomponenten. 4-Rollen-System: Admin, Institution, Student, Non-Student.</p>
+    </div>
+    <div class="feat-card">
+      <h3>PWA & Offline <span class="feat-badge feat-free">Free</span></h3>
+      <p>Installierbar als Progressive Web App auf jedem Gerät. Timer funktioniert offline über IndexedDB.</p>
+    </div>
+    <div class="feat-card">
+      <h3>Plugin-System <span class="feat-badge feat-pro">Pro</span></h3>
+      <p>Erweiterbar durch Plugins mit eigenem Marketplace. Installation, Konfiguration und Aktivierung über den Plugin-Manager.</p>
+    </div>
+    <div class="feat-card">
+      <h3>DSGVO & Datenschutz <span class="feat-badge feat-free">Free</span></h3>
+      <p>Europäischer Datenschutz. Daten werden in der EU gehostet. Kein Tracking, kein Verkauf, volle Kontrolle.</p>
     </div>
   </div>
 
@@ -348,7 +402,7 @@
 <!-- CTA -->
 <section class="cta-bottom">
   <h2>Überzeugt? Dann leg los.</h2>
-  <p>Kostenlos starten. Kein Abo nötig. Upgrade jederzeit.</p>
+  <p>50+ Tools. 5 KI-Engines. Kostenlos starten. Upgrade jederzeit.</p>
   <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
     <a href="https://app.semetra.ch/register" class="btn-white">✦ Kostenlos registrieren</a>
     <a href="pricing.html" class="btn" style="background: rgba(255,255,255,0.1); color: white; border: 1.5px solid rgba(255,255,255,0.3);">Preise ansehen →</a>
@@ -360,17 +414,19 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Semetra</div>
-      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa 🇪🇺</p>
+      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa.</p>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 8px;">Ein Produkt von Lopicic Technologies</p>
     </div>
     <div class="footer-col">
       <h4>Produkt</h4>
       <a href="features.html">Features</a>
       <a href="pricing.html">Preise</a>
       <a href="changelog.html">Changelog</a>
+      <a href="warum-semetra.html">Warum Semetra?</a>
     </div>
     <div class="footer-col">
       <h4>Starten</h4>
-      <a href="https://app.semetra.ch/register">Registrieren</a>
+      <a href="https://app.semetra.ch/register">Kostenlos registrieren</a>
       <a href="https://app.semetra.ch/login">Anmelden</a>
     </div>
     <div class="footer-col">
@@ -381,7 +437,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2024–2026 Lopicic Technologies</span>
+    <span>© 2024–2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
     <a href="mailto:support@semetra.ch">support@semetra.ch</a>
   </div>
 </footer>

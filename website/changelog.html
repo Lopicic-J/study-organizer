@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Changelog — Semetra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description" content="Was ist neu in Semetra? Alle Updates, neue Features und Verbesserungen im Überblick.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,26 +117,28 @@
       <li><a href="features.html">Features</a></li>
       <li><a href="pricing.html">Preise</a></li>
       <li><a href="changelog.html" class="active">Neu</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
     </ul>
     <div id="nav-auth-desktop">
-      <a href="login.html" class="nav-login-link" style="color:var(--ink-60);text-decoration:none;font-size:0.85rem;font-weight:500;margin-right:12px;">Anmelden</a>
-      <a href="register.html" class="nav-cta">Registrieren</a>
+      <a href="https://app.semetra.ch/login" class="nav-login-link">Anmelden</a>
+      <a href="https://app.semetra.ch/register" class="nav-cta">Kostenlos starten</a>
     </div>
     <button class="nav-toggle" onclick="document.querySelector('.nav-mobile-menu').classList.toggle('open')" aria-label="Menu">
       <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div class="nav-mobile-menu">
-    <a href="warum-semetra.html">Warum Semetra?</a>
-    <a href="features.html">Features</a>
-    <a href="pricing.html">Preise</a>
-    <a href="changelog.html">Neu</a>
-    <div id="nav-auth-mobile">
-      <a href="login.html">Anmelden</a>
-      <a href="register.html" class="nav-mobile-cta">Registrieren</a>
-    </div>
-  </div>
 </nav>
+<div class="nav-mobile-menu">
+  <a href="warum-semetra.html">Warum Semetra?</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Preise</a>
+  <a href="changelog.html">Neu</a>
+  <a href="ueber-mich.html">Über mich</a>
+  <div id="nav-auth-mobile">
+    <a href="https://app.semetra.ch/login">Anmelden</a>
+    <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos starten</a>
+  </div>
+</div>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -156,26 +159,84 @@
 
     <div class="timeline">
 
-      <!-- v2.5 -->
+      <!-- v3.0 -->
       <div class="tl-entry latest fade-up">
         <div class="tl-dot"></div>
         <div class="tl-date">April 2026</div>
-        <div class="tl-version">Version 2.5 <span class="tag tag-new">Aktuell</span></div>
+        <div class="tl-version">Version 3.0 <span class="tag tag-new">Aktuell</span></div>
         <div class="tl-changes">
-          <h4>Highlights</h4>
+          <h4>Intelligentes Lernen — Grösstes Update</h4>
           <ul class="tl-list">
-            <li class="feat">PDF-Werkzeuge: Seitenweises Zusammenführen & Aufteilen mit Thumbnail-Vorschau</li>
-            <li class="feat">Mind Maps: Farbige Knoten, frei positionierbar, Textfarben-Wahl</li>
-            <li class="feat">Dashboard mit Semesterübersicht, ECTS-Fortschritt und Aufgaben</li>
+            <li class="feat">Smart Schedule: Intelligente Tagesplanung mit Decision Engine, Flashcard-Blöcke und Task-Deadlines</li>
+            <li class="feat">Floating Timer: Timer-Bubble auf allen Seiten — Session läuft im Hintergrund weiter</li>
+            <li class="feat">Geführte Lernsessions: 5-Phasen-System mit Inline-Flashcards und Prüfungssimulator</li>
+            <li class="feat">Prüfungsfokus: Sessions auf spezifische Prüfungen ausrichten</li>
+            <li class="ai">KI-Lernraum: AI-generierte Lernumgebung pro Modul (Konzeptkarten, Topic-Guide, Quick-Start)</li>
+            <li class="ai">Prüfungssimulator: AI generiert realistische MC- und offene Fragen</li>
+            <li class="feat">Kalender ↔ Schedule: Events und Stundenplan synchronisieren automatisch</li>
+            <li class="feat">Wellness-Modulation: Recovery-Modus bei niedrigem Energielevel</li>
+            <li class="feat">Lern-DNA: 5 Dimensionen mit Trend-Vergleich und 6 Lerner-Typen</li>
+            <li class="feat">Pattern Insights: Produktivste Stunden, Wochentage, Energie-Kurven</li>
+            <li class="feat">Dashboard: Today-at-a-Glance mit Flashcards, Schedule-Timeline, Prüfungs-Countdown</li>
+            <li class="feat">Exam Prep: Tagesgenauer Vorbereitungsplan mit Schedule-Integration</li>
+            <li class="improve">Dark Mode: Vollständig überarbeitet — alle Seiten, Modals und Inputs</li>
+            <li class="fix">25+ Crash-Prevention Fixes (.single() → .maybeSingle())</li>
+            <li class="improve">Performance: Query-Limits und parallelisierte Datenabfragen</li>
+            <li class="improve">6 Sprachen synchronisiert mit 2670+ Keys pro Sprache</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- v2.7 -->
+      <div class="tl-entry fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">April 2026</div>
+        <div class="tl-version">Version 2.7</div>
+        <div class="tl-changes">
+          <h4>Academic Builder</h4>
+          <ul class="tl-list">
+            <li class="feat">Academic Builder: Studiengänge, Module und Bewertungskomponenten erstellen</li>
+            <li class="feat">4-Rollen-System: Admin, Institution, Student, Non-Student</li>
+            <li class="feat">Institutionseigene Notenskalen und Richtlinien</li>
+            <li class="feat">Anforderungsgruppen nach Abschlusstyp (Bachelor, Master, PhD)</li>
+            <li class="feat">Modul-Builder: Lernziele, Inhalte, Bewertungskomponenten</li>
+            <li class="improve">Verbesserte Berechtigungen und Template-Verwaltung</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- v2.6 -->
+      <div class="tl-entry fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">April 2026</div>
+        <div class="tl-version">Version 2.6</div>
+        <div class="tl-changes">
+          <h4>UX-Konsolidierung</h4>
+          <ul class="tl-list">
+            <li class="improve">7 Seiten zu übersichtlichen Tabs zusammengeführt</li>
+            <li class="improve">Mathe-Raum: Einheitliche Icons, verbesserter Plotter</li>
+            <li class="feat">Strukturierte Studienauswahl aus akademischer Datenbank</li>
+            <li class="fix">Vollständiges Dark Mode: Alle Kontrastprobleme behoben</li>
+            <li class="improve">Verbesserte Notenübersicht und Leistungsübersicht</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- v2.5 -->
+      <div class="tl-entry fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">März 2026</div>
+        <div class="tl-version">Version 2.5</div>
+        <div class="tl-changes">
+          <h4>PDF-Tools & Mind Maps</h4>
+          <ul class="tl-list">
+            <li class="feat">PDF-Werkzeuge: Zusammenführen & Aufteilen mit Thumbnail-Vorschau</li>
+            <li class="feat">Mind Maps: Farbige Knoten, frei positionierbar, Textfarben</li>
             <li class="feat">Notenprognosen & Trendanalyse (Pro)</li>
-            <li class="ai">KI-Lernassistent: Erklären, Quiz, Zusammenfassen, Karteikarten generieren</li>
+            <li class="ai">KI-Lernassistent: Erklären, Quiz, Zusammenfassen, Karteikarten</li>
             <li class="ai">Mathe-Raum mit KI-gestützter Formel-Hilfe</li>
-            <li class="feat">Pro Full Plan mit 100 KI-Requests/Monat</li>
-            <li class="feat">Lifetime Basic & Lifetime Full Lizenzen</li>
-            <li class="feat">KI Add-on: +200 Requests für CHF 6.90 (jederzeit nachkaufbar)</li>
+            <li class="feat">Pro Full Plan & Lifetime-Lizenzen</li>
             <li class="improve">6 Sprachen: DE, EN, FR, IT, ES, NL</li>
-            <li class="improve">Überarbeitetes Pricing-Modell</li>
-            <li class="fix">Diverse UI-Verbesserungen und Bugfixes</li>
           </ul>
         </div>
       </div>
@@ -255,7 +316,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Semetra</div>
-      <p class="footer-tagline">Der smarte Study Workspace für Studierende in Europa. Desktop & Web App mit KI-Lernassistent.</p>
+      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa.</p>
       <p style="font-size:0.72rem; color:rgba(255,255,255,0.3);">Ein Produkt von Lopicic Technologies</p>
     </div>
     <div class="footer-col">
@@ -275,9 +336,8 @@
     </div>
     <div class="footer-col">
       <h4>Konto</h4>
-      <a href="login.html">Anmelden</a>
-      <a href="register.html">Registrieren</a>
-      <a href="profil.html">Profil</a>
+      <a href="https://app.semetra.ch/login">Anmelden</a>
+      <a href="https://app.semetra.ch/register">Kostenlos registrieren</a>
     </div>
     <div class="footer-col">
       <h4>Rechtliches</h4>
@@ -287,7 +347,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2025 – 2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
+    <span>© 2024–2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
     <a href="mailto:support@semetra.ch">support@semetra.ch</a>
   </div>
 </footer>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutz — Semetra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Datenschutzerklärung von Semetra — wie wir mit deinen Daten umgehen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(160deg, #f8f6fc 0%, #eef2ff 50%, #ede9fe 100%);
+      padding: 100px 24px 48px; text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400; margin-bottom: 12px;
+    }
+    .page-hero p {
+      font-size: 0.95rem; color: var(--ink-60);
+      max-width: 520px; margin: 0 auto;
+    }
+    .legal-content {
+      max-width: 780px; margin: 0 auto; padding: 0 24px;
+    }
+    .legal-content h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem; font-weight: 400;
+      margin: 48px 0 16px; padding-top: 16px;
+      border-top: 1px solid var(--ink-10);
+    }
+    .legal-content h2:first-child { border-top: none; margin-top: 0; }
+    .legal-content h3 {
+      font-size: 0.95rem; font-weight: 700;
+      margin: 24px 0 8px;
+    }
+    .legal-content p, .legal-content li {
+      font-size: 0.88rem; color: var(--ink-80);
+      line-height: 1.75;
+    }
+    .legal-content ul, .legal-content ol {
+      padding-left: 24px; margin: 8px 0 16px;
+    }
+    .legal-content li { margin-bottom: 6px; }
+    .legal-content table {
+      width: 100%; border-collapse: collapse;
+      margin: 16px 0; font-size: 0.84rem;
+    }
+    .legal-content table th {
+      text-align: left; font-weight: 700;
+      padding: 10px 12px; background: var(--surface);
+      border: 1px solid var(--ink-10);
+    }
+    .legal-content table td {
+      padding: 10px 12px;
+      border: 1px solid var(--ink-10);
+      color: var(--ink-80);
+    }
+    .legal-meta {
+      font-size: 0.78rem; color: var(--ink-40);
+      text-align: center; margin-top: 48px;
+      padding: 24px 0; border-top: 1px solid var(--ink-10);
+    }
+  
+    /* Language switch pill */
+    .lang-switch {
+      display: flex; align-items: center;
+      background: var(--ink-05); border: 1px solid var(--ink-10);
+      border-radius: 8px; overflow: hidden;
+      cursor: pointer; user-select: none;
+    }
+    .lang-opt {
+      padding: 5px 10px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.5px; color: var(--ink-20);
+      transition: all 0.2s;
+    }
+    .lang-opt.active {
+      background: var(--ink); color: #fff;
+    }
+    .nav-mobile-actions {
+      display: none; align-items: center; gap: 8px;
+    }
+      @media (max-width: 720px) {
+      .nav-mobile-actions { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a></li>
+      <li><a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a></li>
+      <li><a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a></li>
+      <li><a href="changelog.html" data-de="Neu" data-en="New">Neu</a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <a href="login.html" class="nav-login-link" data-de="Anmelden" data-en="Sign in" style="color:var(--ink-60);text-decoration:none;font-size:0.85rem;font-weight:500;margin-right:12px;">Anmelden</a>
+      <a href="register.html" class="nav-cta" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+    </div>
+    <div class="nav-mobile-actions">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a>
+  <a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a>
+  <a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a>
+  <a href="changelog.html" data-de="Neu" data-en="New">Neu</a>
+  <div id="nav-auth-mobile">
+    <a href="login.html" data-de="Anmelden" data-en="Sign in">Anmelden</a>
+    <a href="register.html" class="nav-mobile-cta" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <h1 data-de="Datenschutzerklärung" data-en="Privacy Policy">Datenschutzerklärung</h1>
+  <p data-de="Gültig ab 4. April 2026 — basierend auf dem Schweizer Datenschutzgesetz (nDSG)" data-en="Effective from April 4, 2026 — based on Swiss Data Protection Act (nDSG)">Gültig ab 4. April 2026 — basierend auf dem Schweizer Datenschutzgesetz (nDSG)</p>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+  <div class="legal-content">
+
+    <h2>1. Verantwortliche Stelle</h2>
+    <p>Verantwortlich für die Datenbearbeitung ist:</p>
+    <p><strong>Julijan Lopicic</strong><br>
+    handelnd als «Lopicic Technologies»<br>
+    Schweiz<br>
+    E-Mail: <a href="mailto:support@semetra.ch" style="color:var(--accent);">support@semetra.ch</a></p>
+    <p>Mangels gesetzlicher Pflicht wurde kein Datenschutzberater bestellt. Für Anfragen zum Datenschutz wenden Sie sich bitte an die oben genannte E-Mail-Adresse.</p>
+
+    <h2>2. Geltungsbereich</h2>
+    <p>Diese Datenschutzerklärung gilt für die Nutzung der Website semetra.ch, der Web-Applikation app.semetra.ch sowie der Desktop-Anwendung «Semetra» (zusammen «Dienst»). Sie erläutert, welche Personendaten wir erheben, zu welchem Zweck und an wen sie weitergegeben werden.</p>
+
+    <h2>3. Rechtsgrundlagen</h2>
+    <p>Wir bearbeiten Personendaten im Einklang mit dem schweizerischen Bundesgesetz über den Datenschutz (nDSG, in Kraft seit 1. September 2023). Soweit die EU-Datenschutz-Grundverordnung (DSGVO) anwendbar ist, dienen folgende Rechtsgrundlagen:</p>
+    <ul>
+      <li><strong>Vertragserfüllung</strong> (Art. 6 Abs. 1 lit. b DSGVO) — zur Bereitstellung des Dienstes und der Abonnement-Verwaltung</li>
+      <li><strong>Berechtigtes Interesse</strong> (Art. 6 Abs. 1 lit. f DSGVO) — zur Verbesserung des Dienstes und zur Betrugsprävention</li>
+      <li><strong>Einwilligung</strong> (Art. 6 Abs. 1 lit. a DSGVO) — sofern ausdrücklich erteilt, z.&#8239;B. für KI-Nutzung</li>
+    </ul>
+
+    <h2>4. Erhobene Daten</h2>
+    <h3>4.1 Bei der Registrierung</h3>
+    <ul>
+      <li>E-Mail-Adresse</li>
+      <li>Benutzername (optional)</li>
+      <li>Passwort (gehasht gespeichert, nicht im Klartext)</li>
+    </ul>
+    <h3>4.2 Bei der Nutzung des Dienstes</h3>
+    <ul>
+      <li>Von der Nutzerin eingegebene Studiendaten (Module, Noten, Notizen, Aufgaben, Kalendereinträge, Mind Maps, Karteikarten, Dokumente)</li>
+      <li>Nutzungsstatistiken (Anzahl KI-Requests, aktive Sitzungen)</li>
+      <li>Geräte- und Browser-Informationen (User Agent, Bildschirmauflösung) — nur soweit technisch notwendig</li>
+    </ul>
+    <h3>4.3 Bei der Zahlung</h3>
+    <ul>
+      <li>Zahlungsdaten (Kreditkartennummer, Ablaufdatum) werden ausschliesslich durch Stripe verarbeitet und <strong>nie</strong> auf unseren Servern gespeichert</li>
+      <li>Wir erhalten von Stripe lediglich: Abo-Status, Zahlungsstatus und die letzten vier Ziffern der Kartennummer</li>
+    </ul>
+    <h3>4.4 Bei der KI-Nutzung</h3>
+    <ul>
+      <li>Vom Nutzer eingegebene Prompts und der zugehörige Kontext werden an Anthropic, PBC (USA) übermittelt, um eine Antwort zu generieren</li>
+      <li>Anthropic verarbeitet diese Daten gemäss den <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener" style="color:var(--accent);">Anthropic Privacy Policies</a>. Laut Anthropic werden API-Eingaben nicht für das Training der Modelle verwendet</li>
+    </ul>
+    <h3>4.5 Desktop-Anwendung (Offline)</h3>
+    <p>In der Desktop-Anwendung werden sämtliche Daten lokal in einer SQLite-Datenbank auf dem Gerät der Nutzerin gespeichert. Eine Übermittlung an unsere Server erfolgt <strong>nur</strong>, wenn die Nutzerin die Cloud-Synchronisierung aktiv nutzt (Pro-Feature).</p>
+
+    <h2>5. Zweck der Datenbearbeitung</h2>
+    <p>Wir bearbeiten Personendaten für folgende Zwecke:</p>
+    <ul>
+      <li>Bereitstellung und Betrieb des Dienstes</li>
+      <li>Verwaltung des Nutzerkontos und Authentifizierung</li>
+      <li>Abonnement- und Zahlungsverwaltung</li>
+      <li>Bereitstellung der KI-Funktionen</li>
+      <li>Synchronisation zwischen Desktop- und Web-Applikation</li>
+      <li>Technische Fehlerbehebung und Verbesserung des Dienstes</li>
+      <li>Kommunikation mit der Nutzerin (Support, Benachrichtigungen)</li>
+    </ul>
+
+    <h2>6. Weitergabe an Dritte</h2>
+    <p>Wir geben Personendaten nur im notwendigen Umfang an folgende Dritte weiter:</p>
+    <table>
+      <tr>
+        <th>Drittanbieter</th>
+        <th>Zweck</th>
+        <th>Sitz</th>
+        <th>Datenkategorien</th>
+      </tr>
+      <tr>
+        <td>Supabase, Inc.</td>
+        <td>Cloud-Datenbank, Authentifizierung, Speicher</td>
+        <td>USA</td>
+        <td>Kontodaten, Studiendaten, Dokumente</td>
+      </tr>
+      <tr>
+        <td>Stripe, Inc.</td>
+        <td>Zahlungsabwicklung</td>
+        <td>USA</td>
+        <td>E-Mail, Zahlungsdaten</td>
+      </tr>
+      <tr>
+        <td>Anthropic, PBC</td>
+        <td>KI-Lernassistent</td>
+        <td>USA</td>
+        <td>KI-Prompts, Kontext</td>
+      </tr>
+      <tr>
+        <td>Vercel, Inc.</td>
+        <td>Hosting Web-App</td>
+        <td>USA</td>
+        <td>IP-Adresse, Zugriffsdaten</td>
+      </tr>
+      <tr>
+        <td>Cloudflare, Inc.</td>
+        <td>Hosting Website, CDN, DNS</td>
+        <td>USA</td>
+        <td>IP-Adresse, Zugriffsdaten</td>
+      </tr>
+    </table>
+    <p>Alle genannten US-Anbieter unterliegen angemessenen Datenschutzstandards. Wir schliessen, wo möglich, Auftragsverarbeitungsverträge (DPA) ab.</p>
+
+    <h2>7. Datenübermittlung ins Ausland</h2>
+    <p>Durch die Nutzung der oben genannten Drittanbieter können Personendaten in die USA übermittelt werden. Die USA gelten gemäss dem Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) nicht als Land mit angemessenem Datenschutzniveau. Wir stützen die Übermittlung auf Standardvertragsklauseln (SCC) sowie die Einhaltung des EU-US Data Privacy Frameworks (DPF) durch die jeweiligen Anbieter, sofern anwendbar.</p>
+
+    <h2>8. Cookies und Tracking</h2>
+    <p>Die Website semetra.ch verwendet <strong>keine</strong> Werbe-Cookies oder Tracking-Tools Dritter (kein Google Analytics, kein Facebook Pixel).</p>
+    <p>Es werden ausschliesslich technisch notwendige Cookies verwendet:</p>
+    <ul>
+      <li><strong>Session-Cookies</strong> — zur Authentifizierung in der Web-App</li>
+      <li><strong>Präferenz-Cookies</strong> — zur Speicherung von Spracheinstellungen</li>
+    </ul>
+    <p>Diese Cookies sind für den Betrieb des Dienstes erforderlich und können nicht deaktiviert werden, ohne die Funktionalität einzuschränken.</p>
+
+    <h2>9. Datensicherheit</h2>
+    <p>Wir treffen angemessene technische und organisatorische Massnahmen zum Schutz der Personendaten, insbesondere:</p>
+    <ul>
+      <li>Verschlüsselung der Datenübertragung mittels TLS/SSL (HTTPS)</li>
+      <li>Passwörter werden gehasht gespeichert (bcrypt via Supabase Auth)</li>
+      <li>Zugriffsbeschränkung auf Daten durch Row Level Security (RLS) in der Datenbank</li>
+      <li>Regelmässige Sicherheitsprüfungen und Updates</li>
+      <li>Lokale Datenspeicherung in der Desktop-App (SQLite) verbleibt auf dem Gerät der Nutzerin</li>
+    </ul>
+    <p>Trotz aller Massnahmen kann keine absolute Sicherheit garantiert werden. Der Anbieter haftet nicht für Schäden, die durch Angriffe Dritter oder höhere Gewalt entstehen.</p>
+
+    <h2>10. Aufbewahrungsdauer</h2>
+    <p>Personendaten werden so lange aufbewahrt, wie sie für den jeweiligen Zweck benötigt werden:</p>
+    <ul>
+      <li><strong>Kontodaten</strong>: bis zur Löschung des Nutzerkontos</li>
+      <li><strong>Studiendaten</strong>: bis zur Löschung durch die Nutzerin oder Kontolöschung</li>
+      <li><strong>Zahlungsdaten</strong>: gemäss den gesetzlichen Aufbewahrungsfristen (10 Jahre nach Schweizer Buchführungspflicht)</li>
+      <li><strong>KI-Prompts</strong>: werden nicht dauerhaft gespeichert; die Verarbeitung erfolgt transient bei Anthropic</li>
+      <li><strong>Server-Logs</strong>: maximal 90 Tage</li>
+    </ul>
+    <p>Nach Löschung des Nutzerkontos werden sämtliche personenbezogenen Daten innerhalb von 30 Tagen gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+
+    <h2>11. Rechte der betroffenen Person</h2>
+    <p>Nach dem schweizerischen Datenschutzgesetz (nDSG) stehen der Nutzerin folgende Rechte zu:</p>
+    <ul>
+      <li><strong>Auskunftsrecht</strong> (Art. 25 nDSG): Recht auf Auskunft über die bearbeiteten Personendaten</li>
+      <li><strong>Recht auf Berichtigung</strong> (Art. 32 Abs. 1 nDSG): Recht auf Korrektur unrichtiger Daten</li>
+      <li><strong>Recht auf Löschung</strong>: Recht auf Löschung der Daten, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen</li>
+      <li><strong>Recht auf Datenherausgabe</strong> (Art. 28 nDSG): Recht auf Herausgabe der Daten in einem gängigen elektronischen Format</li>
+      <li><strong>Widerspruchsrecht</strong>: Recht, der Datenbearbeitung zu widersprechen</li>
+    </ul>
+    <p>Soweit die DSGVO anwendbar ist, stehen zusätzlich folgende Rechte zu: Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO), Recht auf Widerspruch (Art. 21 DSGVO) und Beschwerderecht bei einer Aufsichtsbehörde.</p>
+    <p>Anfragen sind schriftlich an <a href="mailto:support@semetra.ch" style="color:var(--accent);">support@semetra.ch</a> zu richten. Wir beantworten Anfragen innert 30 Tagen.</p>
+
+    <h2>12. Daten von Minderjährigen</h2>
+    <p>Der Dienst richtet sich an Personen ab 16 Jahren. Wir erheben wissentlich keine Personendaten von Kindern unter 16 Jahren. Sollten wir Kenntnis davon erhalten, dass Daten von Personen unter 16 Jahren erhoben wurden, werden diese unverzüglich gelöscht.</p>
+
+    <h2>13. Änderungen</h2>
+    <p>Wir behalten uns vor, diese Datenschutzerklärung jederzeit anzupassen. Die aktuelle Version ist stets unter semetra.ch/datenschutz.html abrufbar. Wesentliche Änderungen werden per E-Mail oder innerhalb der App angekündigt.</p>
+
+    <div class="legal-meta">
+      <p>Stand: 4. April 2026 — Version 1.0<br>
+      Bei Fragen: <a href="mailto:support@semetra.ch" style="color:var(--accent);">support@semetra.ch</a></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline" data-de="Der smarte Study Workspace für Studierende in Europa." data-en="The smart study workspace for students in Europe.">Der smarte Study Workspace für Studierende in Europa.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Produkt" data-en="Product">Produkt</h4>
+      <a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a>
+      <a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a>
+      <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a>
+      <a href="changelog.html" data-de="Changelog" data-en="Changelog">Changelog</a>
+      <a href="https://app.semetra.ch" data-de="Web App" data-en="Web App">Web App</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Konto" data-en="Account">Konto</h4>
+      <a href="login.html" data-de="Anmelden" data-en="Sign in">Anmelden</a>
+      <a href="register.html" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+      <a href="profil.html" data-de="Profil" data-en="Profile">Profil</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Rechtliches" data-en="Legal">Rechtliches</h4>
+      <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+      <a href="agb.html" data-de="AGB" data-en="Terms">AGB</a>
+      <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 – 2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="i18n.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>

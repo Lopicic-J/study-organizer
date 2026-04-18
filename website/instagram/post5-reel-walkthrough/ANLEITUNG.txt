@@ -1,0 +1,29 @@
+═══ POST 5: Reel — App Walkthrough ═══
+
+FORMAT: Instagram Reel (30-60 Sekunden)
+
+SO ERSTELLST DU DAS REEL:
+
+1. Öffne app.semetra.ch im Browser (am besten Vollbild)
+2. Starte eine Bildschirmaufnahme (Windows: Win+G → Aufnahme)
+3. Zeige nacheinander:
+   - Dashboard (3-5 Sek)
+   - Module & Noten (5 Sek, kurz durchscrollen)
+   - Stundenplan (5 Sek)
+   - Karteikarten (5 Sek, eine Karte umdrehen)
+   - KI-Assistent (5 Sek, eine Frage stellen)
+   - Zurück zum Dashboard (3 Sek)
+
+4. Schneide das Video zusammen (CapCut, InShot oder Instagram direkt)
+5. Füge Musik hinzu (trending Sound, upbeat)
+6. Text-Overlays pro Szene:
+   - "Dashboard" → "Alles auf einen Blick"
+   - "Notenrechner" → "17 Notensysteme"
+   - "Stundenplan" → "Drag & Drop"
+   - "Karteikarten" → "Lernen mit System"
+   - "KI-Assistent" → "Dein Lern-Coach"
+   - Ende: "semetra.ch — Kostenlos starten"
+
+TIPP: Schnelle Schnitte (1-3 Sek pro Szene), Musik im Takt wechseln.
+
+WANN POSTEN: ~1 Woche nach Launch

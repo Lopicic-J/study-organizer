@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semetra — Dein Studium. Dein System.</title>
-  <meta name="description" content="Semetra organisiert dein Studium: Unified Dashboard, Decision Engine, KI-Assistent, Stundenplan, Prüfungs-Intelligence, Lern-DNA und 50+ Tools. Kostenlos starten.">
-  <meta property="og:title" content="Semetra — Der smarteste Studienplaner Europas">
-  <meta property="og:description" content="Alles was du fürs Studium brauchst — in einer App. Module, Noten, KI, Stundenplan, Prüfungs-Intelligence und mehr.">
+  <title>Semetra — Das intelligente Study System</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Semetra organisiert dein Studium intelligent: Smart Schedule, KI-Lernraum, Decision Engine, Prüfungssimulator, Lern-DNA und 50+ Tools. Für Studierende in ganz Europa.">
+  <meta property="og:title" content="Semetra — Das intelligente Study System">
+  <meta property="og:description" content="Smart Schedule, KI-Lernraum, Decision Engine und 50+ Tools — alles in einer App. Kostenlos starten.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://semetra.ch">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,434 +30,191 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
+      top: -20%; right: -10%;
+      width: 600px; height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.25), transparent 70%);
+      background: radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%);
       animation: floatOrb 15s ease-in-out infinite;
       pointer-events: none;
     }
     .hero::after {
       content: '';
       position: absolute;
-      bottom: -15%;
-      left: -5%;
-      width: 500px;
-      height: 500px;
+      bottom: -15%; left: -5%;
+      width: 500px; height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(79, 70, 229, 0.2), transparent 70%);
+      background: radial-gradient(circle, rgba(79,70,229,0.2), transparent 70%);
       animation: floatOrb 20s ease-in-out infinite reverse;
       pointer-events: none;
     }
     @keyframes floatOrb {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, 30px) scale(1.1); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(30px,30px) scale(1.1); }
     }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 32px;
-      backdrop-filter: blur(10px);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 16px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.8);
+      margin-bottom: 32px; backdrop-filter: blur(10px);
       animation: fadeInDown 0.8s ease forwards;
     }
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #10b981;
-      animation: pulse 2s infinite;
-    }
+    .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     .hero h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(3rem, 7vw, 4.5rem);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      color: #ffffff;
-      margin: 0 auto 24px;
-      animation: fadeInDown 0.8s ease 0.1s forwards;
-      opacity: 0;
+      font-weight: 400; line-height: 1.1; letter-spacing: -1px;
+      color: #ffffff; margin: 0 auto 24px;
+      animation: fadeInDown 0.8s ease 0.1s forwards; opacity: 0;
     }
     .hero h1 strong {
       font-weight: 400;
       background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #7c3aed 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 200% 200%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; background-size: 200% 200%;
       animation: gradientShift 5s ease infinite;
     }
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+    @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
     .hero-subheading {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 700px;
-      margin: 0 auto 48px;
-      line-height: 1.7;
-      animation: fadeInDown 0.8s ease 0.2s forwards;
-      opacity: 0;
+      font-size: 1.25rem; color: rgba(255,255,255,0.7);
+      max-width: 720px; margin: 0 auto 48px; line-height: 1.7;
+      animation: fadeInDown 0.8s ease 0.2s forwards; opacity: 0;
     }
     .hero-actions {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 60px;
-      animation: fadeInDown 0.8s ease 0.3s forwards;
-      opacity: 0;
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 60px; animation: fadeInDown 0.8s ease 0.3s forwards; opacity: 0;
     }
     .btn-hero-primary {
       background: linear-gradient(135deg, #7c3aed, #4f46e5);
-      color: white;
-      padding: 16px 40px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+      color: white; padding: 16px 40px; border-radius: 12px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: all 0.3s; border: none; cursor: pointer;
+      box-shadow: 0 8px 32px rgba(124,58,237,0.3);
     }
-    .btn-hero-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 48px rgba(124, 58, 237, 0.4);
-    }
+    .btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 48px rgba(124,58,237,0.4); }
     .btn-hero-secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      padding: 16px 40px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s;
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255,255,255,0.1); color: white;
+      padding: 16px 40px; border-radius: 12px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: all 0.3s; border: 1.5px solid rgba(255,255,255,0.3);
       backdrop-filter: blur(10px);
     }
-    .btn-hero-secondary:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-3px);
-    }
+    .btn-hero-secondary:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); transform: translateY(-3px); }
     .hero-trust {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.55);
-      flex-wrap: wrap;
-      animation: fadeInUp 0.8s ease 0.4s forwards;
-      opacity: 0;
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px; font-size: 0.85rem; color: rgba(255,255,255,0.55); flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .trust-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #10b981;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .trust-item { display: flex; align-items: center; gap: 8px; }
+    .trust-icon { width: 18px; height: 18px; border-radius: 50%; background: #10b981; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: 700; }
 
     /* ═══ STATS BAR ═══ */
-    .stats-bar {
-      background: var(--white);
-      border-bottom: 1px solid var(--ink-10);
-      padding: 40px 24px;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .stat-number {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.5rem;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--ink-40);
-      font-weight: 500;
-    }
+    .stats-bar { background: var(--white); border-bottom: 1px solid var(--ink-10); padding: 40px 24px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .stat-number { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.8rem; color: var(--ink-40); font-weight: 500; }
 
-    /* ═══ FEATURE SHOWCASE (large cards) ═══ */
-    .showcase-section {
-      padding: 100px 24px;
-      background: linear-gradient(180deg, #ffffff 0%, #f8f6fc 100%);
-    }
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
+    /* ═══ FEATURE SHOWCASE ═══ */
+    .showcase-section { padding: 100px 24px; background: linear-gradient(180deg, #ffffff 0%, #f8f6fc 100%); }
+    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1120px; margin: 0 auto; }
     .showcase-card {
-      position: relative;
-      border-radius: 20px;
-      padding: 40px;
-      background: var(--white);
-      border: 1px solid var(--ink-10);
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      overflow: hidden;
+      position: relative; border-radius: 20px; padding: 40px;
+      background: var(--white); border: 1px solid var(--ink-10);
+      transition: all 0.4s cubic-bezier(0.23,1,0.32,1); overflow: hidden;
     }
-    .showcase-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(13, 8, 32, 0.1);
-      border-color: var(--accent);
-    }
+    .showcase-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(13,8,32,0.1); border-color: var(--accent); }
     .showcase-card.featured {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
+      grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: center;
       background: linear-gradient(135deg, #0d0820, #1a1040);
-      border-color: rgba(124, 58, 237, 0.3);
-      color: white;
+      border-color: rgba(124,58,237,0.3); color: white;
     }
-    .showcase-card.featured:hover {
-      border-color: rgba(124, 58, 237, 0.6);
-    }
+    .showcase-card.featured:hover { border-color: rgba(124,58,237,0.6); }
     .showcase-card.featured .showcase-card-label { color: rgba(255,255,255,0.5); }
     .showcase-card.featured .showcase-card-title { color: white; }
     .showcase-card.featured .showcase-card-desc { color: rgba(255,255,255,0.7); }
     .showcase-card.featured .showcase-card-features li { color: rgba(255,255,255,0.8); }
     .showcase-card.featured .showcase-card-features li::before { color: #10b981; }
-    .showcase-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-    .showcase-card-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .showcase-card-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem;
-      line-height: 1.2;
-      color: var(--ink);
-      margin-bottom: 12px;
-    }
-    .showcase-card-desc {
-      color: var(--ink-60);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-    .showcase-card-features {
-      list-style: none;
-      padding: 0;
-    }
-    .showcase-card-features li {
-      font-size: 0.85rem;
-      color: var(--ink-60);
-      padding: 4px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .showcase-card-features li::before {
-      content: '✓';
-      color: var(--green);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
+    .showcase-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+    .showcase-card-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px; }
+    .showcase-card-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; line-height: 1.2; color: var(--ink); margin-bottom: 12px; }
+    .showcase-card-desc { color: var(--ink-60); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px; }
+    .showcase-card-features { list-style: none; padding: 0; }
+    .showcase-card-features li { font-size: 0.85rem; color: var(--ink-60); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .showcase-card-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 0.9rem; }
     .showcase-mockup {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 24px;
-      min-height: 280px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 24px; min-height: 280px;
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .mockup-bar {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .mockup-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-    }
-    .mockup-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .mockup-pill {
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
+    .mockup-bar { display: flex; gap: 6px; margin-bottom: 8px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+    .mockup-row { display: flex; gap: 8px; align-items: center; }
+    .mockup-pill { padding: 6px 14px; border-radius: 8px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
 
     /* ═══ INTELLIGENCE SECTION ═══ */
-    .intel-section {
-      padding: 100px 24px;
-      background: var(--white);
-    }
-    .intel-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .intel-card {
-      padding: 32px;
-      border-radius: 16px;
-      border: 1px solid var(--ink-10);
-      background: var(--white);
-      transition: all 0.3s;
-    }
-    .intel-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 12px 40px rgba(79, 70, 229, 0.08);
-      transform: translateY(-2px);
-    }
-    .intel-card-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
-    .intel-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--ink);
-    }
-    .intel-card p {
-      font-size: 0.88rem;
-      color: var(--ink-60);
-      line-height: 1.6;
-    }
-    .intel-card .tag {
-      margin-left: 0;
-      margin-top: 12px;
-    }
+    .intel-section { padding: 100px 24px; background: var(--white); }
+    .intel-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1120px; margin: 0 auto; }
+    .intel-card { padding: 32px; border-radius: 16px; border: 1px solid var(--ink-10); background: var(--white); transition: all 0.3s; }
+    .intel-card:hover { border-color: var(--accent); box-shadow: 0 12px 40px rgba(79,70,229,0.08); transform: translateY(-2px); }
+    .intel-card-icon { font-size: 2rem; margin-bottom: 16px; }
+    .intel-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+    .intel-card p { font-size: 0.88rem; color: var(--ink-60); line-height: 1.6; }
+    .intel-card .tag { margin-left: 0; margin-top: 12px; }
 
     /* ═══ CTA SECTION ═══ */
     .cta-section {
       padding: 100px 24px;
       background: linear-gradient(160deg, #0d0820 0%, #1a1040 50%, #0d0820 100%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      text-align: center; position: relative; overflow: hidden;
     }
     .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px;
-      height: 800px;
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); width: 800px; height: 800px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.15), transparent 60%);
+      background: radial-gradient(circle, rgba(124,58,237,0.15), transparent 60%);
       pointer-events: none;
     }
-    .cta-content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .cta-content h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: white;
-      margin-bottom: 16px;
-    }
-    .cta-content p {
-      color: rgba(255,255,255,0.65);
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      line-height: 1.7;
-    }
+    .cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+    .cta-content h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem,4vw,3rem); color: white; margin-bottom: 16px; }
+    .cta-content p { color: rgba(255,255,255,0.65); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.7; }
 
     /* ═══ RESPONSIVE ═══ */
     @media (max-width: 860px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
       .showcase-grid { grid-template-columns: 1fr; }
       .showcase-card.featured { grid-template-columns: 1fr; }
       .intel-grid { grid-template-columns: 1fr 1fr; }
     }
+    @media (max-width: 720px) {
+      .hero { padding: 80px 16px 60px; min-height: auto; }
+      .hero h1 { font-size: clamp(2rem,6vw,3rem); }
+      .showcase-card { padding: 24px; }
+      .showcase-card.featured { padding: 24px; }
+    }
     @media (max-width: 560px) {
-      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .intel-grid { grid-template-columns: 1fr; }
-      .hero-trust { gap: 16px; }
-      .showcase-card { padding: 28px; }
+      .showcase-card { padding: 20px; }
+      .showcase-card-title { font-size: 1.3rem !important; }
+      .showcase-mockup { padding: 16px; min-height: auto; }
+      .mockup-pill { font-size: 0.65rem !important; padding: 5px 10px; }
     }
   </style>
 </head>
 <body>
 
 <!-- ═══ NAVIGATION ═══ -->
-<nav class="nav" style="background: rgba(13, 8, 32, 0.95); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
+<nav class="nav" style="background: rgba(13,8,32,0.95); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(16px);">
   <div class="nav-inner">
     <a href="/" class="nav-brand" style="color: white;">Semetra</a>
     <ul class="nav-links">
@@ -464,6 +222,7 @@
       <li><a href="features.html" style="color: rgba(255,255,255,0.7);">Features</a></li>
       <li><a href="pricing.html" style="color: rgba(255,255,255,0.7);">Preise</a></li>
       <li><a href="changelog.html" style="color: rgba(255,255,255,0.7);">Neu</a></li>
+      <li><a href="ueber-mich.html" style="color: rgba(255,255,255,0.7);">Über mich</a></li>
     </ul>
     <div id="nav-auth-desktop">
       <a href="https://app.semetra.ch/login" class="nav-login-link" style="color: rgba(255,255,255,0.7);">Anmelden</a>
@@ -473,28 +232,30 @@
       <svg viewBox="0 0 24 24" style="stroke: white;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="warum-semetra.html">Warum Semetra?</a>
-    <a href="features.html">Features</a>
-    <a href="pricing.html">Preise</a>
-    <a href="changelog.html">Neu</a>
-    <a href="https://app.semetra.ch/login">Anmelden</a>
-    <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos registrieren</a>
-  </div>
 </nav>
+<div id="mobile-menu" class="nav-mobile-menu nav-mobile-dark">
+  <a href="warum-semetra.html">Warum Semetra?</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Preise</a>
+  <a href="changelog.html">Neu</a>
+  <a href="ueber-mich.html">Über mich</a>
+  <a href="https://app.semetra.ch/login">Anmelden</a>
+  <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos starten</a>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
-      Version 2.0 — Jetzt mit Decision Engine & KI
+      v3.0 — Smart Schedule, KI-Lernraum & Lern-DNA
     </div>
     <h1>Dein Studium.<br><strong>Intelligent organisiert.</strong></h1>
     <p class="hero-subheading">
-      Semetra vereint alles in einer App: Dashboard mit Decision Engine, KI-Assistent,
-      Stundenplan, Prüfungs-Intelligence, Lern-DNA und 50+ Tools.
-      Für Studierende in 17 Ländern — von der Schweiz bis Skandinavien.
+      Semetra ist das intelligente Study System: Smart Schedule plant deinen Tag,
+      die Decision Engine erkennt Risiken, der KI-Lernraum erklärt Stoff,
+      und deine Lern-DNA zeigt wie du am besten lernst.
+      Für Studierende in ganz Europa.
     </p>
     <div class="hero-actions">
       <a href="https://app.semetra.ch/register" class="btn-hero-primary">
@@ -505,10 +266,10 @@
       </a>
     </div>
     <div class="hero-trust">
-      <span class="trust-item"><span class="trust-icon">✓</span> Desktop & Web App</span>
-      <span class="trust-item"><span class="trust-icon">✓</span> KI-Lernassistent (Claude)</span>
+      <span class="trust-item"><span class="trust-icon">✓</span> Web App & PWA</span>
+      <span class="trust-item"><span class="trust-icon">✓</span> KI-Lernassistent</span>
       <span class="trust-item"><span class="trust-icon">✓</span> 6 Sprachen</span>
-      <span class="trust-item"><span class="trust-icon">✓</span> Für immer kostenlos starten</span>
+      <span class="trust-item"><span class="trust-icon">✓</span> DSGVO-konform</span>
     </div>
   </div>
 </section>
@@ -525,8 +286,8 @@
       <div class="stat-label">Sprachen</div>
     </div>
     <div>
-      <div class="stat-number">∞</div>
-      <div class="stat-label">Module (Pro)</div>
+      <div class="stat-number">5</div>
+      <div class="stat-label">KI-Engines</div>
     </div>
     <div>
       <div class="stat-number">0.–</div>
@@ -539,105 +300,86 @@
 <section class="showcase-section">
   <div class="section-header">
     <span class="section-label">Alles was du brauchst</span>
-    <h2 class="section-title">Ein System für dein ganzes Studium</h2>
+    <h2 class="section-title">Ein System. Dein ganzes Studium.</h2>
     <p class="section-desc">
-      Schluss mit 5 verschiedenen Apps. Semetra bringt Organisation, Intelligenz und Produktivität in eine einzige Plattform.
+      Schluss mit 5 verschiedenen Apps. Semetra vereint Organisation, Intelligenz und Produktivität in einer Plattform — und lernt von dir.
     </p>
   </div>
 
   <div class="showcase-grid">
 
-    <!-- FEATURED: Unified Dashboard -->
+    <!-- FEATURED: Smart Schedule + Decision Engine -->
     <div class="showcase-card featured">
       <div>
         <div class="showcase-card-label">Herzstück</div>
-        <div class="showcase-card-title" style="font-size: 2rem;">Unified Dashboard</div>
+        <div class="showcase-card-title" style="font-size: 2rem;">Smart Schedule & Decision Engine</div>
         <p class="showcase-card-desc">
-          Alles auf einen Blick: Dein persönliches Command Center kombiniert Übersicht mit
-          Decision Engine Intelligence. Streak, ECTS, Prüfungen, Aufgaben, Risiko-Monitor
-          und KI-Tagesplan — alles an einem Ort.
+          Der Smart Schedule plant deinen Tag intelligent: Er kombiniert deine Vorlesungen, Kalender-Events,
+          fällige Flashcards und Prüfungs-Deadlines zu einem optimalen Tagesplan.
+          Die Decision Engine analysiert Risiken und priorisiert Module automatisch.
         </p>
         <ul class="showcase-card-features">
-          <li>Decision Engine mit Risiko-Analyse</li>
-          <li>Tagesplan mit priorisierten Aktionen</li>
-          <li>30-Tage Lern-Heatmap</li>
-          <li>Modul-Prognosen & Bestehenswahrscheinlichkeit</li>
-          <li>Streak-Tracking mit Gamification</li>
+          <li>Intelligente Tagesplanung mit Energy-Aware Scheduling</li>
+          <li>Automatische Flashcard- & Task-Blöcke</li>
+          <li>Kalender & Stundenplan synchronisiert</li>
+          <li>Prüfungs-Countdown mit Ramping</li>
+          <li>Wellness-Modulation (Recovery-Modus bei Überarbeitung)</li>
         </ul>
       </div>
       <div class="showcase-mockup">
         <div class="mockup-bar">
-          <span class="mockup-dot"></span>
-          <span class="mockup-dot"></span>
-          <span class="mockup-dot"></span>
+          <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
         </div>
         <div class="mockup-row">
           <span class="mockup-pill" style="background: rgba(249,115,22,0.2); color: #fb923c;">🔥 12 Tage Streak</span>
           <span class="mockup-pill" style="background: rgba(99,102,241,0.2); color: #818cf8;">ECTS 96/180</span>
-          <span class="mockup-pill" style="background: rgba(16,185,129,0.2); color: #34d399;">GPA 5.2</span>
+          <span class="mockup-pill" style="background: rgba(16,185,129,0.2); color: #34d399;">⌀ 5.2</span>
         </div>
         <div style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 10px 14px; font-size: 0.75rem; color: #fca5a5;">
-          ⚠ Analysis: Niedrige Aktivität in Recht — Prüfung in 8 Tagen
+          ⚠ Prüfung: Statistik in 5 Tagen — 3 schwache Topics
         </div>
         <div style="background: rgba(79,70,229,0.1); border: 1px solid rgba(79,70,229,0.2); border-radius: 10px; padding: 10px 14px; font-size: 0.75rem; color: #a5b4fc;">
-          ⚡ Heutiger Fokus: Mathematik II — 45 Min empfohlen
+          ⚡ 14:00 Statistik Review · 16:00 BWL Flashcards (23 fällig)
         </div>
         <div class="mockup-row" style="gap: 6px; flex-wrap: wrap;">
           <span class="mockup-pill" style="background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.65rem;">📊 Risiko-Monitor</span>
+          <span class="mockup-pill" style="background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.65rem;">🧬 Lern-DNA</span>
           <span class="mockup-pill" style="background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.65rem;">🎯 Prognosen</span>
-          <span class="mockup-pill" style="background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.65rem;">📈 Wochenchart</span>
         </div>
       </div>
     </div>
 
-    <!-- Smart Schedule & Stundenplan -->
-    <div class="showcase-card">
-      <div class="showcase-icon" style="background: #dbeafe; color: #2563eb;">📅</div>
-      <div class="showcase-card-label">Zeitmanagement</div>
-      <div class="showcase-card-title">Smart Schedule & Stundenplan</div>
-      <p class="showcase-card-desc">
-        7-Tage Stundenplan mit echten Kalenderdaten, Drag-and-Drop und KW-Navigation.
-        Der Smart Schedule analysiert deine Prioritäten und erstellt optimale Zeitblöcke.
-      </p>
-      <ul class="showcase-card-features">
-        <li>Mo–So mit Kalenderwochen + Datum</li>
-        <li>Drag-and-Drop Planung</li>
-        <li>KI-optimierte Zeitblöcke</li>
-        <li>Semester- & KW-verwaltung</li>
-      </ul>
-    </div>
-
-    <!-- Prüfungs-Intelligence -->
-    <div class="showcase-card">
-      <div class="showcase-icon" style="background: #fce7f3; color: #db2777;">🎯</div>
-      <div class="showcase-card-label">Prüfungsvorbereitung</div>
-      <div class="showcase-card-title">Prüfungs-Intelligence</div>
-      <p class="showcase-card-desc">
-        KI-gestützte Analyse deiner Prüfungshistorie: Notenvorhersagen, Fehlerquellen-Analyse,
-        Schwierigkeitsgrad-Erkennung und optimierte Lernstrategien.
-      </p>
-      <ul class="showcase-card-features">
-        <li>Notenprognose pro Modul</li>
-        <li>Schwächen-Analyse</li>
-        <li>Wissens-Level pro Thema</li>
-        <li>Prüfungsformat & Schwierigkeit tracken</li>
-      </ul>
-    </div>
-
-    <!-- KI-Assistent -->
+    <!-- KI-Lernraum -->
     <div class="showcase-card">
       <div class="showcase-icon" style="background: #ede9fe; color: #7c3aed;">🤖</div>
       <div class="showcase-card-label">Künstliche Intelligenz</div>
-      <div class="showcase-card-title">KI-Lernassistent</div>
+      <div class="showcase-card-title">KI-Lernraum & Assistent</div>
       <p class="showcase-card-desc">
-        Powered by Claude (Anthropic). Erklärt Konzepte, löst Aufgaben Schritt für Schritt,
-        generiert Karteikarten und hilft dir beim Brainstorming — direkt in deinem Kontext.
+        AI-generierte Lernumgebung pro Modul: Konzeptkarten, Topic-Guide, Quick-Start und Alltagsbeispiele.
+        Der KI-Assistent erklärt, löst und generiert Karteikarten — in deinem Kontext.
       </p>
       <ul class="showcase-card-features">
-        <li>Mathe-Raum mit LaTeX-Rendering</li>
-        <li>Kreativ-Tools für Brainstorming</li>
-        <li>Step-by-Step Erklärungen</li>
-        <li>Free: 3 Requests/Tag</li>
+        <li>Lernraum mit 4 Bereichen pro Modul</li>
+        <li>Prüfungssimulator mit AI-Fragen</li>
+        <li>Mathe-Raum mit LaTeX</li>
+        <li>Brainstorming & Mind Maps</li>
+      </ul>
+    </div>
+
+    <!-- Guided Sessions -->
+    <div class="showcase-card">
+      <div class="showcase-icon" style="background: #dbeafe; color: #2563eb;">📋</div>
+      <div class="showcase-card-label">Strukturiert lernen</div>
+      <div class="showcase-card-title">Geführte Lernsessions</div>
+      <p class="showcase-card-desc">
+        Strukturierte Sessions in Phasen: Review, Lernen, Übung, Test, Reflexion.
+        Mit Inline-Flashcards und Prüfungssimulator direkt in der Session — prüfungsfokussiert.
+      </p>
+      <ul class="showcase-card-features">
+        <li>5 Lernphasen mit Timer</li>
+        <li>Flashcards & Simulator inline</li>
+        <li>Prüfungsbezogenes Lernen</li>
+        <li>Reflexion mit DNA-Update</li>
       </ul>
     </div>
 
@@ -645,16 +387,33 @@
     <div class="showcase-card">
       <div class="showcase-icon" style="background: #d1fae5; color: #059669;">🧬</div>
       <div class="showcase-card-label">Persönlichkeit</div>
-      <div class="showcase-card-title">Lern-DNA</div>
+      <div class="showcase-card-title">Lern-DNA & Pattern Insights</div>
       <p class="showcase-card-desc">
-        Dein einzigartiges Lernprofil: 5 Dimensionen (Konsistenz, Intensität, Breite, Effizienz, Ausdauer)
-        zeigen dir wie du lernst und wo Potenzial steckt.
+        5 Dimensionen zeigen dein Lernprofil: Konsistenz, Fokus, Ausdauer, Anpassungsfähigkeit, Planung.
+        Pattern Insights verraten deine produktivsten Stunden und Gewohnheiten.
       </p>
       <ul class="showcase-card-features">
-        <li>5 Lern-Dimensionen als Radar</li>
-        <li>Vergleich über Zeit (Snapshots)</li>
-        <li>Lerntyp-Erkennung</li>
-        <li>Personalisierte Empfehlungen</li>
+        <li>Radar-Chart mit Trend-Vergleich</li>
+        <li>6 Lerner-Typen (Marathon bis Sprint)</li>
+        <li>Passt Decision Engine an dich an</li>
+        <li>Micro-Updates nach jeder Session</li>
+      </ul>
+    </div>
+
+    <!-- Prüfungsvorbereitung -->
+    <div class="showcase-card">
+      <div class="showcase-icon" style="background: #fce7f3; color: #db2777;">🎯</div>
+      <div class="showcase-card-label">Prüfungsvorbereitung</div>
+      <div class="showcase-card-title">Exam Prep & Simulator</div>
+      <p class="showcase-card-desc">
+        Tagesgenauer Vorbereitungsplan mit automatischen Schedule-Blöcken.
+        Der Prüfungssimulator generiert realistische Fragen basierend auf deinen Modulthemen.
+      </p>
+      <ul class="showcase-card-features">
+        <li>Exam-Prep Plan mit Daily Activities</li>
+        <li>AI-Prüfungssimulator (MC + offen)</li>
+        <li>Notenprognose & Wissens-Level</li>
+        <li>Prüfungsrelevanz pro Topic</li>
       </ul>
     </div>
 
@@ -675,74 +434,92 @@
     <div class="intel-card">
       <div class="intel-card-icon">📚</div>
       <h3>Module & ECTS</h3>
-      <p>Alle Module, Noten, ECTS und Semester auf einen Blick. 17 Notensysteme und Hochschul-Datenbanken europaweit.</p>
+      <p>Alle Module, Noten, ECTS und Semester auf einen Blick. 17 Notensysteme europaweit. Institution-Import möglich.</p>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="intel-card">
+      <div class="intel-card-icon">⏱</div>
+      <h3>Timer & Floating Bubble</h3>
+      <p>Pomodoro, Deep Work oder freie Sessions. Timer läuft als Bubble auf allen Seiten — Session geht beim Navigieren nicht verloren.</p>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="intel-card">
+      <div class="intel-card-icon">🧠</div>
+      <h3>Flashcards & Spaced Repetition</h3>
+      <p>FSRS-basierte Wiederholungen. Quick Review, Community-Decks und automatische Integration in den Smart Schedule.</p>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="intel-card">
+      <div class="intel-card-icon">📅</div>
+      <h3>Kalender & Stundenplan</h3>
+      <p>Stundenplan mit KW-Navigation und Drag-and-Drop. Events synchronisieren automatisch mit dem Smart Schedule.</p>
       <span class="tag tag-free">Free</span>
     </div>
     <div class="intel-card">
       <div class="intel-card-icon">✅</div>
       <h3>Aufgaben & Deadlines</h3>
-      <p>Aufgaben pro Modul mit Prioritäten, Fälligkeitsdaten, Anhängen und automatischer Überblick im Dashboard.</p>
+      <p>Tasks mit Prioritäten und Deadlines. Der Smart Schedule plant automatisch Blöcke für fällige Aufgaben ein.</p>
       <span class="tag tag-free">Free</span>
     </div>
     <div class="intel-card">
       <div class="intel-card-icon">📊</div>
       <h3>Noten & Prognosen</h3>
-      <p>ECTS-gewichteter Notendurchschnitt, Notenrechner und Bestehenswahrscheinlichkeit pro Modul.</p>
+      <p>ECTS-gewichteter Notendurchschnitt, Notenrechner und Bestehenswahrscheinlichkeit pro Modul. 17 Grading Systems.</p>
       <span class="tag tag-pro">Pro</span>
     </div>
     <div class="intel-card">
-      <div class="intel-card-icon">🧠</div>
-      <h3>Karteikarten & Spaced Repetition</h3>
-      <p>Lerne effizienter mit intelligenten Wiederholungen. Erstelle Sets pro Modul und tracke deinen Fortschritt.</p>
-      <span class="tag tag-free">Free</span>
+      <div class="intel-card-icon">💚</div>
+      <h3>Wellness & Balance</h3>
+      <p>Balance-Score aus Energie, Verständnis und Sicherheit. Bei niedrigem Score: Recovery-Modus mit kürzeren Lernblöcken.</p>
+      <span class="tag tag-new">Neu</span>
     </div>
     <div class="intel-card">
-      <div class="intel-card-icon">⏱</div>
-      <h3>Pomodoro-Timer & Tracking</h3>
-      <p>Studienzeit erfassen mit dem integrierten Timer. Heatmap und Wochenchart zeigen deine Lerngewohnheiten.</p>
-      <span class="tag tag-free">Free</span>
+      <div class="intel-card-icon">📈</div>
+      <h3>Wochenrückblick</h3>
+      <p>Wöchentliche Performance-Analyse: Planeinhaltung, Studienzeit, Modul-Breakdown und personalisierte Empfehlungen.</p>
+      <span class="tag tag-new">Neu</span>
     </div>
     <div class="intel-card">
       <div class="intel-card-icon">🎓</div>
       <h3>Academic Builder</h3>
-      <p>Institutionen und Studiengänge erstellen. Admin-System mit 4 Rollen: Admin, Institution, Student, Non-Student.</p>
+      <p>Institutionen erstellen Studiengänge, Module und Bewertungskomponenten. 4-Rollen-System für Admins und Institutionen.</p>
       <span class="tag tag-new">Neu</span>
-    </div>
-    <div class="intel-card">
-      <div class="intel-card-icon">🗂</div>
-      <h3>Materialien & Dokumente</h3>
-      <p>Lernmaterialien pro Modul organisieren. Links, Notizen und Dateien an einem Ort.</p>
-      <span class="tag tag-free">Free</span>
-    </div>
-    <div class="intel-card">
-      <div class="intel-card-icon">👥</div>
-      <h3>Lerngruppen</h3>
-      <p>Zusammen lernen: Gruppen erstellen, Mitglieder einladen und gemeinsam am Studium arbeiten.</p>
-      <span class="tag tag-free">Free</span>
-    </div>
-    <div class="intel-card">
-      <div class="intel-card-icon">🏆</div>
-      <h3>Erfolge & Streaks</h3>
-      <p>Gamification die motiviert: Achievements freischalten, Streak aufbauen und tägliche Lernziele erreichen.</p>
-      <span class="tag tag-free">Free</span>
     </div>
     <div class="intel-card">
       <div class="intel-card-icon">📄</div>
       <h3>PDF-Tools</h3>
-      <p>PDFs zusammenführen, teilen, komprimieren und bearbeiten — direkt in Semetra, ohne externe Tools.</p>
+      <p>PDFs zusammenführen, teilen und bearbeiten — direkt in Semetra. Komplett kostenlos für alle Nutzer.</p>
       <span class="tag tag-free">Free</span>
+    </div>
+    <div class="intel-card">
+      <div class="intel-card-icon">🗺️</div>
+      <h3>Mind Maps</h3>
+      <p>Visuelle Mind Maps mit individuellen Farben, verschiebbaren Knoten und Textfarben. Ideal zum Strukturieren.</p>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="intel-card">
+      <div class="intel-card-icon">👥</div>
+      <h3>Lerngruppen & Connect</h3>
+      <p>Gruppen erstellen, Mitglieder einladen. Semetra Connect vernetzt Studierende desselben Studiengangs.</p>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="intel-card">
+      <div class="intel-card-icon">🏆</div>
+      <h3>Erfolge & Challenges</h3>
+      <p>Achievements, Streaks, Challenges und Bestenliste. Gamification die motiviert — ohne abzulenken.</p>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="intel-card">
+      <div class="intel-card-icon">📊</div>
+      <h3>Lernnachweis & Export</h3>
+      <p>Vollständiger Leistungsnachweis als PDF mit KPI-Dashboard, Modulübersicht und Studienkennzahlen.</p>
+      <span class="tag tag-new">Neu</span>
     </div>
     <div class="intel-card">
       <div class="intel-card-icon">🌍</div>
       <h3>6 Sprachen</h3>
-      <p>Deutsch, English, Français, Italiano, Español, Nederlands — wechsle jederzeit in den Einstellungen.</p>
+      <p>Deutsch, English, Français, Italiano, Español, Nederlands — mit 2670+ Übersetzungsschlüsseln pro Sprache.</p>
       <span class="tag tag-free">Free</span>
-    </div>
-    <div class="intel-card">
-      <div class="intel-card-icon">🔄</div>
-      <h3>Desktop ↔ Web Sync</h3>
-      <p>Arbeite auf dem Desktop offline und synchronisiere nahtlos mit der Web-App. Deine Daten überall dabei.</p>
-      <span class="tag tag-pro">Pro</span>
     </div>
   </div>
 </section>
@@ -752,11 +529,11 @@
   <div class="cta-content">
     <h2>Bereit für ein smarteres Studium?</h2>
     <p>
-      Tausende Funktionen. Null Kosten zum Starten.<br>
-      Dein Studium verdient das beste System.
+      50+ Tools. 5 KI-Engines. 0 Kosten zum Starten.<br>
+      Dein Studium verdient das intelligenteste System.
     </p>
     <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://app.semetra.ch/register" class="btn-hero-primary">✦ Jetzt kostenlos registrieren</a>
+      <a href="https://app.semetra.ch/register" class="btn-hero-primary">✦ Jetzt kostenlos starten</a>
       <a href="pricing.html" class="btn-hero-secondary">Preise ansehen →</a>
     </div>
   </div>
@@ -767,7 +544,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Semetra</div>
-      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa 🇪🇺</p>
+      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa.</p>
       <p style="font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 8px;">
         Ein Produkt von Lopicic Technologies
       </p>
@@ -783,7 +560,6 @@
       <h4>Starten</h4>
       <a href="https://app.semetra.ch/register">Kostenlos registrieren</a>
       <a href="https://app.semetra.ch/login">Anmelden</a>
-      <a href="login.html">Desktop Login</a>
     </div>
     <div class="footer-col">
       <h4>Rechtliches</h4>

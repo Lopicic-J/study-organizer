@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über mich — Semetra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Die Geschichte hinter Semetra — wie aus einer Idee auf den Seychellen ein Study System für ganz Europa wurde.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ═══ HERO ═══ */
+    .about-hero {
+      background: linear-gradient(160deg, #f8f6fc 0%, #eef2ff 50%, #ede9fe 100%);
+      padding: 120px 24px 80px;
+      text-align: center;
+    }
+    .about-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400; line-height: 1.2;
+      letter-spacing: -0.5px; margin-bottom: 16px;
+    }
+    .about-hero p {
+      font-size: 1.1rem; color: var(--ink-60);
+      max-width: 560px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* ═══ INTRO ═══ */
+    .intro-section {
+      max-width: 800px; margin: 0 auto;
+      padding: 80px 24px 64px;
+    }
+    .intro-grid {
+      display: flex; gap: 48px; align-items: flex-start;
+    }
+    .intro-photo {
+      flex-shrink: 0;
+    }
+    .intro-photo img {
+      width: 180px; height: 180px;
+      border-radius: 24px; object-fit: cover;
+      box-shadow: 0 12px 40px rgba(79,70,229,0.15);
+      border: 4px solid var(--white);
+    }
+    .intro-photo-placeholder {
+      width: 180px; height: 180px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--accent), var(--violet));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      box-shadow: 0 12px 40px rgba(79,70,229,0.2);
+    }
+    .intro-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem; font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .intro-role {
+      font-size: 0.85rem; color: var(--accent); font-weight: 600;
+      margin-bottom: 20px; display: block;
+    }
+    .intro-text p {
+      font-size: 0.95rem; color: var(--ink-80);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+
+    /* ═══ QUOTE ═══ */
+    .quote-section {
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      padding: 64px 24px; text-align: center;
+    }
+    .quote-mark {
+      font-size: 4rem; line-height: 1; color: rgba(255,255,255,0.15);
+      font-family: 'DM Serif Display', serif;
+      margin-bottom: -16px;
+    }
+    .quote-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: white; max-width: 700px; margin: 0 auto 16px;
+      line-height: 1.5; font-weight: 400;
+    }
+    .quote-author {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+    }
+
+    /* ═══ TIMELINE ═══ */
+    .story-section {
+      max-width: 720px; margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .story-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; font-weight: 400;
+      text-align: center; margin-bottom: 48px;
+    }
+    .story-timeline {
+      position: relative; padding-left: 40px;
+    }
+    .story-timeline::before {
+      content: '';
+      position: absolute; left: 15px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--violet));
+      border-radius: 1px;
+    }
+    .story-step {
+      position: relative; margin-bottom: 40px;
+    }
+    .story-step:last-child { margin-bottom: 0; }
+    .story-dot {
+      position: absolute; left: -33px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--accent);
+      z-index: 1;
+    }
+    .story-step:last-child .story-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.15);
+    }
+    .story-when {
+      font-size: 0.72rem; font-weight: 700; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .story-title {
+      font-size: 1.05rem; font-weight: 700; color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .story-desc {
+      font-size: 0.88rem; color: var(--ink-60); line-height: 1.7;
+    }
+
+    /* ═══ VALUES ═══ */
+    .values-section {
+      background: var(--surface); padding: 80px 24px;
+    }
+    .values-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; font-weight: 400;
+      text-align: center; margin-bottom: 12px;
+    }
+    .values-subtitle {
+      text-align: center; color: var(--ink-60);
+      font-size: 1rem; max-width: 560px;
+      margin: 0 auto 48px; line-height: 1.7;
+    }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 900px; margin: 0 auto;
+    }
+    .value-card {
+      background: var(--white); border: 1px solid var(--ink-10);
+      border-radius: var(--radius-lg); padding: 28px;
+      text-align: center;
+    }
+    .value-icon {
+      font-size: 1.8rem; margin-bottom: 12px;
+      display: block;
+    }
+    .value-card h3 {
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .value-card p {
+      font-size: 0.84rem; color: var(--ink-60); line-height: 1.6;
+    }
+
+    /* ═══ PRICING NOTE ═══ */
+    .honest-section {
+      max-width: 720px; margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .honest-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem; font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .honest-section p {
+      font-size: 0.95rem; color: var(--ink-80);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+    .honest-box {
+      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+    .honest-box p {
+      color: #065f46; margin: 0; font-weight: 500;
+    }
+
+    /* ═══ CTA ═══ */
+    .about-cta {
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      padding: 80px 24px; text-align: center;
+      color: white;
+    }
+    .about-cta h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400; margin-bottom: 12px; color: white;
+    }
+    .about-cta p {
+      color: rgba(255,255,255,0.6); font-size: 1rem;
+      max-width: 500px; margin: 0 auto 28px; line-height: 1.7;
+    }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; background: white;
+      color: #1e1b4b; border-radius: 12px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 720px) {
+      .intro-grid { flex-direction: column; align-items: center; text-align: center; }
+      .intro-photo-placeholder { width: 140px; height: 140px; font-size: 2.8rem; }
+      .intro-photo img { width: 140px; height: 140px; }
+      .values-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .nav-mobile-actions { display: flex; }
+    }
+    @media (max-width: 560px) {
+      .story-timeline { padding-left: 32px; }
+      .story-dot { left: -25px; }
+    }
+
+    /* ═══ FUTURE ═══ */
+    .future-section {
+      max-width: 720px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .future-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem; font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .future-section p {
+      font-size: 0.95rem; color: var(--ink-80);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+    .feedback-box {
+      background: var(--surface); border: 1px solid var(--ink-10);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-top: 24px;
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .feedback-icon {
+      font-size: 1.6rem; flex-shrink: 0; margin-top: 2px;
+    }
+    .feedback-box h3 {
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .feedback-box p {
+      font-size: 0.86rem; color: var(--ink-60); line-height: 1.6;
+      margin: 0;
+    }
+    .feedback-box a {
+      color: var(--accent); font-weight: 600; text-decoration: none;
+    }
+    .feedback-box a:hover { text-decoration: underline; }
+
+    .nav-mobile-actions {
+      display: none; align-items: center; gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html">Warum Semetra?</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="pricing.html">Preise</a></li>
+      <li><a href="changelog.html">Neu</a></li>
+      <li><a href="ueber-mich.html" class="active">Über mich</a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <a href="https://app.semetra.ch/login" class="nav-login-link">Anmelden</a>
+      <a href="https://app.semetra.ch/register" class="nav-cta">Kostenlos starten</a>
+    </div>
+    <div class="nav-mobile-actions">
+      <button class="nav-toggle" onclick="document.querySelector('.nav-mobile-menu').classList.toggle('open')" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="warum-semetra.html">Warum Semetra?</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Preise</a>
+  <a href="changelog.html">Neu</a>
+  <a href="ueber-mich.html">Über mich</a>
+  <div id="nav-auth-mobile">
+    <a href="https://app.semetra.ch/login">Anmelden</a>
+    <a href="https://app.semetra.ch/register" class="nav-mobile-cta">Kostenlos starten</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="about-hero">
+  <span class="section-label fade-up">Die Geschichte dahinter</span>
+  <h1 class="fade-up fade-up-d1">Ein Student. Eine Idee. Ein System.</h1>
+  <p class="fade-up fade-up-d2">Semetra ist kein Startup mit Investoren und Marketing-Budget. Es ist ein persönliches Projekt — gebaut von einem Studenten, für Studierende.</p>
+</section>
+
+<!-- ═══ INTRO ═══ -->
+<section class="intro-section">
+  <div class="intro-grid fade-up">
+    <div class="intro-photo">
+      <img src="Julijan.jpg" alt="Julijan Lopicic">
+    </div>
+    <div class="intro-text">
+      <h2>Julijan Lopicic</h2>
+      <span class="intro-role">Gründer & Entwickler von Semetra</span>
+      <p>Hey, ich bin Julijan. Im August 2026 beginne ich mein Informatikstudium — und Semetra ist das Tool, das ich mir dafür selbst gebaut habe.</p>
+      <p>Nicht weil ich eine App auf den Markt bringen wollte, sondern weil ich ehrlich Angst hatte: Schaffe ich das Studium? Wie behalte ich den Überblick? Wie bleibe ich organisiert und motiviert, wenn es schwierig wird?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUOTE ═══ -->
+<section class="quote-section">
+  <div class="container" style="max-width: 800px;">
+    <div class="quote-mark fade-up">&laquo;</div>
+    <p class="quote-text fade-up fade-up-d1">Ich wollte nicht einfach ein Tool — ich wollte ein System, das mich vom ersten Semester bis zum Abschluss wie ein Coach begleitet.</p>
+    <p class="quote-author fade-up fade-up-d2">Julijan, irgendwo auf den Seychellen, 2025</p>
+  </div>
+</section>
+
+<!-- ═══ TIMELINE ═══ -->
+<section class="story-section">
+  <h2 class="fade-up">Wie alles begann</h2>
+  <div class="story-timeline">
+
+    <div class="story-step fade-up">
+      <div class="story-dot"></div>
+      <div class="story-when">2025 — Seychellen</div>
+      <div class="story-title">Die Idee</div>
+      <div class="story-desc">Auf einer Solo-Reise stellte ich mir die Fragen, die mich nicht losliessen: Wie organisiere ich mein Studium? Wie behalte ich Noten, Module und Deadlines im Blick? Wie motiviere ich mich langfristig? Statt eine App zu suchen, die alles kann, beschloss ich, sie selbst zu bauen.</div>
+    </div>
+
+    <div class="story-step fade-up">
+      <div class="story-dot"></div>
+      <div class="story-when">Herbst 2025</div>
+      <div class="story-title">Die ersten Zeilen Code</div>
+      <div class="story-desc">Was als einfacher Notenrechner begann, wuchs schnell: Stundenplan, Aufgaben, Kalender, Karteikarten. Jede Funktion entstand aus einer echten Frage: Was brauche ich wirklich, um effizient zu studieren?</div>
+    </div>
+
+    <div class="story-step fade-up">
+      <div class="story-dot"></div>
+      <div class="story-when">Januar 2026</div>
+      <div class="story-title">Version 2.0 — Desktop trifft Web</div>
+      <div class="story-desc">Semetra bekam eine Web-App, Echtzeit-Synchronisation und einen KI-Lernassistenten. Aus einem lokalen Tool wurde eine Plattform — bereit, auch anderen Studierenden zu helfen.</div>
+    </div>
+
+    <div class="story-step fade-up">
+      <div class="story-dot"></div>
+      <div class="story-when">Frühling 2026 — Militärdienst</div>
+      <div class="story-title">Jede freie Minute</div>
+      <div class="story-desc">Während des Militärdienstes nutze ich jede freie Minute — Abende, Wochenenden, Pausen — um Semetra weiterzuentwickeln. Nicht weil ich muss, sondern weil ich an dieses Projekt glaube.</div>
+    </div>
+
+    <div class="story-step fade-up">
+      <div class="story-dot"></div>
+      <div class="story-when">April 2026</div>
+      <div class="story-title">Version 3.0 — das intelligente Study System</div>
+      <div class="story-desc">Das grösste Update: Smart Schedule plant den Tag automatisch, der KI-Lernraum erklärt Stoff pro Modul, geführte Lernsessions mit Inline-Flashcards und Prüfungssimulator, die Lern-DNA zeigt wie du am besten lernst. 5 KI-Engines, 50+ Tools, 6 Sprachen — Semetra ist jetzt wirklich ein intelligentes System.</div>
+    </div>
+
+    <div class="story-step fade-up">
+      <div class="story-dot"></div>
+      <div class="story-when">August 2026</div>
+      <div class="story-title">Studienstart — der echte Test</div>
+      <div class="story-desc">Mein eigenes Informatikstudium beginnt. Semetra wird mein täglicher Begleiter — und alles, was ich dabei lerne, fliesst direkt zurück in die App. Was für mich funktioniert, wird auch für dich funktionieren.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ VALUES ═══ -->
+<section class="values-section">
+  <h2 class="fade-up">Was mir bei Semetra wichtig ist</h2>
+  <p class="values-subtitle fade-up fade-up-d1">Semetra ist nicht nur ein Produkt. Es sind Werte, die ich als Student selbst lebe.</p>
+  <div class="values-grid">
+
+    <div class="value-card fade-up">
+      <span class="value-icon">&#x1F3AF;</span>
+      <h3>Gebaut aus echtem Bedarf</h3>
+      <p>Jede Funktion existiert, weil ich sie selbst brauche. Kein Feature-Bloat, keine Marketing-Features — nur was Studierenden wirklich hilft.</p>
+    </div>
+
+    <div class="value-card fade-up fade-up-d1">
+      <span class="value-icon">&#x1F91D;</span>
+      <h3>Ehrlich & transparent</h3>
+      <p>Ich bin eine einzelne Person, kein anonymes Unternehmen. Du weisst, wer hinter Semetra steht — und kannst mir direkt schreiben.</p>
+    </div>
+
+    <div class="value-card fade-up fade-up-d2">
+      <span class="value-icon">&#x1F4AA;</span>
+      <h3>Studierende helfen Studierenden</h3>
+      <p>Semetra soll eine Community schaffen, in der sich Studierende gegenseitig pushen, motivieren und zusammen besser werden.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ HONEST PRICING ═══ -->
+<section class="honest-section">
+  <h2 class="fade-up">Ein ehrliches Wort zum Preis</h2>
+  <p class="fade-up fade-up-d1">Semetra kostet mich echtes Geld — Server, KI-API, Infrastruktur. Als Student werde ich nicht viel verdienen können. Die unzähligen Stunden, die ich in dieses Projekt gesteckt habe, waren eine Investition aus Leidenschaft.</p>
+  <p class="fade-up fade-up-d1">Deshalb kann ich Semetra nicht komplett kostenlos anbieten. Aber ich versuche, es so günstig wie möglich zu halten. Der Free-Plan ist zeitlich unbegrenzt und gibt dir Zugang zu den wichtigsten Tools. Wer mehr will, unterstützt damit gleichzeitig ein Projekt, das von einem Studenten für Studierende gebaut wird.</p>
+  <div class="honest-box fade-up fade-up-d2">
+    <p>Der Free-Plan bleibt für immer kostenlos — mit über 50 Tools, die dir den Studienalltag erleichtern. Kein Ablaufdatum, keine Kreditkarte nötig.</p>
+  </div>
+</section>
+
+<!-- ═══ FUTURE + FEEDBACK ═══ -->
+<section class="future-section">
+  <h2 class="fade-up">Das ist erst der Anfang</h2>
+  <p class="fade-up fade-up-d1">Mit v3.0 ist Semetra zu einem wirklich intelligenten System geworden — aber es ist noch vieles geplant. Als Nächstes kommt die <strong>Mobile App für iOS und Android</strong>, damit du dein Studium überall dabei hast. Danach folgen Push-Notifications, noch tiefere KI-Integration und Community-Features.</p>
+  <p class="fade-up fade-up-d1">Mein Ziel ist es, Semetra zu einem System zu machen, das sich mit dir weiterentwickelt — vom ersten Semester bis zum Abschluss und darüber hinaus.</p>
+  <div class="feedback-box fade-up fade-up-d2">
+    <span class="feedback-icon">&#x1F4AC;</span>
+    <div>
+      <h3>Dein Feedback zählt</h3>
+      <p>Hast du eine Idee, einen Wunsch oder Feedback? Ich höre zu. Wenn es zur Semetra-Vision und zum Studentenleben passt, versuche ich es umzusetzen. Schreib mir direkt an <a href="mailto:support@semetra.ch">support@semetra.ch</a> — ich antworte persönlich.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="about-cta">
+  <h2 class="fade-up">Bereit, dein Studium zu organisieren?</h2>
+  <p class="fade-up fade-up-d1">Probier Semetra kostenlos aus und überzeug dich selbst. Wenn du Fragen hast, schreib mir — ich antworte persönlich.</p>
+  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+    <a href="https://app.semetra.ch/register" class="btn-white fade-up fade-up-d2">Kostenlos starten</a>
+    <a href="mailto:support@semetra.ch" class="fade-up fade-up-d2" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: rgba(255,255,255,0.1); color: white; border-radius: 12px; font-weight: 600; font-size: 0.9rem; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.2); transition: all 0.2s;">Schreib mir</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline">Dein Studium. Dein System.<br>Gebaut in der Schweiz — für ganz Europa.</p>
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.3);">Ein Produkt von Lopicic Technologies</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produkt</h4>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Preise</a>
+      <a href="warum-semetra.html">Warum Semetra?</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="https://app.semetra.ch">Web App</a>
+    </div>
+    <div class="footer-col">
+      <h4>Konto</h4>
+      <a href="https://app.semetra.ch/login">Anmelden</a>
+      <a href="https://app.semetra.ch/register">Kostenlos registrieren</a>
+    </div>
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024–2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; }});
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGB — Semetra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Allgemeine Geschäftsbedingungen von Semetra — dem smarten Study Workspace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(160deg, #f8f6fc 0%, #eef2ff 50%, #ede9fe 100%);
+      padding: 100px 24px 48px; text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400; margin-bottom: 12px;
+    }
+    .page-hero p {
+      font-size: 0.95rem; color: var(--ink-60);
+      max-width: 520px; margin: 0 auto;
+    }
+    .legal-content {
+      max-width: 780px; margin: 0 auto;
+      padding: 0 24px;
+    }
+    .legal-content h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem; font-weight: 400;
+      margin: 48px 0 16px; padding-top: 16px;
+      border-top: 1px solid var(--ink-10);
+    }
+    .legal-content h2:first-child { border-top: none; margin-top: 0; }
+    .legal-content h3 {
+      font-size: 0.95rem; font-weight: 700;
+      margin: 24px 0 8px;
+    }
+    .legal-content p, .legal-content li {
+      font-size: 0.88rem; color: var(--ink-80);
+      line-height: 1.75;
+    }
+    .legal-content ul, .legal-content ol {
+      padding-left: 24px; margin: 8px 0 16px;
+    }
+    .legal-content li { margin-bottom: 6px; }
+    .legal-meta {
+      font-size: 0.78rem; color: var(--ink-40);
+      text-align: center; margin-top: 48px;
+      padding: 24px 0; border-top: 1px solid var(--ink-10);
+    }
+  
+    /* Language switch pill */
+    .lang-switch {
+      display: flex; align-items: center;
+      background: var(--ink-05); border: 1px solid var(--ink-10);
+      border-radius: 8px; overflow: hidden;
+      cursor: pointer; user-select: none;
+    }
+    .lang-opt {
+      padding: 5px 10px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.5px; color: var(--ink-20);
+      transition: all 0.2s;
+    }
+    .lang-opt.active {
+      background: var(--ink); color: #fff;
+    }
+    .nav-mobile-actions {
+      display: none; align-items: center; gap: 8px;
+    }
+      @media (max-width: 720px) {
+      .nav-mobile-actions { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a></li>
+      <li><a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a></li>
+      <li><a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a></li>
+      <li><a href="changelog.html" data-de="Neu" data-en="New">Neu</a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <a href="login.html" class="nav-login-link" data-de="Anmelden" data-en="Sign in" style="color:var(--ink-60);text-decoration:none;font-size:0.85rem;font-weight:500;margin-right:12px;">Anmelden</a>
+      <a href="register.html" class="nav-cta" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+    </div>
+    <div class="nav-mobile-actions">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a>
+  <a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a>
+  <a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a>
+  <a href="changelog.html" data-de="Neu" data-en="New">Neu</a>
+  <div id="nav-auth-mobile">
+    <a href="login.html" data-de="Anmelden" data-en="Sign in">Anmelden</a>
+    <a href="register.html" class="nav-mobile-cta" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <h1 data-de="Allgemeine Geschäftsbedingungen" data-en="Terms of Service">Allgemeine Geschäftsbedingungen</h1>
+  <p data-de="Gültig ab 4. April 2026" data-en="Effective from April 4, 2026">Gültig ab 4. April 2026</p>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+  <div class="legal-content">
+
+    <h2>1. Geltungsbereich</h2>
+    <p>Diese Allgemeinen Geschäftsbedingungen (nachfolgend «AGB») regeln die Nutzung der Software «Semetra» (nachfolgend «Dienst»), bestehend aus der Desktop-Anwendung, der Web-Applikation unter app.semetra.ch sowie der Website semetra.ch. Der Dienst wird betrieben von Julijan Lopicic, Schweiz (nachfolgend «Anbieter»), handelnd unter dem Namen «Lopicic Technologies».</p>
+    <p>Mit der Registrierung, der Installation oder der Nutzung des Dienstes akzeptiert die nutzende Person (nachfolgend «Nutzerin» oder «Nutzer») diese AGB vollumfänglich. Sofern die Nutzerin mit diesen AGB nicht einverstanden ist, ist die Nutzung des Dienstes untersagt.</p>
+
+    <h2>2. Leistungsbeschreibung</h2>
+    <p>Semetra ist eine Studienorganisations-Software, die unter anderem folgende Funktionen bietet: Modulverwaltung, Notenberechnung, Stundenplan, Kalender, Aufgabenverwaltung, Notizen, Mind Maps, Karteikarten, PDF-Werkzeuge, Lernziele, Pomodoro-Timer sowie einen KI-gestützten Lernassistenten.</p>
+    <p>Der Anbieter stellt den Dienst in verschiedenen Plänen zur Verfügung (Free, Pro Basic, Pro Full, Lifetime Basic, Lifetime Full). Der jeweilige Leistungsumfang ergibt sich aus der aktuellen Preisseite unter semetra.ch/pricing.html.</p>
+    <p>Der Anbieter behält sich das Recht vor, den Funktionsumfang jederzeit zu erweitern, zu ändern oder einzelne Funktionen einzustellen, sofern dies für die Nutzerin zumutbar ist.</p>
+
+    <h2>3. Registrierung und Nutzerkonto</h2>
+    <p>Für die Nutzung bestimmter Funktionen ist eine Registrierung erforderlich. Die Nutzerin ist verpflichtet, wahrheitsgemässe Angaben zu machen und ihre Zugangsdaten vertraulich zu behandeln. Die Nutzerin haftet für sämtliche Aktivitäten, die über ihr Konto erfolgen.</p>
+    <p>Der Anbieter ist berechtigt, Nutzerkonten bei Verstoss gegen diese AGB oder bei begründetem Verdacht auf Missbrauch zu sperren oder zu löschen.</p>
+
+    <h2>4. Preise und Zahlungsbedingungen</h2>
+    <h3>4.1 Kostenloser Plan (Free)</h3>
+    <p>Der Free-Plan ist zeitlich unbegrenzt und kostenfrei nutzbar. Der Leistungsumfang ist eingeschränkt (siehe Preisseite).</p>
+    <h3>4.2 Kostenpflichtige Pläne (Pro / Lifetime)</h3>
+    <p>Die Preise verstehen sich in Schweizer Franken (CHF) inklusive allfälliger gesetzlicher Steuern. Die Abrechnung erfolgt über den Zahlungsdienstleister Stripe, Inc. Es gelten zusätzlich die Nutzungsbedingungen von Stripe.</p>
+    <p>Abonnements (Pro Basic, Pro Full) werden zum gewählten Intervall (monatlich, halbjährlich oder jährlich) automatisch verlängert, sofern sie nicht vor Ablauf der aktuellen Periode gekündigt werden.</p>
+    <h3>4.3 Lifetime-Lizenzen</h3>
+    <p>Lifetime-Lizenzen gewähren dauerhaften Zugang zu den zum Kaufzeitpunkt enthaltenen Pro-Features. «Dauerhaft» bezieht sich auf die Lebensdauer des Dienstes. Der Anbieter garantiert keine bestimmte Mindestlaufzeit des Dienstes, wird jedoch bei einer allfälligen Einstellung eine angemessene Vorankündigungsfrist einhalten.</p>
+    <h3>4.4 KI-Add-on</h3>
+    <p>Zusätzliche KI-Requests können als Einzelkauf (Add-on) erworben werden. Jedes Add-on umfasst 200 KI-Requests und kann jederzeit erneut erworben werden, sobald das Kontingent aufgebraucht ist. Nicht verbrauchte Requests bleiben bis zur Nutzung bestehen.</p>
+    <h3>4.5 Preisänderungen</h3>
+    <p>Der Anbieter behält sich das Recht vor, Preise zu ändern. Bestehende Abonnements sind bis zum Ende der laufenden Abrechnungsperiode von Preisänderungen nicht betroffen. Preisänderungen werden mindestens 30 Tage im Voraus per E-Mail angekündigt.</p>
+
+    <h2>5. Kündigung und Rücktritt</h2>
+    <h3>5.1 Kündigung durch die Nutzerin</h3>
+    <p>Abonnements können jederzeit über die App oder per E-Mail an support@semetra.ch gekündigt werden. Die Kündigung wird zum Ende der bezahlten Abrechnungsperiode wirksam. Nach Ablauf wechselt das Konto automatisch in den Free-Plan.</p>
+    <h3>5.2 Kündigung durch den Anbieter</h3>
+    <p>Der Anbieter kann das Vertragsverhältnis jederzeit mit einer Frist von 30 Tagen ordentlich kündigen. Bei schwerwiegenden Verstössen gegen diese AGB ist eine fristlose Kündigung möglich.</p>
+    <h3>5.3 Rückerstattung</h3>
+    <p>Es besteht grundsätzlich kein Anspruch auf Rückerstattung bereits bezahlter Beträge. Für Lifetime-Lizenzen gilt ein freiwilliges Rückgaberecht von 14 Tagen ab Kaufdatum, sofern die Nutzerin dies schriftlich per E-Mail beantragt. Der Anbieter behält sich vor, in Einzelfällen nach eigenem Ermessen Rückerstattungen zu gewähren.</p>
+
+    <h2>6. Geistiges Eigentum</h2>
+    <p>Sämtliche Rechte an der Software, einschliesslich Quellcode, Design, Texte, Grafiken und Marken, liegen beim Anbieter. Die Nutzerin erhält ein nicht-exklusives, nicht-übertragbares, widerrufliches Nutzungsrecht für den persönlichen Gebrauch.</p>
+    <p>Es ist untersagt, den Dienst oder Teile davon zu kopieren, zu dekompilieren, zurückzuentwickeln (Reverse Engineering), zu modifizieren oder für kommerzielle Zwecke weiterzuverwenden.</p>
+
+    <h2>7. Nutzerpflichten und verbotene Nutzung</h2>
+    <p>Die Nutzerin verpflichtet sich:</p>
+    <ul>
+      <li>den Dienst nur im Rahmen der geltenden Gesetze zu nutzen;</li>
+      <li>keine Inhalte hochzuladen, die gegen Rechte Dritter verstossen (insbesondere Urheberrechte);</li>
+      <li>den Dienst nicht missbräuchlich zu verwenden, insbesondere nicht durch automatisierte Zugriffe, Scraping, Überlastungsangriffe oder Ausnutzung von Sicherheitslücken;</li>
+      <li>den KI-Assistenten nicht zur Erzeugung rechtswidriger, schädlicher oder täuschender Inhalte zu verwenden;</li>
+      <li>ihre Zugangsdaten nicht an Dritte weiterzugeben.</li>
+    </ul>
+    <p>Bei Verstössen ist der Anbieter berechtigt, das Nutzerkonto ohne Vorankündigung zu sperren oder zu löschen.</p>
+
+    <h2>8. Verfügbarkeit und Wartung</h2>
+    <p>Der Anbieter bemüht sich um eine hohe Verfügbarkeit des Dienstes, garantiert jedoch keine unterbrechungsfreie oder fehlerfreie Bereitstellung. Wartungsarbeiten können zu vorübergehenden Einschränkungen führen. Der Anbieter ist bestrebt, geplante Wartungsarbeiten im Voraus anzukündigen.</p>
+    <p>Die Desktop-Anwendung funktioniert unabhängig von der Verfügbarkeit der Server im Offline-Modus. Die Synchronisation zwischen Desktop und Web erfolgt bei bestehender Internetverbindung.</p>
+
+    <h2>9. Haftung und Gewährleistung</h2>
+    <h3>9.1 Haftungsausschluss</h3>
+    <p>Der Dienst wird «wie besehen» («as is») ohne Mängelgewähr bereitgestellt. Der Anbieter übernimmt keine Gewährleistung für die Richtigkeit, Vollständigkeit oder Eignung der im Dienst enthaltenen Funktionen, Berechnungen (insbesondere Notenberechnungen und Prognosen) oder KI-generierten Inhalte.</p>
+    <p>Die Nutzerin ist allein verantwortlich für die Überprüfung der durch den Dienst bereitgestellten Informationen, insbesondere von Notenberechnungen und ECTS-Angaben, anhand der offiziellen Quellen ihrer Bildungseinrichtung.</p>
+    <h3>9.2 Haftungsbeschränkung</h3>
+    <p>Der Anbieter haftet nur für Schäden, die auf Vorsatz oder grobe Fahrlässigkeit zurückzuführen sind. Die Haftung für leichte Fahrlässigkeit, mittelbare Schäden, Folgeschäden, entgangenen Gewinn oder Datenverlust ist — soweit gesetzlich zulässig — ausgeschlossen.</p>
+    <p>Die maximale Haftung des Anbieters ist in jedem Fall auf den Betrag beschränkt, den die Nutzerin in den letzten 12 Monaten vor dem schadensverursachenden Ereignis an den Anbieter bezahlt hat.</p>
+    <h3>9.3 Besonderer Hinweis zu KI-Inhalten</h3>
+    <p>Die vom KI-Assistenten generierten Inhalte (Erklärungen, Zusammenfassungen, Quiz, Karteikarten) dienen ausschliesslich zu Lernzwecken und stellen keine verbindlichen Auskünfte dar. Der Anbieter übernimmt keine Haftung für die Richtigkeit oder Vollständigkeit KI-generierter Inhalte. Die KI-Funktionalität wird durch Drittanbieter (Anthropic, PBC) bereitgestellt; es gelten zusätzlich deren Nutzungsbedingungen.</p>
+    <h3>9.4 Besonderer Hinweis zu Notenberechnungen</h3>
+    <p>Die im Dienst enthaltenen Notenberechnungen, Prognosen und ECTS-Berechnungen sind Hilfsmittel und keine offiziellen Dokumente. Sie können von den tatsächlichen Ergebnissen der Bildungseinrichtung abweichen. Der Anbieter übernimmt keine Haftung für Entscheidungen, die auf Grundlage dieser Berechnungen getroffen werden.</p>
+
+    <h2>10. Datenschutz</h2>
+    <p>Die Erhebung und Verarbeitung personenbezogener Daten erfolgt gemäss der separaten <a href="datenschutz.html">Datenschutzerklärung</a>, die integraler Bestandteil dieser AGB ist.</p>
+
+    <h2>11. Drittanbieter</h2>
+    <p>Der Dienst nutzt Leistungen folgender Drittanbieter:</p>
+    <ul>
+      <li><strong>Stripe, Inc.</strong> — Zahlungsabwicklung (Sitz: USA; Privacy Shield / DPF-zertifiziert)</li>
+      <li><strong>Supabase, Inc.</strong> — Cloud-Infrastruktur und Datenspeicherung</li>
+      <li><strong>Anthropic, PBC</strong> — KI-Modell (Claude) für den Lernassistenten</li>
+      <li><strong>Vercel, Inc.</strong> — Hosting der Web-Applikation</li>
+      <li><strong>Cloudflare, Inc.</strong> — Hosting der Website und CDN</li>
+    </ul>
+    <p>Für diese Dienste gelten die jeweiligen Nutzungsbedingungen und Datenschutzrichtlinien der Drittanbieter. Der Anbieter übernimmt keine Haftung für Leistungsstörungen seitens dieser Drittanbieter.</p>
+
+    <h2>12. Änderungen der AGB</h2>
+    <p>Der Anbieter behält sich vor, diese AGB jederzeit zu ändern. Änderungen werden der Nutzerin mindestens 30 Tage vor Inkrafttreten per E-Mail oder innerhalb der App mitgeteilt. Die fortgesetzte Nutzung des Dienstes nach Inkrafttreten der Änderungen gilt als Zustimmung. Widerspricht die Nutzerin den geänderten AGB, kann sie ihr Konto jederzeit kündigen.</p>
+
+    <h2>13. Salvatorische Klausel</h2>
+    <p>Sollte eine Bestimmung dieser AGB unwirksam oder undurchführbar sein, so bleiben die übrigen Bestimmungen davon unberührt. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>
+
+    <h2>14. Anwendbares Recht und Gerichtsstand</h2>
+    <p>Diese AGB unterliegen schweizerischem Recht unter Ausschluss der kollisionsrechtlichen Bestimmungen sowie des UN-Kaufrechts (CISG).</p>
+    <p>Ausschliesslicher Gerichtsstand für sämtliche Streitigkeiten aus oder im Zusammenhang mit diesen AGB ist der Kanton St. Gallen, Schweiz, soweit gesetzlich zulässig. Zwingende gesetzliche Gerichtsstände bleiben vorbehalten.</p>
+
+    <div class="legal-meta">
+      <p>Stand: 4. April 2026 — Version 1.0<br>
+      Bei Fragen: <a href="mailto:support@semetra.ch" style="color:var(--accent);">support@semetra.ch</a></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline" data-de="Der smarte Study Workspace für Studierende in Europa." data-en="The smart study workspace for students in Europe.">Der smarte Study Workspace für Studierende in Europa.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Produkt" data-en="Product">Produkt</h4>
+      <a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a>
+      <a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a>
+      <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a>
+      <a href="changelog.html" data-de="Changelog" data-en="Changelog">Changelog</a>
+      <a href="https://app.semetra.ch" data-de="Web App" data-en="Web App">Web App</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Konto" data-en="Account">Konto</h4>
+      <a href="login.html" data-de="Anmelden" data-en="Sign in">Anmelden</a>
+      <a href="register.html" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+      <a href="profil.html" data-de="Profil" data-en="Profile">Profil</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Rechtliches" data-en="Legal">Rechtliches</h4>
+      <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+      <a href="agb.html" data-de="AGB" data-en="Terms">AGB</a>
+      <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 – 2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="i18n.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>

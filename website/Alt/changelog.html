@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — Semetra</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Was ist neu in Semetra? Alle Updates, neue Features und Verbesserungen im Überblick.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(160deg, #f8f6fc 0%, #eef2ff 50%, #ede9fe 100%);
+      padding: 100px 24px 64px; text-align: center;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400; line-height: 1.2;
+      letter-spacing: -0.5px; margin-bottom: 16px;
+    }
+    .page-hero p {
+      font-size: 1.1rem; color: var(--ink-60);
+      max-width: 520px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* Timeline */
+    .timeline {
+      max-width: 720px; margin: 0 auto;
+      position: relative; padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 15px; top: 0; bottom: 0;
+      width: 2px; background: var(--ink-10);
+    }
+    .tl-entry {
+      position: relative; margin-bottom: 48px;
+    }
+    .tl-entry:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -33px; top: 4px;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 3px solid var(--accent); background: var(--white);
+      z-index: 1;
+    }
+    .tl-entry.latest .tl-dot {
+      background: var(--accent); width: 14px; height: 14px;
+      left: -34px; top: 3px;
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.15);
+    }
+    .tl-date {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent); text-transform: uppercase;
+      letter-spacing: 0.5px; margin-bottom: 6px;
+    }
+    .tl-version {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .tl-changes {
+      background: var(--white); border: 1px solid var(--ink-10);
+      border-radius: var(--radius); padding: 20px 24px;
+    }
+    .tl-changes h4 {
+      font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 10px; color: var(--ink-40);
+    }
+    .tl-list { list-style: none; }
+    .tl-list li {
+      font-size: 0.85rem; color: var(--ink-80);
+      padding: 5px 0 5px 22px; position: relative;
+      line-height: 1.55;
+    }
+    .tl-list li::before {
+      content: ''; position: absolute; left: 0; top: 10px;
+      width: 10px; height: 10px; border-radius: 3px;
+    }
+    .tl-list li.feat::before { background: var(--green-s); border: 2px solid var(--green); }
+    .tl-list li.fix::before { background: #fef2f2; border: 2px solid var(--red); }
+    .tl-list li.improve::before { background: var(--accent-s); border: 2px solid var(--accent); }
+    .tl-list li.ai::before { background: var(--violet-s); border: 2px solid var(--violet); }
+
+    .tl-legend {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 40px; padding-left: 40px;
+      max-width: 720px; margin-left: auto; margin-right: auto;
+    }
+    .tl-legend span {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; color: var(--ink-40); font-weight: 600;
+    }
+    .tl-legend-dot {
+      width: 10px; height: 10px; border-radius: 3px;
+    }
+
+    @media (max-width: 560px) {
+      .timeline { padding-left: 32px; }
+      .tl-dot { left: -25px; }
+      .tl-entry.latest .tl-dot { left: -26px; }
+      .tl-legend { padding-left: 32px; }
+    }
+  
+    /* Language switch pill */
+    .lang-switch {
+      display: flex; align-items: center;
+      background: var(--ink-05); border: 1px solid var(--ink-10);
+      border-radius: 8px; overflow: hidden;
+      cursor: pointer; user-select: none;
+    }
+    .lang-opt {
+      padding: 5px 10px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.5px; color: var(--ink-20);
+      transition: all 0.2s;
+    }
+    .lang-opt.active {
+      background: var(--ink); color: #fff;
+    }
+    .nav-mobile-actions {
+      display: none; align-items: center; gap: 8px;
+    }
+      @media (max-width: 720px) {
+      .nav-mobile-actions { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Semetra</a>
+    <ul class="nav-links">
+      <li><a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a></li>
+      <li><a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a></li>
+      <li><a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a></li>
+      <li><a href="changelog.html" class="active">Neu</a></li>
+    </ul>
+    <div id="nav-auth-desktop">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <a href="login.html" class="nav-login-link" data-de="Anmelden" data-en="Sign in" style="color:var(--ink-60);text-decoration:none;font-size:0.85rem;font-weight:500;margin-right:12px;">Anmelden</a>
+      <a href="register.html" class="nav-cta" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+    </div>
+    <div class="nav-mobile-actions">
+      <div class="lang-switch" onclick="toggleLang()"><span class="lang-opt" data-lang="de">DE</span><span class="lang-opt" data-lang="en">EN</span></div>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a>
+  <a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a>
+  <a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a>
+  <a href="changelog.html" data-de="Neu" data-en="New">Neu</a>
+  <div id="nav-auth-mobile">
+    <a href="login.html" data-de="Anmelden" data-en="Sign in">Anmelden</a>
+    <a href="register.html" class="nav-mobile-cta" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <span class="section-label fade-up" data-de="Changelog" data-en="Changelog">Changelog</span>
+  <h1 class="fade-up fade-up-d1" data-de="Was ist neu?" data-en="What's new?">Was ist neu?</h1>
+  <p class="fade-up fade-up-d2" data-de="Alle Updates, neue Features und Verbesserungen — transparent dokumentiert." data-en="All updates, new features and improvements — documented transparently.">Alle Updates, neue Features und Verbesserungen — transparent dokumentiert.</p>
+</section>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="container">
+    <div class="tl-legend fade-up">
+      <span><span class="tl-legend-dot" style="background:var(--green-s);border:2px solid var(--green);"></span data-de=" Feature" data-en=" Feature"> Feature</span>
+      <span><span class="tl-legend-dot" style="background:var(--accent-s);border:2px solid var(--accent);"></span data-de=" Verbesserung" data-en=" Improvement"> Verbesserung</span>
+      <span><span class="tl-legend-dot" style="background:var(--violet-s);border:2px solid var(--violet);"></span data-de=" KI" data-en=" AI"> KI</span>
+      <span><span class="tl-legend-dot" style="background:#fef2f2;border:2px solid var(--red);"></span data-de=" Bugfix" data-en=" Bugfix"> Bugfix</span>
+    </div>
+
+    <div class="timeline">
+
+      <!-- v2.5 -->
+      <div class="tl-entry latest fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">April 2026</div>
+        <div class="tl-version">Version 2.5 <span class="tag tag-new">Aktuell</span></div>
+        <div class="tl-changes">
+          <h4>Highlights</h4>
+          <ul class="tl-list">
+            <li class="feat">PDF-Werkzeuge: Seitenweises Zusammenführen & Aufteilen mit Thumbnail-Vorschau</li>
+            <li class="feat">Mind Maps: Farbige Knoten, frei positionierbar, Textfarben-Wahl</li>
+            <li class="feat">Dashboard mit Semesterübersicht, ECTS-Fortschritt und Aufgaben</li>
+            <li class="feat">Notenprognosen & Trendanalyse (Pro)</li>
+            <li class="ai">KI-Lernassistent: Erklären, Quiz, Zusammenfassen, Karteikarten generieren</li>
+            <li class="ai">Mathe-Raum mit KI-gestützter Formel-Hilfe</li>
+            <li class="feat">Pro Full Plan mit 100 KI-Requests/Monat</li>
+            <li class="feat">Lifetime Basic & Lifetime Full Lizenzen</li>
+            <li class="feat">KI Add-on: +200 Requests für CHF 6.90 (jederzeit nachkaufbar)</li>
+            <li class="improve">6 Sprachen: DE, EN, FR, IT, ES, NL</li>
+            <li class="improve">Überarbeitetes Pricing-Modell</li>
+            <li class="fix">Diverse UI-Verbesserungen und Bugfixes</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- v2.0 -->
+      <div class="tl-entry fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Januar 2026</div>
+        <div class="tl-version">Version 2.0</div>
+        <div class="tl-changes">
+          <h4>Major Release</h4>
+          <ul class="tl-list">
+            <li class="feat">Web-App Launch (app.semetra.ch)</li>
+            <li class="feat">Desktop &#8596; Web Echtzeit-Synchronisation</li>
+            <li class="feat">Stripe-Integration für Pro-Abonnements</li>
+            <li class="feat">Karteikarten-System mit Flip-Animation</li>
+            <li class="feat">Notizen mit Rich-Text-Editor</li>
+            <li class="feat">Supabase Cloud-Infrastruktur</li>
+            <li class="improve">Komplett überarbeitetes UI-Design</li>
+            <li class="improve">Verbesserte Noten-Eingabe und Berechnung</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- v1.5 -->
+      <div class="tl-entry fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Oktober 2025</div>
+        <div class="tl-version">Version 1.5</div>
+        <div class="tl-changes">
+          <h4>Desktop-Updates</h4>
+          <ul class="tl-list">
+            <li class="feat">Pomodoro-Timer mit Lernzeit-Tracking</li>
+            <li class="feat">Lernziele pro Modul</li>
+            <li class="feat">ECTS-Tracking und Kreditierungslogik</li>
+            <li class="improve">Verbesserter Stundenplan mit Drag-and-Drop</li>
+            <li class="fix">Performance-Optimierungen</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- v1.0 -->
+      <div class="tl-entry fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">August 2025</div>
+        <div class="tl-version">Version 1.0</div>
+        <div class="tl-changes">
+          <h4>Erster Release</h4>
+          <ul class="tl-list">
+            <li class="feat">Module & Semester-Verwaltung</li>
+            <li class="feat">Noten-Eingabe mit gewichteten Teilnoten</li>
+            <li class="feat">Stundenplan (Wochenansicht)</li>
+            <li class="feat">Kalender mit Prüfungen & Deadlines</li>
+            <li class="feat">Aufgaben-Verwaltung</li>
+            <li class="feat">Desktop-App (Windows) mit SQLite</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-alt" style="text-align:center;">
+  <div class="container">
+    <h2 class="section-title fade-up" data-de="Immer auf dem neusten Stand" data-en="Always up to date">Immer auf dem neusten Stand</h2>
+    <p class="section-desc fade-up fade-up-d1" style="margin-bottom:28px;" data-de="Semetra wird laufend verbessert. Starte jetzt und profitiere von allen zukünftigen Updates." data-en="Semetra is constantly improving. Start now and benefit from all future updates.">Semetra wird laufend verbessert. Starte jetzt und profitiere von allen zukünftigen Updates.</p>
+    <a href="https://app.semetra.ch" class="btn btn-primary fade-up fade-up-d2" data-de="Kostenlos starten" data-en="Start for free">Kostenlos starten
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Semetra</div>
+      <p class="footer-tagline" data-de="Der smarte Study Workspace für Studierende in Europa. Desktop &amp; Web App mit KI-Lernassistent." data-en="The smart study workspace for students in Europe. Desktop &amp; Web app with AI learning assistant.">Der smarte Study Workspace für Studierende in Europa. Desktop &amp; Web App mit KI-Lernassistent.</p>
+      <p style="font-size:0.72rem; color:rgba(255,255,255,0.3);" data-de="Ein Produkt von Lopicic Technologies" data-en="A product by Lopicic Technologies">Ein Produkt von Lopicic Technologies</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Produkt" data-en="Product">Produkt</h4>
+      <a href="tech.html" data-de="Technologie" data-en="Technology">Technologie</a>
+      <a href="pricing.html" data-de="Preise" data-en="Pricing">Preise</a>
+      <a href="warum-semetra.html" data-de="Warum Semetra?" data-en="Why Semetra?">Warum Semetra?</a>
+      <a href="changelog.html" data-de="Changelog" data-en="Changelog">Changelog</a>
+      <a href="https://app.semetra.ch" data-de="Web App" data-en="Web App">Web App</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Pläne" data-en="Plans">Pläne</h4>
+      <a href="pricing.html" data-de="Free" data-en="Free">Free</a>
+      <a href="pricing.html#pro">Pro Basic</a>
+      <a href="pricing.html#pro">Pro Full</a>
+      <a href="pricing.html#lifetime" data-de="Lifetime" data-en="Lifetime">Lifetime</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Konto" data-en="Account">Konto</h4>
+      <a href="login.html" data-de="Anmelden" data-en="Sign in">Anmelden</a>
+      <a href="register.html" data-de="Registrieren" data-en="Sign up">Registrieren</a>
+      <a href="profil.html" data-de="Profil" data-en="Profile">Profil</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-de="Rechtliches" data-en="Legal">Rechtliches</h4>
+      <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+      <a href="agb.html" data-de="AGB" data-en="Terms">AGB</a>
+      <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 – 2026 Lopicic Technologies. Alle Rechte vorbehalten.</span>
+    <a href="mailto:support@semetra.ch">support@semetra.ch</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; }});
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="i18n.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>

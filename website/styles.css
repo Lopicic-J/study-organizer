@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
    Semetra.ch — Shared Styles
-   Multi-page marketing site for Semetra Workspace
+   Multi-page marketing site for Semetra Study System
    ═══════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -85,10 +85,11 @@ img { max-width: 100%; display: block; }
 .nav-toggle svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .nav-mobile-menu {
   display: none;
-  position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
-  background: #ffffff;
-  backdrop-filter: none;
-  z-index: 99; padding: 24px;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ffffff;
+  border-top: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  z-index: 999; padding: 80px 24px 24px;
   flex-direction: column; gap: 4px;
 }
 .nav-mobile-menu.open { display: flex; }
@@ -104,6 +105,11 @@ img { max-width: 100%; display: block; }
   background: var(--ink); color: var(--white) !important;
   border-radius: 10px; font-weight: 700; font-size: 1rem;
 }
+/* Dark variant for pages with dark nav (index.html) */
+.nav-mobile-dark { background-color: #0d0820; }
+.nav-mobile-dark a { color: rgba(255,255,255,0.85) !important; }
+.nav-mobile-dark a:hover { background: rgba(255,255,255,0.08); }
+.nav-mobile-dark .nav-mobile-cta { background: #7c3aed; color: #fff !important; }
 
 /* ─ NAV AUTH ─ */
 #nav-auth-desktop {
@@ -240,16 +246,37 @@ img { max-width: 100%; display: block; }
 /* ─ RESPONSIVE ─ */
 @media (max-width: 860px) {
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .card { padding: 24px; }
 }
 @media (max-width: 720px) {
   .nav-links { display: none; }
   .nav-cta { display: none; }
+  #nav-auth-desktop { display: none; }
   .nav-toggle { display: flex; }
-  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
   .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
-  .section { padding: 56px 16px; }
+  .section { padding: 48px 16px; }
+  .section-header { margin-bottom: 36px; }
+  .section-desc { font-size: 0.95rem; }
+  .card { padding: 20px; border-radius: 14px; }
+  .card-icon { width: 40px; height: 40px; margin-bottom: 14px; }
+  /* Touch-friendly links and buttons */
+  .nav-mobile-menu a { padding: 14px 16px; min-height: 48px; display: flex; align-items: center; }
+  .nav-mobile-cta { min-height: 48px; display: flex; align-items: center; justify-content: center; }
+  /* Prevent iOS zoom on input focus */
+  input, textarea, select { font-size: 16px; }
 }
 @media (max-width: 560px) {
-  .container { padding: 0 16px; }
-  .btn { width: 100%; justify-content: center; }
+  .container { padding: 0 14px; }
+  .container-sm { padding: 0 14px; }
+  .btn { width: 100%; justify-content: center; min-height: 48px; }
+  .section { padding: 40px 14px; }
+  .section-title { font-size: 1.6rem; }
+  .card { padding: 16px; }
+  .tag { font-size: 0.58rem; padding: 2px 6px; }
+  /* Stack hero trust items */
+  .hero-trust { flex-direction: column; gap: 8px !important; }
+  /* Ensure footer readability */
+  .footer { padding: 40px 14px 20px; }
+  .footer-brand { font-size: 1.1rem; }
 }
